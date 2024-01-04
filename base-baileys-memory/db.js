@@ -5,7 +5,7 @@ const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'Autolavado',
-    password: 'root',
+    password: '1233456',
     port: 5432, // Puerto predeterminado de PostgreSQL
 });
 
