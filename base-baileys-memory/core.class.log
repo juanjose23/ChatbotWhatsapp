@@ -1,0 +1,287 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '50581719517@s.whatsapp.net',
+    fromMe: false,
+    id: '9FFD65858D7C04106F',
+    participant: undefined
+  },
+  messageTimestamp: 1704361777,
+  pushName: 'Medina Jhonatan',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage { text: 'Hola', contextInfo: [ContextInfo] },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Hola',
+  from: '50581719517'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_4dae6eb2-ba2b-4549-80e1-9aaa655dc636',
+  keyword: 'key_d5586820-3928-400b-b1cf-32d151c4c81b',
+  answer: '🚗 ¡Hola! Bienvenido al Autolavado Express. 🌟 ¿Cómo puedo ayudarte hoy?',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'e2001e9db7fdd25eabcda625b044755e'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_4bd49b31-0154-48f0-bb98-8f93d4a42f90',
+  keyword: 'ans_4dae6eb2-ba2b-4549-80e1-9aaa655dc636',
+  answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
+    '👉 *1. Agendar cita*\n' +
+    '👉 *2. Cancelar cita*\n' +
+    '👉 *3. Horarios*\n' +
+    '👉 *4. Servicios*\n' +
+    '*Ingresa un numero para continuar*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '154be57c1721b7ba146c84e5acf1da6e'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50581719517@s.whatsapp.net',
+    fromMe: false,
+    id: '96C757A0DFEE249B61',
+    participant: undefined
+  },
+  messageTimestamp: 1704361781,
+  pushName: 'Medina Jhonatan',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage { text: '1', contextInfo: [ContextInfo] },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50581719517'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_663f5b6e-7d3b-47ec-9889-c3ef6db3c16d',
+  keyword: 'key_8c461494-b733-459e-883b-ffdcfc01a832',
+  answer: 'Bievenidos!',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'fb92d8d1d10766ade7bf61c87e4de412'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50581719517@s.whatsapp.net',
+    fromMe: false,
+    id: 'CEBFFC1B5404FB249A',
+    participant: undefined
+  },
+  messageTimestamp: 1704361784,
+  pushName: 'Medina Jhonatan',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Soy nuevo',
+      contextInfo: [ContextInfo]
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Soy nuevo',
+  from: '50581719517'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_994e48fb-d60a-4507-a7aa-ab7bee89edec',
+  keyword: 'key_b24c829a-9b02-4e3b-8fb1-c04beb0d12f4',
+  answer: 'Hola!\n' +
+    'Para enviar el formulario necesito unos datos...\n' +
+    'Escriba su *Nombre*\n' +
+    '\n' +
+    ' escribe ❌  para Cancelar solicitud',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'e3f7ae310c6c95b78ceb7b41af124e57'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50581719517@s.whatsapp.net',
+    fromMe: false,
+    id: 'BA63B2BFE4CB5F61F9',
+    participant: undefined
+  },
+  messageTimestamp: 1704361786,
+  pushName: 'Medina Jhonatan',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Jhonatan',
+      contextInfo: [ContextInfo]
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Jhonatan',
+  from: '50581719517'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_6daeb845-0881-4672-81ae-db199049edcf',
+  keyword: 'ans_994e48fb-d60a-4507-a7aa-ab7bee89edec',
+  answer: 'También necesito tus dos apellidos',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '06381daea6efd648ce1cf8c0245a4152'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50581719517@s.whatsapp.net',
+    fromMe: false,
+    id: '6ED57F3AEB137B909B',
+    participant: undefined
+  },
+  messageTimestamp: 1704361789,
+  pushName: 'Medina Jhonatan',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Medina Aguirre',
+      contextInfo: [ContextInfo]
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Medina Aguirre',
+  from: '50581719517'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_8f551cb7-4557-45e5-ab2e-ed0d2c1f5443',
+  keyword: 'ans_6daeb845-0881-4672-81ae-db199049edcf',
+  answer: 'Ingresa tu correo electronico',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '176eef66dedc96686d51d7eb3a48a071'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50581719517@s.whatsapp.net',
+    fromMe: false,
+    id: 'CBB1311B8C08B68E06',
+    participant: undefined
+  },
+  messageTimestamp: 1704361792,
+  pushName: 'Medina Jhonatan',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'medina@gmail.com',
+      contextInfo: [ContextInfo]
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'medina@gmail.com',
+  from: '50581719517'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f7611278-f02b-4c40-aa90-d03686ed84de',
+  keyword: 'ans_8f551cb7-4557-45e5-ab2e-ed0d2c1f5443',
+  answer: 'Si ere persona juridica envia J en caso contrario N',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '6db6716435a52a2329e2ca66fec83ee0'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50581719517@s.whatsapp.net',
+    fromMe: false,
+    id: '7850D149891D86E2B3',
+    participant: undefined
+  },
+  messageTimestamp: 1704361794,
+  pushName: 'Medina Jhonatan',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage { text: 'N', contextInfo: [ContextInfo] },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'N',
+  from: '50581719517'
+}

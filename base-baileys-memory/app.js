@@ -55,43 +55,33 @@ const generarCodigoCliente = (nombre, idPersona, telefono) => {
   return codigo;
 };
 
-const insertarCliente = async (nombre, correo,apellido, celular,tipo) => {
+const axios = require('axios');
+
+const insertarCliente = async (nombre, apellidos, correo, telefono, tipo) => {
   try {
-    // Insertar en la tabla persona y obtener el ID
-    const resultPersona = await pool.query(`
-      INSERT INTO persona (nombre, correo, direccion, celular)
-      VALUES ($1, $2, $3, $4)
-      RETURNING id
-    `, [nombre, correo,null, celular]);
+    let data = {
+      nombre: nombre,
+      correo: correo,
+      apellidos: apellidos,
+      celular: telefono,
+      tipo: tipo
+    };
 
-    const idPersona = resultPersona.rows[0].id;
-    console.log('ID PERSONA',idPersona)
-    const resultPersonaNatural = await pool.query(`
-    INSERT INTO persona_natural (id_persona, apellido,tipo_persona)
-    VALUES ($1, $2,$3)
-    RETURNING id
-  `, [idPersona,apellido,tipo]);
-    console.log('Id persona Natural', resultPersonaNatural.rows[0].id)
-    // Generar el código del cliente
-    const codigoCliente = generarCodigoCliente(nombre, idPersona, celular);
+    let res = await axios.post('https://27hqppfl-5000.use.devtunnels.ms/insertar_usuario', data);
 
-    // Insertar en la tabla clientes
-    const resultClientes = await pool.query(`
-      INSERT INTO clientes (id_persona, codigo, tipo_cliente, foto, estado)
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING id
-    `, [idPersona, codigoCliente, 'normal', null, 1]);
+    console.log(`Estado: ${res.status}`);
+    console.log('Cuerpo: ', res.data);
 
-    const idClientes = resultClientes.rows[0].id;
+    // Aquí está tu código de cliente
+    let codigoCliente = res.data;
 
-    console.log(`Cliente insertado con éxito en la tabla clientes con ID: ${idClientes}.`);
-    
     return codigoCliente;
-  } catch (error) {
-    console.error('Error en insertarCliente:', error.message);
-    throw error;
+
+  } catch (err) {
+    console.error(err);
   }
 };
+
 
 const validarNumeroCelularExistente = async (numeroCelular) => {
   try {
@@ -241,12 +231,12 @@ const flowFormulario = addKeyword(['soy nuevo', 'nuevo', 'soy'])
       tipos = ctx.body
       if (tipos.toLowerCase() === "j") {
         tipo = "Persona Jurídica";
-      } else if (tipos.toLowerCase() === "n") { 
+      } else if (tipos.toLowerCase() === "n") {
         tipo = "Persona Natural";
         telefono = ctx.from;
       }
       try {
-        const codigoCliente = await insertarCliente(nombre, correo,telefono,apellidos, tipo);
+        const codigoCliente = await insertarCliente(nombre, apellidos, correo, telefono, tipo);
         return await flowDynamic(`Estupendo *${nombre} ${apellidos}*! Te dejo el resumen de tu formulario\n- Nombre y apellidos: *${nombre} ${apellidos}*\n- Correo: *${correo}*\n- Teléfono: *${telefono}*\n- Tipo de persona: *${tipo}*\n- Código de Cliente: *${codigoCliente}*`);
       } catch (error) {
         console.error('Error:', error.message);
@@ -265,10 +255,10 @@ const FlowHorarios = addKeyword('3').addAnswer(
     try {
       const horarios = await getHorarios();
       if (Array.isArray(horarios)) {
-       
+
         const formattedHorarios = horarios.map(({ dia, hora_apertura, hora_cierre, estado }) => {
           return `${dia}: ${hora_apertura} - ${hora_cierre} (${estado === 1 ? 'Abierto' : 'Cerrado'})`;
-        }).join('\n'); 
+        }).join('\n');
         await flowDynamic(`Horarios:\n${formattedHorarios}`);
       } else {
         console.error('Error: No se obtuvieron horarios válidos desde la base de datos.');
@@ -291,7 +281,7 @@ const FlowServicios = addKeyword('4').addAnswer(
       if (Array.isArray(servicios)) {
         const formattedServicios = servicios.map(({ nombre, precio }) => {
           return `${nombre}, Coste del servicios: ${precio} `;
-        }).join('\n'); 
+        }).join('\n');
         console.log(formattedServicios);
         await flowDynamic(`Nuestros servicios:\n${formattedServicios}`);
       } else {
@@ -307,14 +297,14 @@ const FlowServiciosDescripcion = addKeyword('Ver servicios')
   .addAnswer(
     ['Hola!', 'Escriba el *Nombre* del servicio\n'],
     { capture: true },
-    async (ctx, { flowDynamic  }) => {
+    async (ctx, { flowDynamic }) => {
       try {
         const servicios = await getServiciosDescripcion(ctx.body);
         if (Array.isArray(servicios)) {
           const formattedServicios = servicios.map(({ nombre, descripcion, precio }) => {
             return `${nombre},${descripcion}, Costo del servicio: ${precio} `;
-          }).join('\n'); 
-          console.log('Servicios obtenidos',formattedServicios)
+          }).join('\n');
+          console.log('Servicios obtenidos', formattedServicios)
           return await flowDynamic(`Nuestros servicios:\n ${formattedServicios}`);
         } else {
           console.error('Error: No se obtuvieron servicios válidos desde la base de datos.');
@@ -355,7 +345,7 @@ const flowAgenda = addKeyword('Agendar')
   .addAnswer('Hora de agendar la cita!')
   .addAnswer('Deseas ver los horarios disponibles para el dia de hoy? enviar quiero *ver horarios*,*Ver horarios de la proxima semana*')
 
-  const flowVerHorarioshoy = addKeyword('Ver horarios')
+const flowVerHorarioshoy = addKeyword('Ver horarios')
   .addAnswer(
     ['*Nuestros horarios disponibles es:*'],
     null,
@@ -363,9 +353,9 @@ const flowAgenda = addKeyword('Agendar')
       try {
         const horarios = await obtenerHorasDisponiblesHoy();
         if (Array.isArray(horarios)) {
-         
+
           const formattedHorasDisponiblesHoy = horasDisponiblesHoy.join(', ');
-          console.log('Horarios de hoy:',formattedHorasDisponiblesHoy)
+          console.log('Horarios de hoy:', formattedHorasDisponiblesHoy)
           await flowDynamic(`Horarios:\n${formattedHorasDisponiblesHoy}`);
         } else {
           console.error('Error: No se obtuvieron horarios válidos desde la base de datos.');
@@ -375,8 +365,8 @@ const flowAgenda = addKeyword('Agendar')
       }
     }
   );
-  
-  const flowVerHorariosgeneral = addKeyword('Ver horarios de la proxima semana')
+
+const flowVerHorariosgeneral = addKeyword('Ver horarios de la proxima semana')
   .addAnswer('Hora de agendar la cita!')
   .addAnswer('Deseas ver los horarios disponibles para el dia de hoy? enviar quiero *ver horarios*,*Ver horarios de la proxima semana*')
 
@@ -401,7 +391,7 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
 
 const main = async () => {
   const adapterDB = new MockAdapter()
-  const adapterFlow = createFlow([flowPrincipal, flowFormulario, FlowServiciosDescripcion,flowVerHorarioshoy,flowVerHorariosgeneral])
+  const adapterFlow = createFlow([flowPrincipal, flowFormulario, FlowServiciosDescripcion, flowVerHorarioshoy, flowVerHorariosgeneral])
   const adapterProvider = createProvider(BaileysProvider)
 
   createBot({
