@@ -3,7 +3,7 @@ CREATE TABLE persona (
  nombre VARCHAR(150) NOT NULL,
  correo VARCHAR(150) NOT NULL,
  direccion VARCHAR(250),
- celular INTEGER UNIQUE
+ celular BIGINT UNIQUE
 );
 CREATE TABLE persona_natural (
     id SERIAL PRIMARY KEY,
@@ -12,12 +12,13 @@ CREATE TABLE persona_natural (
     cedula VARCHAR(80),
     fecha_nacimiento DATE,
     genero CHAR,
-    tipo_persona INTEGER
+    tipo_persona VARCHAR(50)
 );
 
 CREATE TABLE clientes (
     id SERIAL PRIMARY KEY,
     id_persona INTEGER REFERENCES persona(id),
+    codigo VARCHAR(50),
     tipo_cliente VARCHAR(250) NOT NULL,
     foto VARCHAR(250) ,
     estado INTEGER
@@ -64,16 +65,32 @@ CREATE TABLE producto
     id_sub_categoria INTEGER REFERENCES sub_categoria_producto(id),
     nombre VARCHAR(120) NOT NULL,
     descripcion varchar(250) NOT NULL,
-    cantidad INTEGER NOT NUll,
     logo VARCHAR(250),
     estado INTEGER
+);
+CREATE TABLE lote_producto
+(
+    id SERIAL PRIMARY KEY,
+    id_producto INTEGER REFERENCES producto(id),
+    numero_lote VARCHAR(50) NOT NULL,
+    fecha_vencimiento DATE,
+    cantidad INTEGER NOT NULL,
+    estado INTEGER
+);
+
+CREATE TABLE movimiento_inventario
+(
+    id SERIAL PRIMARY KEY,
+    id_lote INTEGER REFERENCES lote_producto(id),
+    tipo_movimiento VARCHAR(20) NOT NULL,
+    cantidad INTEGER NOT NULL,
+    fecha_movimiento TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE precio(
     id SERIAL PRIMARY KEY,
     id_producto INTEGER REFERENCES producto(id),
-    precio_actual NUMERIC(10,2) NOT NULL,
-    precio_anterior NUMERIC(10,2),
+    precio NUMERIC(10,2) NOT NULL,
     estado INTEGER
 );
 
@@ -95,17 +112,22 @@ CREATE TABLE servicios(
 CREATE TABLE precio_servicios(
     id SERIAL PRIMARY KEY,
     id_servicios INTEGER REFERENCES servicios(id),
-    precio_actual NUMERIC(10,2) NOT NULL,
-    precio_anterior NUMERIC(10,2),
+    precio NUMERIC(10,2) NOT NULL,
     estado INTEGER
 );
 
-
-
-
-/**
-*Pedidos y personalizaciones
-*/
+CREATE TABLE reservacion(
+    id SERIAL PRIMARY KEY,
+    idcliente INTEGER REFERENCES clientes(id),
+    idhorario INTEGER REFERENCES horarios(id),
+    idservicio INTEGER REFERENCES servicios(id),
+    codigo VARCHAR(50) unique,
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
+    subtotal DECIMAL(10,2),
+    observacion VARCHAR(250),
+    estado INTEGER 
+);
 
 CREATE TABLE tipo_venta (
     id SERIAL PRIMARY KEY,
@@ -132,7 +154,7 @@ CREATE TABLE detalle_venta
 (
     id SERIAL PRIMARY KEY,
     id_venta INTEGER REFERENCES venta(id),
-    id_producto INTEGER REFERENCES producto(id),
+    id_servicio INTEGER REFERENCES servicios(id),
     precio_unitario NUMERIC NOT NULL,
     cantidad INTEGER NOT NULL,
     subtotal numeric NOT NULL
@@ -142,7 +164,7 @@ CREATE TABLE detalle_venta
 CREATE TABLE venta_servicios(
     id SERIAL PRIMARY KEY,
     id_venta INTEGER REFERENCES venta(id),
-    id_reservacion INTEGER REFERENCES servicios(id),
+    id_reservacion INTEGER REFERENCES reservacion(id),
     subtotal numeric NOT NUll 
 );
 
@@ -184,7 +206,7 @@ CREATE TABLE usuario
 
 CREATE TABLE privilegio_modulo(
     id SERIAL PRIMARY KEY,
-    id_sub INTEGER REFERENCES submodulo(id),
+    id_sub INTEGER REFERENCES sub_modulo(id),
     id_usuario INTEGER REFERENCES usuario(id),
     fecha_registro DATE DEFAULT NOW()
 );
@@ -208,6 +230,3 @@ CREATE TABLE permiso_usuario(
     id_permiso_modulo INTEGER REFERENCES permiso_modulo(id),
     id_usuario INTEGER REFERENCES usuario(id)
 );
-
-
-
