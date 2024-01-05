@@ -1,11 +1,1505 @@
 [handleMsg]:  {
   key: {
-    remoteJid: '50581719517@s.whatsapp.net',
+    remoteJid: '50583797821@s.whatsapp.net',
     fromMe: false,
-    id: '9FFD65858D7C04106F',
+    id: 'E7DA947AD1FE467C8DC2FCBEB3D4A18E',
     participant: undefined
   },
-  messageTimestamp: 1704361777,
+  messageTimestamp: 1704415618,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '0736F8CC54914E1D42CA4761131EFA4E',
+    participant: undefined
+  },
+  messageTimestamp: 1704415618,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '9464917E98348747DB9FEC574516AA0E',
+    participant: undefined
+  },
+  messageTimestamp: 1704415619,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'F0BEDCAD9867C0E15F4608B6091A4FEE',
+    participant: undefined
+  },
+  messageTimestamp: 1704415619,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'AAA34733F8046EFF18587C93E0F73989',
+    participant: undefined
+  },
+  messageTimestamp: 1704415619,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '4F5C2C38670B5D8FA2DB43DAA87087C1',
+    participant: undefined
+  },
+  messageTimestamp: 1704415619,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'B495CF751A0C3471C5E550FB37C163CE',
+    participant: undefined
+  },
+  messageTimestamp: 1704415620,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'B979BB9F3513B5B2ED35AB048822D953',
+    participant: undefined
+  },
+  messageTimestamp: 1704415620,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '14797F892B2099C7371114AEFE1A5820',
+    participant: undefined
+  },
+  messageTimestamp: 1704415620,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '7493D67C2ABC52AF09CC6A643F5B6FC5',
+    participant: undefined
+  },
+  messageTimestamp: 1704415620,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '52647AAC5EE6BD9F2A5A14A66F43505D',
+    participant: undefined
+  },
+  messageTimestamp: 1704415621,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '178BEAF15C972D980C3712B9DBC9E74A',
+    participant: undefined
+  },
+  messageTimestamp: 1704415621,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '78F0DC7FCB1CD0974D3A32B433733E40',
+    participant: undefined
+  },
+  messageTimestamp: 1704415621,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '7A0AFA202F46BBA910BE16F354D7D335',
+    participant: undefined
+  },
+  messageTimestamp: 1704415621,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'EAF3DEBC9EA48B7E4DA74179F3285C12',
+    participant: undefined
+  },
+  messageTimestamp: 1704415635,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '8C84C5D6C7EA041032BB88417C713779',
+    participant: undefined
+  },
+  messageTimestamp: 1704415639,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'D1D10F34C509EBDB4A92D8F3967859A5',
+    participant: undefined
+  },
+  messageTimestamp: 1704415640,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'F21FB16CA41C62DD6044F536A6C66C33',
+    participant: undefined
+  },
+  messageTimestamp: 1704415640,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '88C074CDC54F678B34F493B3C2656FA7',
+    participant: undefined
+  },
+  messageTimestamp: 1704415640,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '7777ABBE4405AB21AB3CB68E95079905',
+    participant: undefined
+  },
+  messageTimestamp: 1704415640,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '695F74665CE1D2D036E361370244CF37',
+    participant: undefined
+  },
+  messageTimestamp: 1704415641,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '4B8843B4CBE24BD67411DC4927B95FCA',
+    participant: undefined
+  },
+  messageTimestamp: 1704415641,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '001B47CAE8D80AD6DEF97559FED10DE2',
+    participant: undefined
+  },
+  messageTimestamp: 1704415641,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'C3FA3AD694B2926B9661A7E7F79A10E8',
+    participant: undefined
+  },
+  messageTimestamp: 1704415642,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '05DD916A46431D82033D1A7BDA133BFD',
+    participant: undefined
+  },
+  messageTimestamp: 1704415642,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '688210631EB12056B1BFE75D251F7438',
+    participant: undefined
+  },
+  messageTimestamp: 1704415642,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '89DA9C04EFD8912367491C557E9E663A',
+    participant: undefined
+  },
+  messageTimestamp: 1704415642,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  messageStubType: 2,
+  messageStubParameters: [ 'No matching sessions found for message' ],
+  body: undefined,
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '09772EA26529F3683E452684F8CAE4A9',
+    participant: undefined
+  },
+  messageTimestamp: 1704415643,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Entrenamiento y comenzar a revisar info para la auditoría interna de diciembre porque van atrasados',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Entrenamiento y comenzar a revisar info para la auditoría interna de diciembre porque van atrasados',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '48BCBDF1A7257A8D7774D66455004780',
+    participant: undefined
+  },
+  messageTimestamp: 1704415643,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    imageMessage: ImageMessage {
+      interactiveAnnotations: [],
+      scanLengths: [],
+      url: 'https://mmg.whatsapp.net/v/t62.7118-24/21578540_903229751329677_6841598284825359542_n.enc?ccb=11-4&oh=01_AdRo5dTZ_ySR-n7b3HXEsvk9IUr57usNvaKDy7hqwFYXqA&oe=65BE7ADA&_nc_sid=5e03e0&mms3=true',
+      mimetype: 'image/jpeg',
+      caption: 'Expectativas?',
+      fileSha256: [Uint8Array],
+      fileLength: [Long],
+      height: 511,
+      width: 1080,
+      mediaKey: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      directPath: '/v/t62.7118-24/21578540_903229751329677_6841598284825359542_n.enc?ccb=11-4&oh=01_AdRo5dTZ_ySR-n7b3HXEsvk9IUr57usNvaKDy7hqwFYXqA&oe=65BE7ADA&_nc_sid=5e03e0',
+      mediaKeyTimestamp: [Long],
+      jpegThumbnail: [Uint8Array]
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '_event_media__a012cd9c-7ad0-4f29-849d-8d970ad29e9c',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '4B71E64F6E50A7154D32A504C4794020',
+    participant: undefined
+  },
+  messageTimestamp: 1704415643,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Es lo que se espera',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Es lo que se espera',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '7B0F45E41D3A31F03985D810A42FF03E',
+    participant: undefined
+  },
+  messageTimestamp: 1704415643,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Ojalá se así',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Ojalá se así',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '76DF7FC6AE975454840CE1ABDD8FAF4E',
+    participant: undefined
+  },
+  messageTimestamp: 1704415644,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    imageMessage: ImageMessage {
+      interactiveAnnotations: [],
+      scanLengths: [Array],
+      url: 'https://mmg.whatsapp.net/v/t62.7118-24/40350287_343865738409172_1211118553616529247_n.enc?ccb=11-4&oh=01_AdTutDajBcE40f2JDLkoKUMDO0JTKCZkFkFG-y11tpBJaA&oe=65BE7B86&_nc_sid=5e03e0&mms3=true',
+      mimetype: 'image/jpeg',
+      fileSha256: [Uint8Array],
+      fileLength: [Long],
+      height: 1080,
+      width: 1080,
+      mediaKey: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      directPath: '/v/t62.7118-24/40350287_343865738409172_1211118553616529247_n.enc?ccb=11-4&oh=01_AdTutDajBcE40f2JDLkoKUMDO0JTKCZkFkFG-y11tpBJaA&oe=65BE7B86&_nc_sid=5e03e0',
+      mediaKeyTimestamp: [Long],
+      jpegThumbnail: [Uint8Array],
+      scansSidecar: [Uint8Array]
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '_event_media__c2be91e2-eb19-48c6-9026-c10df6e6f068',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '49F743BE4D7417B686F20F478E142B78',
+    participant: undefined
+  },
+  messageTimestamp: 1704415644,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Te pedí uno ayer',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Te pedí uno ayer',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '1E24C1250AC5315072A25606763EBA5E',
+    participant: undefined
+  },
+  messageTimestamp: 1704415644,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Y saliste con lo del pelo',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Y saliste con lo del pelo',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'AEA3757D57E8066E63D00541053D50A2',
+    participant: undefined
+  },
+  messageTimestamp: 1704415644,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/22517705_1567008567468940_3984923485362285863_n.enc?ccb=11-4&oh=01_AdSiI_OrOG1vY-A-71VN6wGhXLu_ANAjMipA7mFYATeSsw&oe=65BE6612&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 64,
+      width: 64,
+      directPath: '/v/t62.15575-24/22517705_1567008567468940_3984923485362285863_n.enc?ccb=11-4&oh=01_AdSiI_OrOG1vY-A-71VN6wGhXLu_ANAjMipA7mFYATeSsw&oe=65BE6612&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      isAnimated: false,
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '_event_media__cfee79e0-441c-425a-bbcc-64df7bd7874c',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '5A3DC505D0E83236C16EF4B66C702E43',
+    participant: undefined
+  },
+  messageTimestamp: 1704415645,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Estabas ocupado',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Estabas ocupado',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'F675248633B4D73AA8F1037C79E41CC3',
+    participant: undefined
+  },
+  messageTimestamp: 1704415648,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Para saber',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Para saber',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'E0C499BC4DFA2E52BF9F609553CFAB1A',
+    participant: undefined
+  },
+  messageTimestamp: 1704415649,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Normal , los hombres piden y no dan',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Normal , los hombres piden y no dan',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'D9D372180F822021CDB6E9BD4F2E1F09',
+    participant: undefined
+  },
+  messageTimestamp: 1704415649,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/18859764_381331317904024_1012857265779018888_n.enc?ccb=11-4&oh=01_AdRmbZkJxiffg37vIaNNdZJ0KU5QWwzpEBImmDb2vpSfLw&oe=65BE643F&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 64,
+      width: 64,
+      directPath: '/v/t62.15575-24/18859764_381331317904024_1012857265779018888_n.enc?ccb=11-4&oh=01_AdRmbZkJxiffg37vIaNNdZJ0KU5QWwzpEBImmDb2vpSfLw&oe=65BE643F&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      isAnimated: false,
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '_event_media__b7fb7834-7cbb-4c94-b626-f141fc2e835a',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '2AFA8BD177BF8C723C7E13E6A8AC0F26',
+    participant: undefined
+  },
+  messageTimestamp: 1704415649,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Ahi más tarde te cuento bien',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Ahi más tarde te cuento bien',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '6847F2B1538F61F2A8C6D31E477D374E',
+    participant: undefined
+  },
+  messageTimestamp: 1704415649,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Sos',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Sos',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'D55D4B1A6FE899DF682F1BCA3210C585',
+    participant: undefined
+  },
+  messageTimestamp: 1704415650,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Siempre jodido',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Siempre jodido',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'E7DA947AD1FE467C8DC2FCBEB3D4A18E',
+    participant: undefined
+  },
+  messageTimestamp: 1704415650,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/22517705_1567008567468940_3984923485362285863_n.enc?ccb=11-4&oh=01_AdSiI_OrOG1vY-A-71VN6wGhXLu_ANAjMipA7mFYATeSsw&oe=65BE6612&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 64,
+      width: 64,
+      directPath: '/v/t62.15575-24/22517705_1567008567468940_3984923485362285863_n.enc?ccb=11-4&oh=01_AdSiI_OrOG1vY-A-71VN6wGhXLu_ANAjMipA7mFYATeSsw&oe=65BE6612&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      isAnimated: false,
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '_event_media__9ce119c1-7436-4ff0-b508-bd66197f39cc',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '0736F8CC54914E1D42CA4761131EFA4E',
+    participant: undefined
+  },
+  messageTimestamp: 1704415650,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/21315363_3936650573228561_2395500480531938551_n.enc?ccb=11-4&oh=01_AdQkuAOh7mLf3E-iAYU-jIO6n-iUYdZYWovC4R3fDTyMkA&oe=65BE8D07&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 64,
+      width: 64,
+      directPath: '/v/t62.15575-24/21315363_3936650573228561_2395500480531938551_n.enc?ccb=11-4&oh=01_AdQkuAOh7mLf3E-iAYU-jIO6n-iUYdZYWovC4R3fDTyMkA&oe=65BE8D07&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      isAnimated: false,
+      contextInfo: [ContextInfo],
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '_event_media__391bc350-7516-49c1-af0e-3a997cccbe57',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '9464917E98348747DB9FEC574516AA0E',
+    participant: undefined
+  },
+  messageTimestamp: 1704415650,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Nooo  se me marcó xd',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Nooo  se me marcó xd',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'F0BEDCAD9867C0E15F4608B6091A4FEE',
+    participant: undefined
+  },
+  messageTimestamp: 1704415651,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    imageMessage: ImageMessage {
+      interactiveAnnotations: [],
+      scanLengths: [Array],
+      url: 'https://mmg.whatsapp.net/v/t62.7118-24/19240686_328870380119346_783647793309379221_n.enc?ccb=11-4&oh=01_AdR4Pr0f-smsMl3hxkKWBiqdtBloC1taqdcFB12NmMWtSQ&oe=65BE81DF&_nc_sid=5e03e0&mms3=true',
+      mimetype: 'image/jpeg',
+      fileSha256: [Uint8Array],
+      fileLength: [Long],
+      height: 1080,
+      width: 1080,
+      mediaKey: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      directPath: '/v/t62.7118-24/19240686_328870380119346_783647793309379221_n.enc?ccb=11-4&oh=01_AdR4Pr0f-smsMl3hxkKWBiqdtBloC1taqdcFB12NmMWtSQ&oe=65BE81DF&_nc_sid=5e03e0',
+      mediaKeyTimestamp: [Long],
+      jpegThumbnail: [Uint8Array],
+      scansSidecar: [Uint8Array],
+      midQualityFileSha256: [Uint8Array]
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '_event_media__bb7d58d6-d96d-4f69-9b48-b231b1f1e879',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'AAA34733F8046EFF18587C93E0F73989',
+    participant: undefined
+  },
+  messageTimestamp: 1704415651,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    imageMessage: ImageMessage {
+      interactiveAnnotations: [],
+      scanLengths: [Array],
+      url: 'https://mmg.whatsapp.net/v/t62.7118-24/40962304_336994512583815_7963712131782833582_n.enc?ccb=11-4&oh=01_AdRpaVrBx-raR0rCWc_4omP3D78oAGQzXJk1kcmnsTj6vQ&oe=65BE930F&_nc_sid=5e03e0&mms3=true',
+      mimetype: 'image/jpeg',
+      caption: 'Njdssss',
+      fileSha256: [Uint8Array],
+      fileLength: [Long],
+      height: 676,
+      width: 1080,
+      mediaKey: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      directPath: '/v/t62.7118-24/40962304_336994512583815_7963712131782833582_n.enc?ccb=11-4&oh=01_AdRpaVrBx-raR0rCWc_4omP3D78oAGQzXJk1kcmnsTj6vQ&oe=65BE930F&_nc_sid=5e03e0',
+      mediaKeyTimestamp: [Long],
+      jpegThumbnail: [Uint8Array],
+      scansSidecar: [Uint8Array],
+      midQualityFileSha256: [Uint8Array]
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '_event_media__e1319cb2-11e4-4d10-bfb2-36a687a5f238',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '4F5C2C38670B5D8FA2DB43DAA87087C1',
+    participant: undefined
+  },
+  messageTimestamp: 1704415651,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'No tengo ligues',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'No tengo ligues',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'B495CF751A0C3471C5E550FB37C163CE',
+    participant: undefined
+  },
+  messageTimestamp: 1704415651,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Es la verdad',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Es la verdad',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'B979BB9F3513B5B2ED35AB048822D953',
+    participant: undefined
+  },
+  messageTimestamp: 1704415652,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Es la verdad',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Es la verdad',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '14797F892B2099C7371114AEFE1A5820',
+    participant: undefined
+  },
+  messageTimestamp: 1704415652,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Hubiera apostado',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Hubiera apostado',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '7493D67C2ABC52AF09CC6A643F5B6FC5',
+    participant: undefined
+  },
+  messageTimestamp: 1704415652,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Para la próxima le hago caso a mi intuición',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Para la próxima le hago caso a mi intuición',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '52647AAC5EE6BD9F2A5A14A66F43505D',
+    participant: undefined
+  },
+  messageTimestamp: 1704415652,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Pero',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Pero',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '178BEAF15C972D980C3712B9DBC9E74A',
+    participant: undefined
+  },
+  messageTimestamp: 1704415653,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'No fué así',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'No fué así',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '78F0DC7FCB1CD0974D3A32B433733E40',
+    participant: undefined
+  },
+  messageTimestamp: 1704415653,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Lo menos que se esperaba',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Lo menos que se esperaba',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '7A0AFA202F46BBA910BE16F354D7D335',
+    participant: undefined
+  },
+  messageTimestamp: 1704415653,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Si',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Si',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'C2DCAE970C743A0E9B5A9D6F541B381E',
+    participant: undefined
+  },
+  messageTimestamp: 1704415654,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Dame chance',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Dame chance',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'EAF3DEBC9EA48B7E4DA74179F3285C12',
+    participant: undefined
+  },
+  messageTimestamp: 1704415654,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Esa semana prácticamente ha sido entrenamiento ,  estos días',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Esa semana prácticamente ha sido entrenamiento ,  estos días',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '8C84C5D6C7EA041032BB88417C713779',
+    participant: undefined
+  },
+  messageTimestamp: 1704415654,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Estoy encargada de ver la viabilidad de las ofertas que le llegan a la empresa Alliance',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Estoy encargada de ver la viabilidad de las ofertas que le llegan a la empresa Alliance',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'D1D10F34C509EBDB4A92D8F3967859A5',
+    participant: undefined
+  },
+  messageTimestamp: 1704415654,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'En resumen es fijarse el servicio que el cliente requiere va a ser viable para la empresa en costos de inversión retorno y eso pero de la parte técnica de telecomunicaciones más que de costo',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'En resumen es fijarse el servicio que el cliente requiere va a ser viable para la empresa en costos de inversión retorno y eso pero de la parte técnica de telecomunicaciones más que de costo',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'F21FB16CA41C62DD6044F536A6C66C33',
+    participant: undefined
+  },
+  messageTimestamp: 1704415655,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Te explico por ejemplo digamos que vos me solicitas el servicio de internet con una velocidad de 50 mbps ... Tengo que ver primero tu ubicación geográfica y si esta coincide de manera relativamente cercana alguno de los nodos de conexión que tiene esta empresa por toda Nicaragua ... , entre otras cosas que se analizan también más tecnicas',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Te explico por ejemplo digamos que vos me solicitas el servicio de internet con una velocidad de 50 mbps ... Tengo que ver primero tu ubicación geográfica y si esta coincide de manera relativamente cercana alguno de los nodos de conexión que tiene esta empresa por toda Nicaragua ... , entre otras cosas que se analizan también más tecnicas',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '7777ABBE4405AB21AB3CB68E95079905',
+    participant: undefined
+  },
+  messageTimestamp: 1704415660,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Si y non',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Si y non',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '695F74665CE1D2D036E361370244CF37',
+    participant: undefined
+  },
+  messageTimestamp: 1704415660,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/12497266_385437010730549_6876678516607192123_n.enc?ccb=11-4&oh=01_AdSTZSJUcbK8Rk4P33HBr085z2YsJlFhyDIMDhincICElQ&oe=65BECD79&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 64,
+      width: 64,
+      directPath: '/v/t62.15575-24/12497266_385437010730549_6876678516607192123_n.enc?ccb=11-4&oh=01_AdSTZSJUcbK8Rk4P33HBr085z2YsJlFhyDIMDhincICElQ&oe=65BECD79&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      firstFrameLength: 4950,
+      firstFrameSidecar: [Uint8Array],
+      isAnimated: true,
+      contextInfo: [ContextInfo],
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '_event_media__dfc5009f-3bcc-483b-8e61-106c41ebc3bd',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '4B8843B4CBE24BD67411DC4927B95FCA',
+    participant: undefined
+  },
+  messageTimestamp: 1704415660,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Al suave Juan',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Al suave Juan',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '001B47CAE8D80AD6DEF97559FED10DE2',
+    participant: undefined
+  },
+  messageTimestamp: 1704415660,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'No me presiones',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'No me presiones',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: 'C3FA3AD694B2926B9661A7E7F79A10E8',
+    participant: undefined
+  },
+  messageTimestamp: 1704415661,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/12497266_385437010730549_6876678516607192123_n.enc?ccb=11-4&oh=01_AdSTZSJUcbK8Rk4P33HBr085z2YsJlFhyDIMDhincICElQ&oe=65BECD79&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 64,
+      width: 64,
+      directPath: '/v/t62.15575-24/12497266_385437010730549_6876678516607192123_n.enc?ccb=11-4&oh=01_AdSTZSJUcbK8Rk4P33HBr085z2YsJlFhyDIMDhincICElQ&oe=65BECD79&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      firstFrameLength: 4950,
+      firstFrameSidecar: [Uint8Array],
+      isAnimated: true,
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '_event_media__87b9c544-2531-4fe1-a777-c57ebf669b70',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '05DD916A46431D82033D1A7BDA133BFD',
+    participant: undefined
+  },
+  messageTimestamp: 1704415661,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'Ya te digo',
+      previewType: 0,
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Ya te digo',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '688210631EB12056B1BFE75D251F7438',
+    participant: undefined
+  },
+  messageTimestamp: 1704415661,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    conversation: 'Pareciera',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Pareciera',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50583797821@s.whatsapp.net',
+    fromMe: false,
+    id: '89DA9C04EFD8912367491C557E9E663A',
+    participant: undefined
+  },
+  messageTimestamp: 1704415661,
+  pushName: 'Emorie Aguirre',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/12497266_385437010730549_6876678516607192123_n.enc?ccb=11-4&oh=01_AdSTZSJUcbK8Rk4P33HBr085z2YsJlFhyDIMDhincICElQ&oe=65BECD79&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 64,
+      width: 64,
+      directPath: '/v/t62.15575-24/12497266_385437010730549_6876678516607192123_n.enc?ccb=11-4&oh=01_AdSTZSJUcbK8Rk4P33HBr085z2YsJlFhyDIMDhincICElQ&oe=65BECD79&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      firstFrameLength: 4950,
+      firstFrameSidecar: [Uint8Array],
+      isAnimated: true,
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '_event_media__f8a14c9b-3cd8-4f99-9ebb-816822a8ba06',
+  from: '50583797821'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50581719517@s.whatsapp.net',
+    fromMe: false,
+    id: '93C275F1D6927DB7C7',
+    participant: undefined
+  },
+  messageTimestamp: 1704415667,
   pushName: 'Medina Jhonatan',
   broadcast: false,
   message: Message {
@@ -19,8 +1513,8 @@
   from: '50581719517'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_4dae6eb2-ba2b-4549-80e1-9aaa655dc636',
-  keyword: 'key_d5586820-3928-400b-b1cf-32d151c4c81b',
+  ref: 'ans_9321d7ff-7565-4ea9-b14d-5537828f2e04',
+  keyword: 'key_2d274665-c3d7-47d6-b99b-15c6c09c15a6',
   answer: '🚗 ¡Hola! Bienvenido al Autolavado Express. 🌟 ¿Cómo puedo ayudarte hoy?',
   options: {
     media: null,
@@ -34,11 +1528,11 @@
     keyword: {},
     callback: false
   },
-  refSerialize: 'e2001e9db7fdd25eabcda625b044755e'
+  refSerialize: '7bf0b78e980133c9665319d6e157e41d'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_4bd49b31-0154-48f0-bb98-8f93d4a42f90',
-  keyword: 'ans_4dae6eb2-ba2b-4549-80e1-9aaa655dc636',
+  ref: 'ans_b6419322-a076-4102-9ea6-b8094005dad9',
+  keyword: 'ans_9321d7ff-7565-4ea9-b14d-5537828f2e04',
   answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
     '👉 *1. Agendar cita*\n' +
     '👉 *2. Cancelar cita*\n' +
@@ -57,16 +1551,16 @@
     keyword: {},
     callback: false
   },
-  refSerialize: '154be57c1721b7ba146c84e5acf1da6e'
+  refSerialize: '07470b757baaa13470424e1f377d431c'
 }
 [handleMsg]:  {
   key: {
     remoteJid: '50581719517@s.whatsapp.net',
     fromMe: false,
-    id: '96C757A0DFEE249B61',
+    id: 'E17A4928F0D72B7CA3',
     participant: undefined
   },
-  messageTimestamp: 1704361781,
+  messageTimestamp: 1704415679,
   pushName: 'Medina Jhonatan',
   broadcast: false,
   message: Message {
@@ -80,8 +1574,8 @@
   from: '50581719517'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_663f5b6e-7d3b-47ec-9889-c3ef6db3c16d',
-  keyword: 'key_8c461494-b733-459e-883b-ffdcfc01a832',
+  ref: 'ans_19503f9f-6e13-43cd-9367-3b992d48cce7',
+  keyword: 'key_34e4341f-31d7-4dd6-a979-af692ea52c9b',
   answer: 'Bievenidos!',
   options: {
     media: null,
@@ -95,193 +1589,5 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'fb92d8d1d10766ade7bf61c87e4de412'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50581719517@s.whatsapp.net',
-    fromMe: false,
-    id: 'CEBFFC1B5404FB249A',
-    participant: undefined
-  },
-  messageTimestamp: 1704361784,
-  pushName: 'Medina Jhonatan',
-  broadcast: false,
-  message: Message {
-    extendedTextMessage: ExtendedTextMessage {
-      text: 'Soy nuevo',
-      contextInfo: [ContextInfo]
-    },
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: 'Soy nuevo',
-  from: '50581719517'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_994e48fb-d60a-4507-a7aa-ab7bee89edec',
-  keyword: 'key_b24c829a-9b02-4e3b-8fb1-c04beb0d12f4',
-  answer: 'Hola!\n' +
-    'Para enviar el formulario necesito unos datos...\n' +
-    'Escriba su *Nombre*\n' +
-    '\n' +
-    ' escribe ❌  para Cancelar solicitud',
-  options: {
-    media: null,
-    buttons: [],
-    capture: true,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: 'e3f7ae310c6c95b78ceb7b41af124e57'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50581719517@s.whatsapp.net',
-    fromMe: false,
-    id: 'BA63B2BFE4CB5F61F9',
-    participant: undefined
-  },
-  messageTimestamp: 1704361786,
-  pushName: 'Medina Jhonatan',
-  broadcast: false,
-  message: Message {
-    extendedTextMessage: ExtendedTextMessage {
-      text: 'Jhonatan',
-      contextInfo: [ContextInfo]
-    },
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: 'Jhonatan',
-  from: '50581719517'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_6daeb845-0881-4672-81ae-db199049edcf',
-  keyword: 'ans_994e48fb-d60a-4507-a7aa-ab7bee89edec',
-  answer: 'También necesito tus dos apellidos',
-  options: {
-    media: null,
-    buttons: [],
-    capture: true,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: '06381daea6efd648ce1cf8c0245a4152'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50581719517@s.whatsapp.net',
-    fromMe: false,
-    id: '6ED57F3AEB137B909B',
-    participant: undefined
-  },
-  messageTimestamp: 1704361789,
-  pushName: 'Medina Jhonatan',
-  broadcast: false,
-  message: Message {
-    extendedTextMessage: ExtendedTextMessage {
-      text: 'Medina Aguirre',
-      contextInfo: [ContextInfo]
-    },
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: 'Medina Aguirre',
-  from: '50581719517'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_8f551cb7-4557-45e5-ab2e-ed0d2c1f5443',
-  keyword: 'ans_6daeb845-0881-4672-81ae-db199049edcf',
-  answer: 'Ingresa tu correo electronico',
-  options: {
-    media: null,
-    buttons: [],
-    capture: true,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: '176eef66dedc96686d51d7eb3a48a071'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50581719517@s.whatsapp.net',
-    fromMe: false,
-    id: 'CBB1311B8C08B68E06',
-    participant: undefined
-  },
-  messageTimestamp: 1704361792,
-  pushName: 'Medina Jhonatan',
-  broadcast: false,
-  message: Message {
-    extendedTextMessage: ExtendedTextMessage {
-      text: 'medina@gmail.com',
-      contextInfo: [ContextInfo]
-    },
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: 'medina@gmail.com',
-  from: '50581719517'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_f7611278-f02b-4c40-aa90-d03686ed84de',
-  keyword: 'ans_8f551cb7-4557-45e5-ab2e-ed0d2c1f5443',
-  answer: 'Si ere persona juridica envia J en caso contrario N',
-  options: {
-    media: null,
-    buttons: [],
-    capture: true,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: '6db6716435a52a2329e2ca66fec83ee0'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50581719517@s.whatsapp.net',
-    fromMe: false,
-    id: '7850D149891D86E2B3',
-    participant: undefined
-  },
-  messageTimestamp: 1704361794,
-  pushName: 'Medina Jhonatan',
-  broadcast: false,
-  message: Message {
-    extendedTextMessage: ExtendedTextMessage { text: 'N', contextInfo: [ContextInfo] },
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: 'N',
-  from: '50581719517'
+  refSerialize: '3467b7904b2c6919e903f1577ed40e6d'
 }
