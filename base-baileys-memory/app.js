@@ -3,6 +3,7 @@ const pool = require('./db')
 const QRPortalWeb = require('@bot-whatsapp/portal')
 const BaileysProvider = require('@bot-whatsapp/provider/baileys')
 const MockAdapter = require('@bot-whatsapp/database/mock')
+const { EVENTS } = require('@bot-whatsapp/bot')
 /////////////////////////////////////////////////////////
 /**Metodos para guardar en la bd*/
 const getHorarios = async () => {
@@ -181,7 +182,7 @@ let apellidos;
 let correo;
 let tipo;
 let telefono;
-const { EVENTS } = require('@bot-whatsapp/bot')
+
 const flowFormulario = addKeyword(EVENTS.ACTION)
   .addAnswer(
     ['✍️ Para continuar con la agenda de su cita en nuestro autolavado tendremos que pedirle algunos datos personales\n', '✏️ Primero, escriba sus *dos nombres*: '])
@@ -255,7 +256,7 @@ const flowFormulario = addKeyword(EVENTS.ACTION)
 
 /////////////////////////////////////////////////////////////////////////////////
 /*** Flow de horarios */
-const FlowHorarios = addKeyword('3').addAnswer(
+const FlowHorarios = addKeyword(EVENTS.ACTION).addAnswer(
   ['Nuestros horarios de atencion'],
   null,
   async (_, { flowDynamic }) => {
@@ -279,7 +280,9 @@ const FlowHorarios = addKeyword('3').addAnswer(
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-const FlowServicios = addKeyword('4').addAnswer(
+
+
+const FlowServicios = addKeyword(EVENTS.ACTION).addAnswer(
   ['Nuestros servicios que brinadamos\n si quieres saber sobre alguno escribe *Ver servicios*'],
   null,
   async (_, { flowDynamic }) => {
@@ -324,14 +327,16 @@ const FlowServiciosDescripcion = addKeyword('Ver servicios')
   );
 //////////////////////////////////////////////////////////////////////////////////////
 /** Flow de gestion */
-const flowBienvenida = addKeyword('1')
+const flowBienvenida = addKeyword(EVENTS.ACTION)
   .addAnswer('Hola!, antes de agendar su cita necesitamos saber la disponibilidad de horarios, por favor digite el número del horario que desea consultar la disponibilidad.')
   .addAnswer('📅 Los hoarios disponibles son los siguientes: ')
   .addAnswer('', { capture: true }, async () => {
     const diasdisponbiles = await consultadiadisponibilidad();
     return diasdisponbiles;
   })
-  
+
+
+
 
 
   .addAnswer('Hola! 😎', null, async (ctx, { gotoFlow }) => {
@@ -353,7 +358,7 @@ const flowBienvenida = addKeyword('1')
     }
   });
 
-  
+
 
 
 const consultadiadisponibilidad = async () => {
@@ -377,6 +382,46 @@ const consultadiadisponibilidad = async () => {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////
+/** Flow de productos y servicios */
+const flowFormularioServiciosYProductos = addKeyword(EVENTS.ACTION)
+  .addAnswer(
+    '🫡 ¿Qué información necesitas?')
+  .addAnswer(
+    [
+      'Te ofrecemos nuestros servicios de autolavado 🚗:',
+      '👉 *1. Productos*',
+      '👉 *2. Servicios*',
+      '✍️*Digita el número o la oración de la acción que necesitas*'
+    ],
+  )
+  .addAnswer('❌ *Si desea ir al menú principal digite *0* o *Cancelar*"*', null, (ctx, { fallBack }) => {
+    if (!ctx.body.includes('0') && !ctx.body.includes('Cancelar') && !ctx.body.includes('1') && !ctx.body.includes('2')) {
+      return fallBack()
+    } else {
+      // Lógica para procesar el correo electrónico del usuario
+    }
+  })
+  .addAnswer(
+    '❌ *Si desea ir al menú principal digite *0* o *Cancelar*"*',
+    { capture: true },
+
+    async (ctx, { flowDynamic, gotoFlow }) => {
+      if (ctx.body.toLowerCase() === 'cancelar' || ctx.body.toLowerCase() === '0') {
+        await flowDynamic('❌Se ha cancelando su proceso❌');
+        return gotoFlow(flowPrincipal);
+      }
+      else if (ctx.body.toLowerCase() === '1') {
+        return gotoFlow(FlowProductos);
+      }
+      else if (ctx.body.toLowerCase() === '2') {
+        return gotoFlow(FlowServicios);
+      }
+    }
+  )
+
+
 const flowRegistrarse = addKeyword('Registrarse', 'incribirme', 'registrar', 'registro')
   .addAnswer("¡Bienvenido! Si eres nuevo por aquí, necesitas registrarte para disfrutar de nuestros servicios. Por favor, escribe 'Soy nuevo' para comenzar el proceso de registro.");
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -412,7 +457,11 @@ const flowVerHorariosgeneral = addKeyword('Ver horarios de la proxima semana')
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
+
+
+
+
+const flowPrincipal = addKeyword('Hola') // Aceptar cualquier palabra como activador
   .addAnswer('🚗 ¡Hola! Bienvenido al Autolavado Express. 🌟 ¿Cómo puedo ayudarte hoy?')
   .addAnswer(
     [
@@ -423,14 +472,41 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
       '👉 *4. Productos y servicios*',
       '*Ingresa un numero para continuar*'
     ],
-    null,
-    null,
-    [flowBienvenida, FlowHorarios, FlowServicios]
+    { capture: true }, // Habilita la captura de la respuesta del usuario
+    async (ctx, { flowDynamic, gotoFlow }) => {
+      const opcionElegida = ctx.body.toLowerCase();
+
+      // Utilizar un switch para redirigir según la opción elegida
+      switch (opcionElegida) {
+        case '1':
+          // Redirige al flujo correspondiente para agendar cita
+          return gotoFlow(flowBienvenida);
+          break;
+        case '2':
+          // Redirige al flujo correspondiente para cancelar cita
+          // return gotoFlow(FlowCancelarCita);
+          break;
+        case '3':
+          // Redirige al flujo correspondiente para ver horarios
+          // return gotoFlow(FlowHorarios);
+          break;
+        case '4':
+          // Redirige al flujo correspondiente para productos y servicios
+           return gotoFlow(flowFormularioServiciosYProductos);
+          break;
+        default:
+          // Si la opción no es válida, envía un mensaje solicitando una opción válida
+          return await flowDynamic('Por favor, ingresa una opción válida. 👀');
+      }
+    },
+    [/* Aquí puedes añadir los flujos correspondientes a cada opción si lo deseas */]
   );
+
+
 
 const main = async () => {
   const adapterDB = new MockAdapter()
-  const adapterFlow = createFlow([flowPrincipal, flowFormulario, FlowServiciosDescripcion, flowVerHorarioshoy, flowVerHorariosgeneral])
+  const adapterFlow = createFlow([flowPrincipal, flowFormulario, FlowServiciosDescripcion, flowVerHorarioshoy, flowVerHorariosgeneral, flowFormularioServiciosYProductos])
   const adapterProvider = createProvider(BaileysProvider)
 
   createBot({
