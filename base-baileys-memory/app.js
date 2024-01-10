@@ -400,7 +400,8 @@ const flowServicios = addKeyword('2',{
 .addAnswer('Te dejó un PDF con más información de los servicios 👀📄:')
 
 .addAnswer('📄',{
-  media:'https://27hqppfl-5000.use.devtunnels.ms/static/pdf/temp.pdf'
+  // URL para descargar el PDF de SERVICIOS
+  media:'https://27hqppfl-5000.use.devtunnels.ms/static/pdf/servicios/Servicios.pdf'
 })
 
 
