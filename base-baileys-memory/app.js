@@ -49,10 +49,11 @@ const getServiciosDescripcion = async (filtro) => {
 
 const axios = require('axios');
 const { Events } = require('pg')
+const { delay } = require('@whiskeysockets/baileys')
 
 const obtenerServicios = async () => {
   try {
-    
+
     let res = await axios.get('https://27hqppfl-5000.use.devtunnels.ms/api/getservicios');
 
     console.log(`Estado: ${res.status}`);
@@ -78,22 +79,22 @@ const generarCodigoCliente = (nombre, idPersona, telefono) => {
   return codigo;
 };
 
-const insertarCliente = async (nombre, correo,apellido, celular,tipo) => {
+const insertarCliente = async (nombre, correo, apellido, celular, tipo) => {
   try {
     // Insertar en la tabla persona y obtener el ID
     const resultPersona = await pool.query(`
       INSERT INTO persona (nombre, correo, direccion, celular)
       VALUES ($1, $2, $3, $4)
       RETURNING id
-    `, [nombre, correo,null, celular]);
+    `, [nombre, correo, null, celular]);
 
     const idPersona = resultPersona.rows[0].id;
-    console.log('ID PERSONA',idPersona)
+    console.log('ID PERSONA', idPersona)
     const resultPersonaNatural = await pool.query(`
     INSERT INTO persona_natural (id_persona, apellido,tipo_persona)
     VALUES ($1, $2,$3)
     RETURNING id
-  `, [idPersona,apellido,tipo]);
+  `, [idPersona, apellido, tipo]);
     console.log('Id persona Natural', resultPersonaNatural.rows[0].id)
     // Generar el código del cliente
     const codigoCliente = generarCodigoCliente(nombre, idPersona, celular);
@@ -108,7 +109,7 @@ const insertarCliente = async (nombre, correo,apellido, celular,tipo) => {
     const idClientes = resultClientes.rows[0].id;
 
     console.log(`Cliente insertado con éxito en la tabla clientes con ID: ${idClientes}.`);
-    
+
     return codigoCliente;
   } catch (error) {
     console.error('Error en insertarCliente:', error.message);
@@ -264,12 +265,12 @@ const flowFormulario = addKeyword(['soy nuevo', 'nuevo', 'soy'])
       tipos = ctx.body
       if (tipos.toLowerCase() === "j") {
         tipo = "Persona Jurídica";
-      } else if (tipos.toLowerCase() === "n") { 
+      } else if (tipos.toLowerCase() === "n") {
         tipo = "Persona Natural";
         telefono = ctx.from;
       }
       try {
-        const codigoCliente = await insertarCliente(nombre, correo,telefono,apellidos, tipo);
+        const codigoCliente = await insertarCliente(nombre, correo, telefono, apellidos, tipo);
         return await flowDynamic(`Estupendo *${nombre} ${apellidos}*! Te dejo el resumen de tu formulario\n- Nombre y apellidos: *${nombre} ${apellidos}*\n- Correo: *${correo}*\n- Teléfono: *${telefono}*\n- Tipo de persona: *${tipo}*\n- Código de Cliente: *${codigoCliente}*`);
       } catch (error) {
         console.error('Error:', error.message);
@@ -291,7 +292,7 @@ const flowFormulario = addKeyword(['soy nuevo', 'nuevo', 'soy'])
 //////////////////////////////////////////////////////////////////////////////////////
 /** Flow de gestion */
 const flowBienvenida = addKeyword('1')
-  .addAnswer('Bievenidos!', null, async (ctx, { gotoFlow }) => {
+  .addAnswer('Hola👋', null, async (ctx, { gotoFlow }) => {
     const numero = ctx.from;
     try {
       const existeNumeroCelular = await validarNumeroCelularExistente(numero);
@@ -316,7 +317,7 @@ const flowBienvenida = addKeyword('1')
 
 const obtenerHorariosSucursalesUbicaciones = async () => {
   try {
-    
+
     let res = await axios.get('https://27hqppfl-5000.use.devtunnels.ms/api/obtener_sucursales_horarios');
 
     console.log(`Estado: ${res.status}`);
@@ -334,32 +335,32 @@ const obtenerHorariosSucursalesUbicaciones = async () => {
 
 
 
-const flowHorariosYubicaciones = addKeyword('3',{
-  sensitive:true
+const flowHorariosYubicaciones = addKeyword('3', {
+  sensitive: true
 })
 
-.addAnswer('📅⏱️ El horario de nuestras sucursales son los siguientes:', null, async (ctx, { flowDynamic }) => {
-  const data = await obtenerHorariosSucursalesUbicaciones();
-  
-  // Formatear la respuesta
-  let formattedResponse = '';
-  
-  data.forEach(sucursal => {
-    formattedResponse += `*${sucursal.nombre}*\n`;
-    formattedResponse += `📞 Teléfono: *${sucursal.telefono}*\n`;
-    formattedResponse += `📍 Ubicación: *${sucursal.ubicacion_escrita}*\n`;
-    formattedResponse += `🗺️ Mapa: *${sucursal.ubicacion_googlemaps}*\n`;
-    formattedResponse += '⏱️ Horarios:\n';
-    
-    sucursal.horarios.forEach(horario => {
-      formattedResponse += `  - ${horario.dia}: ${horario.hora_apertura} - ${horario.hora_cierre}\n`;
+  .addAnswer('📅⏱️ El horario de nuestras sucursales son los siguientes:', null, async (ctx, { flowDynamic }) => {
+    const data = await obtenerHorariosSucursalesUbicaciones();
+
+    // Formatear la respuesta
+    let formattedResponse = '';
+
+    data.forEach(sucursal => {
+      formattedResponse += `*${sucursal.nombre}*\n`;
+      formattedResponse += `📞 Teléfono: *${sucursal.telefono}*\n`;
+      formattedResponse += `📍 Ubicación: *${sucursal.ubicacion_escrita}*\n`;
+      formattedResponse += `🗺️ Mapa: *${sucursal.ubicacion_googlemaps}*\n`;
+      formattedResponse += '⏱️ Horarios:\n';
+
+      sucursal.horarios.forEach(horario => {
+        formattedResponse += `  - ${horario.dia}: ${horario.hora_apertura} - ${horario.hora_cierre}\n`;
+      });
+
+      formattedResponse += '\n';
     });
-    
-    formattedResponse += '\n';
-  });
-  
-  await flowDynamic(formattedResponse);
-})
+
+    await flowDynamic(formattedResponse);
+  })
 
 
 
@@ -370,43 +371,49 @@ const flowHorariosYubicaciones = addKeyword('3',{
 
 /** Flow de productos y servicios */
 
-const flowProductos = addKeyword('1',{
-  sensitive:true
+const flowProductos = addKeyword('1', {
+  sensitive: true
 })
-.addAnswer('Nuestros productos son:')
+  .addAnswer('Está bien! 🫡 te enviaré un PDF con los productos que ofrecemos: 📄')
+  .addAnswer('📄', {
+    // URL para descargar el PDF de SERVICIOS
+    media: 'http://127.0.0.1:5000/static/pdf/productos/Productos.pdf'
+  })
+
 
 
 let servicios;
 
-const flowServicios = addKeyword('2',{
-  sensitive:true
+const flowServicios = addKeyword('2', {
+  sensitive: true
 })
 
-.addAnswer('🧽🚿Nuestros servicios son:', null, async (ctx, { flowDynamic }) => {
-  const data = await obtenerServicios();
-  
-  // Formatear la respuesta
-  let formattedResponse = '';
-  
-  data.forEach(servicio => {
-    formattedResponse += `*${servicio.nombre}*\n`;
-    formattedResponse += `😶‍🌫️ Descripción: *${servicio.descripcion}*\n`;
-    formattedResponse += `💵 Precio: *${servicio.precio}*\n\n`;
-  });
-  
-  await flowDynamic(formattedResponse);
-})
+  .addAnswer('🧽🚿Nuestros servicios son:', null, async (ctx, { flowDynamic }) => {
+    const data = await obtenerServicios();
 
-.addAnswer('Te dejó un PDF con más información de los servicios 👀📄:')
+    // Formatear la respuesta
+    let formattedResponse = '';
 
-.addAnswer('📄',{
-  // URL para descargar el PDF de SERVICIOS
-  media:'https://27hqppfl-5000.use.devtunnels.ms/static/pdf/servicios/Servicios.pdf'
-})
+    data.forEach(servicio => {
+      formattedResponse += `*${servicio.nombre}*\n`;
+      formattedResponse += `😶‍🌫️ Descripción: *${servicio.descripcion}*\n`;
+      formattedResponse += `💵 Precio: *${servicio.precio}*\n\n`;
+      formattedResponse += `⏱️ Tiempo de realización: *${servicio.realizacion}*\n\n`;
+    });
+
+    await flowDynamic(formattedResponse);
+  })
+
+  .addAnswer('Te dejó un PDF con más información de los servicios 👀📄:')
+
+  .addAnswer('📄', {
+    // URL para descargar el PDF de SERVICIOS
+    media: 'https://27hqppfl-5000.use.devtunnels.ms/static/pdf/servicios/Servicios.pdf'
+  })
 
 
-const flowFormularioServiciosYProductos = addKeyword('4',{
-  sensitive:true
+const flowFormularioServiciosYProductos = addKeyword('4', {
+  sensitive: true
 })
   .addAnswer(
     '🫡 ¿Qué información necesitas?')
@@ -418,20 +425,84 @@ const flowFormularioServiciosYProductos = addKeyword('4',{
       '✍️*Digita el número o la oración de la acción que necesitas*'
     ])
   .addAnswer(
-    '❌ *Si desea ir al menú principal digite *0* o *Cancelar*"*',{
-      
-    }, null, [flowProductos, flowServicios])
+    '❌ *Si desea ir al menú principal digite *0* o *Cancelar*"*', {
+
+  }, null, [flowProductos, flowServicios])
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
-const flowRegistrarse = addKeyword('Registrarse', 'incribirme', 'registrar', 'registro')
-  .addAnswer("¡Bienvenido! Si eres nuevo por aquí, necesitas registrarte para disfrutar de nuestros servicios. Por favor, escribe 'Soy nuevo' para comenzar el proceso de registro.");
+
+const obtenerHorariosDisponiblesSemanal = async () => {
+  try {
+
+    let res = await axios.get('https://27hqppfl-5000.use.devtunnels.ms/api_obtener_dias_disponibles/');
+
+    console.log(`Estado: ${res.status}`);
+    console.log('Cuerpo: ', res.data);
+
+    // Aquí están los servicios
+    let HorariosDisponiblesSemanal = res.data;
+
+    return HorariosDisponiblesSemanal;
+
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+let fechas;
+const { EVENTS } = require('@bot-whatsapp/bot')
+const flowRegistrarse = addKeyword(EVENTS.ACTION)
+  .addAnswer("👀 Primero, lo primero")
+  .addAnswer('Estos son nuestros servicios de lavados: ', null, async (ctx, { flowDynamic }) => {
+
+    servicios = await obtenerServicios();
+
+    // Formatear la respuesta
+    let formattedResponse = '';
+    let index = 1;
+
+    servicios.forEach(servicio => {
+      formattedResponse += `*${index}. ${servicio.nombre}*\n`;
+      formattedResponse += `😶‍🌫️ Descripción: *${servicio.descripcion}*\n`;
+      formattedResponse += `💵 Precio: *${servicio.precio}*\n`;
+      formattedResponse += `⏱️ Tiempo de realización: *${servicio.realizacion}*\n\n`;
+      servicio.index = index++;
+    });
+
+    await flowDynamic(formattedResponse);
+
+
+  })
+  .addAnswer('👀 *Escribe el número del servicio que deseas*', { capture: true }, (ctx, { fallBack }) => {
+    const servicio = servicios.find(servicio => servicio.index === parseInt(ctx.body));
+    if (!servicio) {
+      return fallBack()
+    }
+  })
+  .addAnswer('📅 Estos son nuestros horarios disponibles:', null, async (ctx, { flowDynamic }) => {
+
+    let fechas = await obtenerHorariosDisponiblesSemanal();
+    // Formatear la respuesta
+    let formattedResponse = '';
+    let index = 1;
+
+    fechas.forEach(fecha => {
+      formattedResponse += `*${index}. ${fecha}*\n\n`;
+      index++;
+    });
+
+    await flowDynamic(formattedResponse);
+})
+  .addAnswer('Perfecto, ahora para que día deseas agendar tu cita?')
+
+
 ///////////////////////////////////////////////////////////////////////////////////////
 const flowAgenda = addKeyword('Agendar')
   .addAnswer('Hora de agendar la cita!')
   .addAnswer('Deseas ver los horarios disponibles para el dia de hoy? enviar quiero *ver horarios*,*Ver horarios de la proxima semana*')
 
-  const flowVerHorarioshoy = addKeyword('Ver horarios')
+const flowVerHorarioshoy = addKeyword('Ver horarios')
   .addAnswer(
     ['*Nuestros horarios disponibles es:*'],
     null,
@@ -439,9 +510,9 @@ const flowAgenda = addKeyword('Agendar')
       try {
         const horarios = await obtenerHorasDisponiblesHoy();
         if (Array.isArray(horarios)) {
-         
+
           const formattedHorasDisponiblesHoy = horasDisponiblesHoy.join(', ');
-          console.log('Horarios de hoy:',formattedHorasDisponiblesHoy)
+          console.log('Horarios de hoy:', formattedHorasDisponiblesHoy)
           await flowDynamic(`Horarios:\n${formattedHorasDisponiblesHoy}`);
         } else {
           console.error('Error: No se obtuvieron horarios válidos desde la base de datos.');
@@ -451,8 +522,8 @@ const flowAgenda = addKeyword('Agendar')
       }
     }
   );
-  
-  const flowVerHorariosgeneral = addKeyword('Ver horarios de la proxima semana')
+
+const flowVerHorariosgeneral = addKeyword('Ver horarios de la proxima semana')
   .addAnswer('Hora de agendar la cita!')
   .addAnswer('Deseas ver los horarios disponibles para el dia de hoy? enviar quiero *ver horarios*,*Ver horarios de la proxima semana*')
 
@@ -481,7 +552,7 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
 
 const main = async () => {
   const adapterDB = new MockAdapter()
-  const adapterFlow = createFlow([flowPrincipal, flowFormulario, flowVerHorarioshoy,flowHorariosYubicaciones, flowFormularioServiciosYProductos])
+  const adapterFlow = createFlow([flowPrincipal, flowFormulario, flowRegistrarse, flowVerHorarioshoy, flowHorariosYubicaciones, flowFormularioServiciosYProductos])
   const adapterProvider = createProvider(BaileysProvider)
 
   createBot({
