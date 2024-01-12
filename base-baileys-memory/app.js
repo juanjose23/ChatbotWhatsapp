@@ -447,9 +447,10 @@ const flowProductos = addKeyword('1', {
 const flowServicios = addKeyword('2', {
   sensitive: true
 })
-  .addAnswer('🧽🚿Nuestros servicios son:', null, async (ctx, { flowDynamic }) => {
+.addAnswer('🧽🚿Nuestros servicios son:', null, async (ctx, { flowDynamic }) => {
     const data = await obtenerServicios();
     console.log(data);
+    console.log("Juan")
     // Formatear la respuesta
     let formattedResponse = '';
     data.forEach(servicio => {
@@ -458,15 +459,14 @@ const flowServicios = addKeyword('2', {
       formattedResponse += `💵 Precio: *${servicio.precio}*\n\n`;
       formattedResponse += `⏱️ Tiempo de realización: *${servicio.realizacion}*\n\n`;
     });
-
-  return  await flowDynamic(formattedResponse);
+    await flowDynamic(formattedResponse);
   })
-  .addAnswer('Te dejó un PDF con más información de los servicios 👀📄:')
-  .addAnswer('📄', {
+.addAnswer('Te dejó un PDF con más información de los servicios 👀📄:')
+.addAnswer('📄', {
     // URL para descargar el PDF de SERVICIOS
     media: 'http://127.0.0.1:5000/static/pdf/servicios/Servicios.pdf'
   })
-  .addAnswer('Para volver al inicio 🏠 envia 99')
+.addAnswer('Para volver al inicio 🏠 envia 99')
 
 const flowFormularioServiciosYProductos = addKeyword('4', {
   sensitive: true
