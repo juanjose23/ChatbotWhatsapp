@@ -291,25 +291,126 @@ const flowFormulario = addKeyword(['soy nuevo', 'nuevo', 'soy'])
 
 //////////////////////////////////////////////////////////////////////////////////////
 /** Flow de gestion */
-const flowBienvenida = addKeyword('1')
-  .addAnswer('Hola👋', null, async (ctx, { gotoFlow }) => {
-    const numero = ctx.from;
-    try {
-      const existeNumeroCelular = await validarNumeroCelularExistente(numero);
 
-      if (existeNumeroCelular) {
-        console.log('El número de celular ya existe en la tabla de personas.');
-        return gotoFlow(flowAgenda);
-      } else {
-        console.log('El número de celular no existe en la tabla de personas.');
-        return gotoFlow(flowRegistrarse);
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      pool.end(); // Cierra la conexión de la piscina después de que todo esté completo
+const enviar_duracion_dia = async (servicioObj, fechaObj) => {
+  try {
+    const resultado = {
+      fecha: fechaObj.fecha,
+      nombre: servicioObj.servicio.nombre,
+      realizacion: servicioObj.servicio.realizacion
+    };
+
+    const response = await axios.post('https://27hqppfl-5000.use.devtunnels.ms/api_duracionLavado_dia', resultado);
+
+    console.log(response.data);
+    
+    return response.data;
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
+const obtenerHorariosDisponiblesSemanal = async () => {
+  try {
+
+    let res = await axios.get('https://27hqppfl-5000.use.devtunnels.ms/api_obtener_dias_disponibles/');
+
+    console.log(`Estado: ${res.status}`);
+    console.log('Cuerpo: ', res.data);
+
+    // Aquí están los servicios
+    let HorariosDisponiblesSemanal = res.data;
+
+    return HorariosDisponiblesSemanal;
+
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+let fechas; // Definir 'fechas' aquí
+let servicios; // Definir 'servicios' aquí
+let servicioObj; // Definir 'servicioObj' aquí
+let fechaObj; // Definir 'fechaObj' aquí
+let bloques; // Definir 'bloques' aquí
+
+const flowReserva = addKeyword('1')
+  .addAnswer(['👀 Primero, lo primero'])
+  .addAnswer(['📅 Estos son nuestros horarios disponibles:'], null, async (ctx, { flowDynamic }) => {
+
+    const fechasOriginales = await obtenerHorariosDisponiblesSemanal();
+    // Formatear la respuesta
+    let formattedResponse = '';
+    let index = 1;
+
+    fechas = fechasOriginales.map(fecha => {
+      formattedResponse += `*${index}. ${fecha}*\n\n`;
+      return { index: index++, fecha };
+    });
+
+    return await flowDynamic(formattedResponse);
+
+
+  })
+  .addAnswer(['👀 *Escribe el número del día que deseas*'], { capture: true }, (ctx, { fallBack }) => {
+    fechaObj = fechas.find(fechaObj => fechaObj.index === parseInt(ctx.body));
+    console.log(fechaObj)
+    if (!fechaObj) {
+      return fallBack()
     }
-  });
+    console.log('mensaje entrante: ', ctx.body)
+  })
+
+  .addAnswer(['Estos son nuestros servicios de lavados: '], null, async (ctx, { flowDynamic }) => {
+
+    const serviciosOriginales = await obtenerServicios();
+
+    // Formatear la respuesta
+    let formattedResponse = '';
+    let index = 1;
+
+    servicios = serviciosOriginales.map(servicio => {
+      formattedResponse += `*${index}. ${servicio.nombre}*\n`;
+      formattedResponse += `😶‍🌫️ Descripción: *${servicio.descripcion}*\n`;
+      formattedResponse += `💵 Precio: *${servicio.precio}*\n`;
+      formattedResponse += `⏱️ Tiempo de realización: *${servicio.realizacion}*\n\n`;
+      return { index: index++, servicio };
+    });
+
+    return await flowDynamic(formattedResponse);
+
+
+  })
+  .addAnswer(['👀 *Escribe el número del servicio que deseas*'], { capture: true }, (ctx, { fallBack }) => {
+    servicioObj = servicios.find(servicioObj => servicioObj.index === parseInt(ctx.body));
+    console.log(servicioObj)
+    if (!servicioObj) {
+      return fallBack()
+    }
+    console.log('mensaje entrante: ', ctx.body)
+  })
+
+  .addAnswer(['Estos son los horarios disponibles: '], null, async (ctx, { flowDynamic }) => {
+    console.log('empieza pruebita')
+    const bloquesOriginales = await enviar_duracion_dia(servicioObj, fechaObj);
+    console.log(bloquesOriginales)
+
+    // Formatear la respuesta
+    let formattedResponse = '';
+    let index = 1;
+
+    bloquesOriginales.forEach(bloque => {
+      formattedResponse += `*${index}. ${bloque}*\n\n`;
+      index++;
+    });
+
+
+    return await flowDynamic(formattedResponse);
+})
+
+
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -382,14 +483,18 @@ const flowProductos = addKeyword('1', {
 
 
 
-let servicios;
+
+
 
 const flowServicios = addKeyword('2', {
   sensitive: true
 })
 
+
   .addAnswer('🧽🚿Nuestros servicios son:', null, async (ctx, { flowDynamic }) => {
     const data = await obtenerServicios();
+
+
 
     // Formatear la respuesta
     let formattedResponse = '';
@@ -432,100 +537,7 @@ const flowFormularioServiciosYProductos = addKeyword('4', {
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-const obtenerHorariosDisponiblesSemanal = async () => {
-  try {
 
-    let res = await axios.get('https://27hqppfl-5000.use.devtunnels.ms/api_obtener_dias_disponibles/');
-
-    console.log(`Estado: ${res.status}`);
-    console.log('Cuerpo: ', res.data);
-
-    // Aquí están los servicios
-    let HorariosDisponiblesSemanal = res.data;
-
-    return HorariosDisponiblesSemanal;
-
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-let fechas;
-const { EVENTS } = require('@bot-whatsapp/bot')
-const flowRegistrarse = addKeyword(EVENTS.ACTION)
-  .addAnswer("👀 Primero, lo primero")
-  .addAnswer('Estos son nuestros servicios de lavados: ', null, async (ctx, { flowDynamic }) => {
-
-    servicios = await obtenerServicios();
-
-    // Formatear la respuesta
-    let formattedResponse = '';
-    let index = 1;
-
-    servicios.forEach(servicio => {
-      formattedResponse += `*${index}. ${servicio.nombre}*\n`;
-      formattedResponse += `😶‍🌫️ Descripción: *${servicio.descripcion}*\n`;
-      formattedResponse += `💵 Precio: *${servicio.precio}*\n`;
-      formattedResponse += `⏱️ Tiempo de realización: *${servicio.realizacion}*\n\n`;
-      servicio.index = index++;
-    });
-
-    await flowDynamic(formattedResponse);
-
-
-  })
-  .addAnswer('👀 *Escribe el número del servicio que deseas*', { capture: true }, (ctx, { fallBack }) => {
-    const servicio = servicios.find(servicio => servicio.index === parseInt(ctx.body));
-    if (!servicio) {
-      return fallBack()
-    }
-  })
-  .addAnswer('📅 Estos son nuestros horarios disponibles:', null, async (ctx, { flowDynamic }) => {
-
-    let fechas = await obtenerHorariosDisponiblesSemanal();
-    // Formatear la respuesta
-    let formattedResponse = '';
-    let index = 1;
-
-    fechas.forEach(fecha => {
-      formattedResponse += `*${index}. ${fecha}*\n\n`;
-      index++;
-    });
-
-    await flowDynamic(formattedResponse);
-})
-  .addAnswer('Perfecto, ahora para que día deseas agendar tu cita?')
-
-
-///////////////////////////////////////////////////////////////////////////////////////
-const flowAgenda = addKeyword('Agendar')
-  .addAnswer('Hora de agendar la cita!')
-  .addAnswer('Deseas ver los horarios disponibles para el dia de hoy? enviar quiero *ver horarios*,*Ver horarios de la proxima semana*')
-
-const flowVerHorarioshoy = addKeyword('Ver horarios')
-  .addAnswer(
-    ['*Nuestros horarios disponibles es:*'],
-    null,
-    async (_, { flowDynamic }) => {
-      try {
-        const horarios = await obtenerHorasDisponiblesHoy();
-        if (Array.isArray(horarios)) {
-
-          const formattedHorasDisponiblesHoy = horasDisponiblesHoy.join(', ');
-          console.log('Horarios de hoy:', formattedHorasDisponiblesHoy)
-          await flowDynamic(`Horarios:\n${formattedHorasDisponiblesHoy}`);
-        } else {
-          console.error('Error: No se obtuvieron horarios válidos desde la base de datos.');
-        }
-      } catch (error) {
-        console.error('Error:', error.message);
-      }
-    }
-  );
-
-const flowVerHorariosgeneral = addKeyword('Ver horarios de la proxima semana')
-  .addAnswer('Hora de agendar la cita!')
-  .addAnswer('Deseas ver los horarios disponibles para el dia de hoy? enviar quiero *ver horarios*,*Ver horarios de la proxima semana*')
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -541,9 +553,6 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
       '👉 *4. Servicios y productos*',
       '*Ingresa un numero para continuar*'
     ],
-    null,
-    null,
-    [flowBienvenida, flowHorariosYubicaciones, flowFormularioServiciosYProductos]
   );
 
 
@@ -552,7 +561,7 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
 
 const main = async () => {
   const adapterDB = new MockAdapter()
-  const adapterFlow = createFlow([flowPrincipal, flowFormulario, flowRegistrarse, flowVerHorarioshoy, flowHorariosYubicaciones, flowFormularioServiciosYProductos])
+  const adapterFlow = createFlow([flowPrincipal, flowReserva, flowFormulario, flowHorariosYubicaciones, flowFormularioServiciosYProductos])
   const adapterProvider = createProvider(BaileysProvider)
 
   createBot({
