@@ -4,48 +4,6 @@ const QRPortalWeb = require('@bot-whatsapp/portal')
 const BaileysProvider = require('@bot-whatsapp/provider/baileys')
 const MockAdapter = require('@bot-whatsapp/database/mock')
 /////////////////////////////////////////////////////////
-/**Metodos para guardar en la bd*/
-const getHorarios = async () => {
-  try {
-    const client = await pool.connect();
-    const result = await client.query('SELECT * FROM horarios');
-    client.release();
-    return result.rows;
-  } catch (error) {
-    console.error('Error:', error.message);
-    throw error;
-  }
-};
-
-const getServicios = async () => {
-  try {
-    const client = await pool.connect();
-    const result = await client.query('SELECT s.nombre, ps.precio FROM servicios s LEFT JOIN precio_servicios ps ON s.id= ps.id_servicios WHERE s.estado =1 and ps.estado =1 ');
-    client.release();
-    return result.rows;
-  }
-  catch (error) {
-    console.log('Error:', error.message)
-    throw error;
-  }
-}
-
-const getServiciosDescripcion = async (filtro) => {
-  try {
-    const client = await pool.connect();
-    let query = 'SELECT s.nombre,s.descripcion,ps.precio FROM servicios s LEFT JOIN precio_servicios ps ON s.id= ps.id_servicios WHERE s.estado =1 and ps.estado =1 ';
-    if (filtro) {
-      query += ` AND LOWER(s.nombre) LIKE LOWER('%${filtro}%') LIMIT 1`;
-    }
-
-    const result = await client.query(query);
-    client.release();
-    return result.rows;
-  } catch (error) {
-    console.error('Error:', error.message);
-    throw error;
-  }
-};
 
 const axios = require('axios');
 const { Events } = require('pg')
@@ -54,7 +12,7 @@ const { delay } = require('@whiskeysockets/baileys')
 const obtenerServicios = async () => {
   try {
 
-    let res = await axios.get('https://27hqppfl-5000.use.devtunnels.ms/api/getservicios');
+    let res = await axios.get('http://127.0.0.1:5000/api/getservicios');
 
     console.log(`Estado: ${res.status}`);
     console.log('Cuerpo: ', res.data);
@@ -69,7 +27,24 @@ const obtenerServicios = async () => {
   }
 };
 
+async function insertarClienteObligatorio(nombre, celular) {
+  try {
+    const apiUrl = 'http://127.0.0.1:5000'; // Reemplaza con la URL real de tu API
 
+    const response = await axios.post(apiUrl + '/api/InsertarClienteObligatorio', {
+      nombre: nombre,
+      celular: celular,
+    });
+
+    // Puedes acceder a los datos de la respuesta
+    console.log('Código del cliente:', response.data.codigo_cliente);
+
+    return response.data;
+  } catch (error) {
+    console.error('Error al llamar a la API:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+}
 
 /***Metodo de registro */
 const generarCodigoCliente = (nombre, idPersona, telefono) => {
@@ -119,14 +94,19 @@ const insertarCliente = async (nombre, correo, apellido, celular, tipo) => {
 
 const validarNumeroCelularExistente = async (numeroCelular) => {
   try {
-    const client = await pool.connect();
-    const query = 'SELECT * FROM persona WHERE celular = $1';
-    const result = await client.query(query, [numeroCelular]);
-    client.release();
-    return result.rows.length > 0;
+    const apiUrl = 'http://127.0.0.1:5000'; // Reemplaza con la URL real de tu API
+
+    const response = await axios.post(apiUrl + '/api/validarnumerocelular', {
+      numero_celular: numeroCelular,
+    });
+
+    // Puedes acceder a los datos de la respuesta
+    console.log('Número de celular existe:', response.data.existe);
+
+    return response.data.existe;
   } catch (error) {
-    console.error('Error al validar número de celular:', error);
-    return false;
+    console.error('Error al llamar a la API:', error.response ? error.response.data : error.message);
+    throw error;
   }
 };
 
@@ -198,28 +178,23 @@ const getNombreDia = (fecha) => {
   return new Intl.DateTimeFormat('es-ES', opciones).format(fecha);
 };
 
-/////////////////////////////////////////////////////////
-/** Flow de despedida */
 
-////////////////////////////////////////////////////////
-/**Flow de reservacion */
 
-////////////////////////////////////////////////////////
+
 /**Flow de registro de usuario */
 let nombre;
 let apellidos;
 let correo;
 let tipo;
 let telefono;
-const flowFormulario = addKeyword(['soy nuevo', 'nuevo', 'soy'])
+const flowFormulario = addKeyword(['1'])
   .addAnswer(
-    ['Hola!', 'Para enviar el formulario necesito unos datos...', 'Escriba su *Nombre*\n', ' escribe ❌  para Cancelar solicitud'],
+    ['Hola!', 'Para enviar el formulario necesito unos datos...', 'Escriba su *Nombre*\n', ' envia *0* para Cancelar solicitud'],
     { capture: true },
 
-    async (ctx, { flowDynamic, gotoFlow }) => {
-      if (ctx.body.toLowerCase() === 'x') {
-        await flowDynamic('❌Se ha cancelando su proceso❌');
-        return gotoFlow(FlowAdios);
+    async (ctx, { flowDynamic, endFlow }) => {
+      if (ctx.body.toLowerCase() === '0') {
+        return endFlow('❌Se ha cancelando su proceso❌');
       }
       nombre = ctx.body;
       return await flowDynamic(`Encantado *${nombre}*, continuamos...`); // Add 'await' here
@@ -229,10 +204,9 @@ const flowFormulario = addKeyword(['soy nuevo', 'nuevo', 'soy'])
     ['También necesito tus dos apellidos'],
     { capture: true },
 
-    async (ctx, { flowDynamic, gotoFlow }) => {
+    async (ctx, { flowDynamic, endFlow }) => {
       if (ctx.body.toLowerCase() === 'x') {
-        await flowDynamic('❌Se ha cancelando su proceso❌');
-        return gotoFlow(FlowAdios);
+        return endFlow('❌Se ha cancelando su proceso❌');
       }
       apellidos = ctx.body;
       return await flowDynamic(`Perfecto *${nombre}*, por último...`); // Add 'await' here
@@ -242,10 +216,10 @@ const flowFormulario = addKeyword(['soy nuevo', 'nuevo', 'soy'])
     'Ingresa tu correo electronico',
     { capture: true },
 
-    async (ctx, { flowDynamic, gotoFlow }) => {
+    async (ctx, { endFlow }) => {
       if (ctx.body.toLowerCase() === 'x') {
-        await flowDynamic('❌Se ha cancelando su proceso❌');
-        return gotoFlow(FlowAdios);
+        return endFlow('❌Se ha cancelando su proceso❌');
+
       }
 
       correo = ctx.body;
@@ -280,18 +254,7 @@ const flowFormulario = addKeyword(['soy nuevo', 'nuevo', 'soy'])
 
   );
 
-/////////////////////////////////////////////////////////////////////////////////
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////
 /** Flow de gestion */
-
 const enviar_duracion_dia = async (servicioObj, fechaObj) => {
   try {
     const resultado = {
@@ -300,10 +263,10 @@ const enviar_duracion_dia = async (servicioObj, fechaObj) => {
       realizacion: servicioObj.servicio.realizacion
     };
 
-    const response = await axios.post('https://27hqppfl-5000.use.devtunnels.ms/api_duracionLavado_dia', resultado);
+    const response = await axios.post('http://127.0.0.1:5000/api_duracionLavado_dia', resultado);
 
     console.log(response.data);
-    
+
     return response.data;
   }
   catch (error) {
@@ -314,7 +277,7 @@ const enviar_duracion_dia = async (servicioObj, fechaObj) => {
 const obtenerHorariosDisponiblesSemanal = async () => {
   try {
 
-    let res = await axios.get('https://27hqppfl-5000.use.devtunnels.ms/api_obtener_dias_disponibles/');
+    let res = await axios.get('http://127.0.0.1:5000/api_obtener_dias_disponibles/');
 
     console.log(`Estado: ${res.status}`);
     console.log('Cuerpo: ', res.data);
@@ -329,11 +292,20 @@ const obtenerHorariosDisponiblesSemanal = async () => {
   }
 };
 
+
+
+
+
+
+
+
+
 let fechas; // Definir 'fechas' aquí
 let servicios; // Definir 'servicios' aquí
 let servicioObj; // Definir 'servicioObj' aquí
 let fechaObj; // Definir 'fechaObj' aquí
 let bloques; // Definir 'bloques' aquí
+
 
 const flowReserva = addKeyword('1')
   .addAnswer(['👀 Primero, lo primero'])
@@ -383,16 +355,16 @@ const flowReserva = addKeyword('1')
 
   })
   .addAnswer(['👀 *Escribe el número del servicio que deseas*'], { capture: true }, (ctx, { fallBack }) => {
+    // Encuentra el servicio correspondiente
     servicioObj = servicios.find(servicioObj => servicioObj.index === parseInt(ctx.body));
-    console.log(servicioObj)
+    console.log(servicioObj);
     if (!servicioObj) {
-      return fallBack()
+      return fallBack();
     }
-    console.log('mensaje entrante: ', ctx.body)
+    console.log('mensaje entrante: ', ctx.body);
   })
-
   .addAnswer(['Estos son los horarios disponibles: '], null, async (ctx, { flowDynamic }) => {
-    console.log('empieza pruebita')
+
     const bloquesOriginales = await enviar_duracion_dia(servicioObj, fechaObj);
     console.log(bloquesOriginales)
 
@@ -407,9 +379,7 @@ const flowReserva = addKeyword('1')
 
 
     return await flowDynamic(formattedResponse);
-})
-
-
+  })
 
 
 
@@ -418,17 +388,12 @@ const flowReserva = addKeyword('1')
 
 const obtenerHorariosSucursalesUbicaciones = async () => {
   try {
-
-    let res = await axios.get('https://27hqppfl-5000.use.devtunnels.ms/api/obtener_sucursales_horarios');
-
+    let res = await axios.get('http://127.0.0.1:5000/api/obtener_sucursales_horarios');
     console.log(`Estado: ${res.status}`);
     console.log('Cuerpo: ', res.data);
-
     // Aquí están los servicios
     let horariosSucursalesUbicaciones = res.data;
-
     return horariosSucursalesUbicaciones;
-
   } catch (err) {
     console.error(err);
   }
@@ -439,7 +404,6 @@ const obtenerHorariosSucursalesUbicaciones = async () => {
 const flowHorariosYubicaciones = addKeyword('3', {
   sensitive: true
 })
-
   .addAnswer('📅⏱️ El horario de nuestras sucursales son los siguientes:', null, async (ctx, { flowDynamic }) => {
     const data = await obtenerHorariosSucursalesUbicaciones();
 
@@ -458,6 +422,7 @@ const flowHorariosYubicaciones = addKeyword('3', {
       });
 
       formattedResponse += '\n';
+      formattedResponse += '\n📌 Si necesitas regresar al menú principal, escribe *Menu* o *99*.';
     });
 
     await flowDynamic(formattedResponse);
@@ -469,9 +434,6 @@ const flowHorariosYubicaciones = addKeyword('3', {
 
 //////////////////////////////////////////////////////////////////////////////////////
 /** Flow 4. Servicios y productos  */
-
-/** Flow de productos y servicios */
-
 const flowProductos = addKeyword('1', {
   sensitive: true
 })
@@ -480,25 +442,16 @@ const flowProductos = addKeyword('1', {
     // URL para descargar el PDF de SERVICIOS
     media: 'http://127.0.0.1:5000/static/pdf/productos/Productos.pdf'
   })
-
-
-
-
-
+  .addAnswer('Para volver al inicio 🏠 envia 99')
 
 const flowServicios = addKeyword('2', {
   sensitive: true
 })
-
-
   .addAnswer('🧽🚿Nuestros servicios son:', null, async (ctx, { flowDynamic }) => {
     const data = await obtenerServicios();
-
-
-
+    console.log(data);
     // Formatear la respuesta
     let formattedResponse = '';
-
     data.forEach(servicio => {
       formattedResponse += `*${servicio.nombre}*\n`;
       formattedResponse += `😶‍🌫️ Descripción: *${servicio.descripcion}*\n`;
@@ -506,33 +459,31 @@ const flowServicios = addKeyword('2', {
       formattedResponse += `⏱️ Tiempo de realización: *${servicio.realizacion}*\n\n`;
     });
 
-    await flowDynamic(formattedResponse);
+  return  await flowDynamic(formattedResponse);
   })
-
   .addAnswer('Te dejó un PDF con más información de los servicios 👀📄:')
-
   .addAnswer('📄', {
     // URL para descargar el PDF de SERVICIOS
-    media: 'https://27hqppfl-5000.use.devtunnels.ms/static/pdf/servicios/Servicios.pdf'
+    media: 'http://127.0.0.1:5000/static/pdf/servicios/Servicios.pdf'
   })
-
+  .addAnswer('Para volver al inicio 🏠 envia 99')
 
 const flowFormularioServiciosYProductos = addKeyword('4', {
   sensitive: true
 })
-  .addAnswer(
-    '🫡 ¿Qué información necesitas?')
-  .addAnswer(
-    [
-      'Te ofrecemos nuestros servicios de autolavado 🚗:',
-      '👉 *1. Productos*',
-      '👉 *2. Servicios*',
-      '✍️*Digita el número o la oración de la acción que necesitas*'
-    ])
-  .addAnswer(
-    '❌ *Si desea ir al menú principal digite *0* o *Cancelar*"*', {
+  .addAction(async (_, { flowDynamic }) => {
+    return await flowDynamic('🫡 ¿Qué información necesitas sobre nuestros servicios de autolavado?\n1. 🛒 Consultar Productos \n2. 🚗 Solicitar Servicios\n✍️ Ingresa el número correspondiente a la acción que deseas realizar.\n❌ Para cancelar, simplemente escribe *3* o *0*.\n📌 Si necesitas regresar al menú principal, escribe *Menu* o *99*.')
+  })
+  .addAction({ capture: true }, async (ctx, { flowDynamic, endFlow, gotoFlow }) => {
+    const opcion = parseInt(ctx.body);
+    switch (opcion) {
+      case 1: return gotoFlow(flowProductos);
+      case 2: return gotoFlow(flowServicios);
+      case 0: case 3: return endFlow('Has cancelado la operación, Hasta luego !')
+      default: return await flowDynamic('Lo siento, no entendí esa opción. Por favor, envia menu para ver todas nuestra opciones');
+    }
+  });
 
-  }, null, [flowProductos, flowServicios])
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -542,7 +493,7 @@ const flowFormularioServiciosYProductos = addKeyword('4', {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
+const flowPrincipal = addKeyword(['hola', 'ole', 'alo', '99', 'Menu'])
   .addAnswer('🚗 ¡Hola! Bienvenido al Autolavado Express. 🌟 ¿Cómo puedo ayudarte hoy?')
   .addAnswer(
     [
@@ -553,6 +504,9 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
       '👉 *4. Servicios y productos*',
       '*Ingresa un numero para continuar*'
     ],
+    {
+
+    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos]
   );
 
 
@@ -561,7 +515,7 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
 
 const main = async () => {
   const adapterDB = new MockAdapter()
-  const adapterFlow = createFlow([flowPrincipal, flowReserva, flowFormulario, flowHorariosYubicaciones, flowFormularioServiciosYProductos])
+  const adapterFlow = createFlow([flowPrincipal])
   const adapterProvider = createProvider(BaileysProvider)
 
   createBot({
