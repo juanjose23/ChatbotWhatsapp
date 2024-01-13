@@ -1,4 +1,4 @@
-const { createBot, createProvider, createFlow, addKeyword } = require('@bot-whatsapp/bot')
+const { createBot, createProvider, createFlow, addKeyword, EVENTS } = require('@bot-whatsapp/bot')
 const pool = require('./db')
 const QRPortalWeb = require('@bot-whatsapp/portal')
 const BaileysProvider = require('@bot-whatsapp/provider/baileys')
@@ -187,7 +187,7 @@ let apellidos;
 let correo;
 let tipo;
 let telefono;
-const flowFormulario = addKeyword(['1'])
+const flowFormulario = addKeyword(EVENTS.ACTION)
   .addAnswer(
     ['Hola!', 'Para enviar el formulario necesito unos datos...', 'Escriba su *Nombre*\n', ' envia *0* para Cancelar solicitud'],
     { capture: true },
@@ -302,9 +302,10 @@ const obtenerHorariosDisponiblesSemanal = async () => {
 
 let fechas; // Definir 'fechas' aquí
 let servicios; // Definir 'servicios' aquí
+let bloques; // Definir 'bloques' aquí
 let servicioObj; // Definir 'servicioObj' aquí
 let fechaObj; // Definir 'fechaObj' aquí
-let bloques; // Definir 'bloques' aquí
+let bloqueObj; // Definir 'bloqueObj' aquí
 
 
 const flowReserva = addKeyword('1')
@@ -372,14 +373,29 @@ const flowReserva = addKeyword('1')
     let formattedResponse = '';
     let index = 1;
 
-    bloquesOriginales.forEach(bloque => {
+    bloques = bloquesOriginales.map(bloque => {
       formattedResponse += `*${index}. ${bloque}*\n\n`;
-      index++;
+      return { index: index++, bloque };
     });
 
 
     return await flowDynamic(formattedResponse);
   })
+
+  .addAnswer(['👀 *Escribe el número del servicio que deseas*'], { capture: true }, (ctx, { fallBack, gotoFlow }) => {
+    // Encuentra el servicio correspondiente
+    bloqueObj = bloques.find(bloqueObj => bloqueObj.index === parseInt(ctx.body));
+    console.log(bloqueObj);
+    if (!bloqueObj) {
+      return fallBack();
+    }
+    console.log('mensaje entrante: ', ctx.body);
+
+    return gotoFlow(flowConsultaCliente);
+
+
+  })
+
 
 
 
@@ -399,6 +415,37 @@ const obtenerHorariosSucursalesUbicaciones = async () => {
   }
 };
 
+const flowConsultaCliente = addKeyword(EVENTS.ACTION)
+.addAnswer('En efecto debería de hacer la consulta')
+.addAction(async (_, { flowDynamic }) => {
+  return await flowDynamic('🫡 ¿Qué información necesitas sobre nuestros servicios de autolavado?\n1. 🛒 Consultar Productos \n2. 🚗 Solicitar Servicios\n✍️ Ingresa el número correspondiente a la acción que deseas realizar.\n❌ Para cancelar, simplemente escribe *3* o *0*.\n📌 Si necesitas regresar al menú principal, escribe *Menu* o *99*.')
+})
+  .addAction(async (_,ctx, {gotoFlow, flowDynamic}) => {
+
+    const numero = ctx.from;
+    console.log(numero);
+    try {
+      const existeNumeroCelular = await validarNumeroCelularExistente(numero);
+
+      if (existeNumeroCelular) {
+        console.log('El número de celular ya existe en la tabla de personas.');
+        return gotoFlow(flowAgenda);
+      } else {
+        console.log('El número de celular no existe en la tabla de personas.');
+        return gotoFlow(confirmacionReserva);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      pool.end(); // Cierra la conexión de la piscina después de que todo esté completo
+    }
+
+    return await flowDynamic('Un último paso, para reservar!')
+
+  })
+
+const confirmacionReserva = addKeyword(EVENTS.ACTION)
+  .addAnswer('👀 Antes de cualquier cosa, confirmemos los datos para reservar')
 
 
 const flowHorariosYubicaciones = addKeyword('3', {
@@ -406,6 +453,10 @@ const flowHorariosYubicaciones = addKeyword('3', {
 })
   .addAnswer('📅⏱️ El horario de nuestras sucursales son los siguientes:', null, async (ctx, { flowDynamic }) => {
     const data = await obtenerHorariosSucursalesUbicaciones();
+    console.log('LA PRUEBA EMPIEZA AQUI PARA VARIABLES GLOABLES');
+    console.log(fechaObj);
+    console.log(servicioObj);
+    console.log(bloqueObj);
 
     // Formatear la respuesta
     let formattedResponse = '';
@@ -447,7 +498,7 @@ const flowProductos = addKeyword('1', {
 const flowServicios = addKeyword('2', {
   sensitive: true
 })
-.addAnswer('🧽🚿Nuestros servicios son:', null, async (ctx, { flowDynamic }) => {
+  .addAnswer('🧽🚿Nuestros servicios son:', null, async (ctx, { flowDynamic }) => {
     const data = await obtenerServicios();
     console.log(data);
     console.log("Juan")
@@ -461,12 +512,12 @@ const flowServicios = addKeyword('2', {
     });
     await flowDynamic(formattedResponse);
   })
-.addAnswer('Te dejó un PDF con más información de los servicios 👀📄:')
-.addAnswer('📄', {
+  .addAnswer('Te dejó un PDF con más información de los servicios 👀📄:')
+  .addAnswer('📄', {
     // URL para descargar el PDF de SERVICIOS
     media: 'http://127.0.0.1:5000/static/pdf/servicios/Servicios.pdf'
   })
-.addAnswer('Para volver al inicio 🏠 envia 99')
+  .addAnswer('Para volver al inicio 🏠 envia 99')
 
 const flowFormularioServiciosYProductos = addKeyword('4', {
   sensitive: true
