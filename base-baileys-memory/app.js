@@ -46,20 +46,41 @@ async function insertarClienteObligatorio(nombre, celular) {
   }
 }
 
+/***Metodo de registro */
+const generarCodigoCliente = (nombre, idPersona, telefono) => {
+  const nombreNormalizado = nombre.toLowerCase();
+  const nombreSinEspacios = nombreNormalizado.replace(/\s/g, '_'); // o '-' si prefieres guiones
+  const codigo = `CL_${nombreSinEspacios}_${idPersona}_${telefono}`;
+  return codigo;
+};
 
-const insertarCliente = async (nombre, correo, celular) => {
+
+const insertarCliente = async (nombre, apellidos, correo, telefono, tipo) => {
   try {
-    const apiUrl = 'http://127.0.0.1:5000';
-    const response = await axios.post(apiUrl + '/api/InsertarCliente', {
+    let data = {
       nombre: nombre,
+      apellidos: apellidos,
       correo: correo,
-      celular: celular,
-    });
+      celular: telefono,
+      tipo: tipo
+    };
+    console.log('Pruebita')
+    console.log(data)
 
-    return response.data.codigo_cliente;
-  } catch (error) {
-    console.error('Error en insertarCliente:', error.message);
-    throw error;
+    let res = await axios.post('https://27hqppfl-5000.use.devtunnels.ms/api_InsertarCliente', data);
+
+    console.log(`Estado: ${res.status}`);
+    console.log('Cuerpo: ', res.data);
+
+    // Aquí está tu código de cliente
+    let codigoCliente = res.data.codigo_cliente;
+
+    console.log(codigoCliente)
+
+    return codigoCliente;
+
+  } catch (err) {
+    console.error(err);
   }
 };
 
@@ -71,6 +92,8 @@ const validarNumeroCelularExistente = async (numeroCelular) => {
       numero_celular: numeroCelular,
     });
 
+    // Puedes acceder a los datos de la respuesta
+    console.log('Número de celular existe:', response.data.existe);
 
     return response.data.existe;
   } catch (error) {
@@ -150,6 +173,91 @@ const getNombreDia = (fecha) => {
 
 
 
+/**Flow de registro de usuario */
+let nombre;
+let apellidos;
+let correo;
+let tipo;
+let telefono;
+const flowFormulario = addKeyword(EVENTS.ACTION)
+  .addAnswer(
+    ['Hola!', 'Para enviar el formulario necesito unos datos...', 'Escriba su *Nombre*\n', ' envia *0* para Cancelar solicitud'],
+    { capture: true },
+
+    async (ctx, { flowDynamic, endFlow, fallBack, state }) => {
+      if (ctx.body.toLowerCase() === '0') {
+        return endFlow('❌Se ha cancelando su proceso❌');
+      }
+
+      if (ctx.body.length < 3 || ctx.body.length > 50) {
+        return fallBack();
+      }
+
+      nombre = ctx.body;
+      await state.update({ nombre: nombre })
+      return await flowDynamic(`Encantado *${nombre}*, continuamos...`); // Add 'await' here
+    }
+  )
+  .addAnswer(
+    ['También necesito tus dos apellidos'],
+    { capture: true },
+
+    async (ctx, { flowDynamic, endFlow, fallBack, state }) => {
+      if (ctx.body.toLowerCase() === 'x') {
+        return endFlow('❌Se ha cancelando su proceso❌');
+      }
+
+      if (ctx.body.length < 3 || ctx.body.length > 50) {
+        return fallBack();
+      }
+
+      apellidos = ctx.body;
+      await state.update({ apellidos: apellidos })
+      return await flowDynamic(`Perfecto *${nombre} ${apellidos}*, por último...`); // Add 'await' here
+    }
+  )
+  .addAnswer(
+    'Ingresa tu correo electronico',
+    { capture: true },
+
+    async (ctx, { endFlow, fallBack, state }) => {
+      if (ctx.body.toLowerCase() === 'x') {
+        return endFlow('❌Se ha cancelando su proceso❌');
+
+      }
+      if (!ctx.body.includes('@') || !ctx.body.includes('.') || ctx.body.length < 5 || ctx.body.length > 50) {
+        return fallBack();
+      }
+
+      correo = ctx.body;
+      await state.update({ correo: correo })
+
+    }
+
+  )
+  .addAnswer(
+    ['Si ere persona juridica envia J en caso contrario N'],
+    { capture: true },
+
+    async (ctx, { flowDynamic, gotoFlow, state }) => {
+      if (ctx.body.toLowerCase() === 'x') {
+        await flowDynamic('❌Se ha cancelando su proceso❌');
+        return gotoFlow(FlowAdios);
+      }
+      tipos = ctx.body
+      if (tipos.toLowerCase() === "j") {
+        tipo = "Persona Jurídica";
+      } else if (tipos.toLowerCase() === "n") {
+        tipo = "Persona Natural";
+        telefono = ctx.from;
+        await state.update({ telefono: telefono })
+      }
+      await state.update({ tipo: tipo })
+    }
+  )
+  .addAction(async (ctx, { gotoFlow, flowDynamic }) => {
+    return gotoFlow(confirmacionReserva)
+  })
 
 
 
@@ -207,12 +315,9 @@ let fechaObj; // Definir 'fechaObj' aquí
 let bloqueObj; // Definir 'bloqueObj' aquí
 
 
-const flowReserva = addKeyword('1', {
-  sensitive: true
-})
+const flowReserva = addKeyword('1')
   .addAnswer(['👀 Primero, lo primero'])
-  .addAnswer(['📅 Estos son nuestros horarios disponibles:'], null, async (ctx, { flowDynamic,endFlow }) => {
-
+  .addAnswer(['📅 Estos son nuestros horarios disponibles:'], null, async (ctx, { flowDynamic }) => {
 
     const fechasOriginales = await obtenerHorariosDisponiblesSemanal();
     // Formatear la respuesta
@@ -223,17 +328,19 @@ const flowReserva = addKeyword('1', {
       formattedResponse += `*${index}. ${fecha}*\n\n`;
       return { index: index++, fecha };
     });
-    
+
     return await flowDynamic(formattedResponse);
 
 
   })
-  .addAnswer(['👀 *Escribe el número del día que deseas*'], { capture: true }, (ctx, { fallBack }) => {
+  .addAnswer(['👀 *Escribe el número del día que deseas*'], { capture: true }, async (ctx, { fallBack, state }) => {
     fechaObj = fechas.find(fechaObj => fechaObj.index === parseInt(ctx.body));
+
     console.log(fechaObj)
     if (!fechaObj) {
       return fallBack()
     }
+    await state.update({ fechaObj: fechaObj })
     console.log('mensaje entrante: ', ctx.body)
   })
 
@@ -257,7 +364,7 @@ const flowReserva = addKeyword('1', {
 
 
   })
-  .addAnswer(['👀 *Escribe el número del servicio que deseas*'], { capture: true }, (ctx, { fallBack }) => {
+  .addAnswer(['👀 *Escribe el número del servicio que deseas*'], { capture: true }, async (ctx, { fallBack, state }) => {
     // Encuentra el servicio correspondiente
     servicioObj = servicios.find(servicioObj => servicioObj.index === parseInt(ctx.body));
     console.log(servicioObj);
@@ -265,6 +372,7 @@ const flowReserva = addKeyword('1', {
       return fallBack();
     }
     console.log('mensaje entrante: ', ctx.body);
+    await state.update({ servicioObj: servicioObj })
   })
   .addAnswer(['Estos son los horarios disponibles: '], null, async (ctx, { flowDynamic }) => {
 
@@ -284,7 +392,7 @@ const flowReserva = addKeyword('1', {
     return await flowDynamic(formattedResponse);
   })
 
-  .addAnswer(['👀 *Escribe el número del servicio que deseas*'], { capture: true }, (ctx, { fallBack, gotoFlow }) => {
+  .addAnswer(['👀 *Escribe el número del servicio que deseas*'], { capture: true }, async (ctx, { fallBack, gotoFlow, state }) => {
     // Encuentra el servicio correspondiente
     bloqueObj = bloques.find(bloqueObj => bloqueObj.index === parseInt(ctx.body));
     console.log(bloqueObj);
@@ -292,6 +400,7 @@ const flowReserva = addKeyword('1', {
       return fallBack();
     }
     console.log('mensaje entrante: ', ctx.body);
+    await state.update({ bloqueObj: bloqueObj })
 
     return gotoFlow(flowConsultaCliente);
 
@@ -299,71 +408,8 @@ const flowReserva = addKeyword('1', {
   })
 
 
-const flowBienvenida = addKeyword('1')
-  .addAnswer('¡Hola! 😊¡Disfruta tu tiempo con nosotros!', null, async (ctx, { gotoFlow, flowDynamic }) => {
-    const numero = ctx.from;
-    try {
-      const existeNumeroCelular = await validarNumeroCelularExistente(numero);
-      if (existeNumeroCelular) {
-        return await flowDynamic('✨ Los pasos para agenda tu servicios son:\n 1.Elige el día disponible para tu servicio escribiendo el número correspondiente.\n📋 2.Selecciona el servicio deseado de nuestra lista enumerada.\n🕒 3.Elige el bloque de tiempo disponible y estarás listo para confirmar tu reserva.\n Para continuar con el proceso, envía *1*');
-      } else {
-        return await flowDynamic('🌟 ¡Hola!\nParece que eres nuevo por aquí.\n Para brindarte la mejor experiencia, necesitamos un par de detalles: tu nombre y tu correo 📧. Te enviaremos confirmaciones de futuras citas.\n\n¡Para continuar, simplemente envía *11*! 😊');
 
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  });
-/**Flow de registro de usuario */
-let nombre;
-let apellidos;
-let correo;
-let tipo;
-let telefono;
 
-const flowFormulario = addKeyword('11', { sensitive: true })
-  .addAnswer(
-    ['Hola!', 'Escriba su *Nombre*\n', 'Sino quieres registrarte escribe x  para Cancelar solicitud'],
-    { capture: true },
-
-    async (ctx, { flowDynamic, endFlow }) => {
-      try {
-        const existeNumeroCelular = await validarNumeroCelularExistente(numero);
-        if (existeNumeroCelular) {
-          return await flowDynamic('✨ Los pasos para agenda tu servicios son:\n 1.Elige el día disponible para tu servicio escribiendo el número correspondiente.\n📋 2.Selecciona el servicio deseado de nuestra lista enumerada.\n🕒 3.Elige el bloque de tiempo disponible y estarás listo para confirmar tu reserva.\n Para continuar con el proceso, envía *1*');
-        }
-      } catch (error) {
-        console.error(error);
-      }
-      if (ctx.body.toLowerCase() === 'x') {
-        const clientes = await insertarClienteObligatorio(ctx.pushName, ctx.from);
-        console.log(clientes)
-        return endFlow('❌ Has cancelado el proceso. Si deseas retomarlo en otro momento, estamos aquí para ayudarte. ¡Hasta pronto! 👋, para volver al menu envia *99*');
-
-      }
-      nombre = ctx.body;
-      return await flowDynamic(`Encantado *${nombre}*, continuamos con el ultimo paso`); // Add 'await' here
-    }
-  )
-  .addAnswer(
-    'Ingresa tu correo electronico',
-    { capture: true },
-
-    async (ctx, { flowDynamic, gotoFlow }) => {
-      correo = ctx.body;
-      try {
-        telefono = ctx.from;
-        const codigoCliente = await insertarCliente(nombre, correo, telefono);
-        await flowDynamic(`Estupendo *${nombre}*! Te dejo el resumen de tu formulario\n- Nombre *${nombre} *\n- Correo: *${correo}*\n- Teléfono: *${telefono}*\n`);
-        return gotoFlow(flowReserva)
-
-      } catch (error) {
-        console.error('Error:', error.message);
-        return await flowDynamic('Hubo un error al procesar tu formulario. Por favor, inténtalo de nuevo.');
-      }
-    }
-
-  )
 //////////////////////////////////////////////////////////////////////////////////////
 /** Flow 3. Horarios y ubicaciones */
 
@@ -381,11 +427,7 @@ const obtenerHorariosSucursalesUbicaciones = async () => {
 };
 
 const flowConsultaCliente = addKeyword(EVENTS.ACTION)
-  .addAnswer('En efecto debería de hacer la consulta')
-  .addAction(async (_, { flowDynamic }) => {
-    return await flowDynamic('🫡 ¿Qué información necesitas sobre nuestros servicios de autolavado?\n1. 🛒 Consultar Productos \n2. 🚗 Solicitar Servicios\n✍️ Ingresa el número correspondiente a la acción que deseas realizar.\n❌ Para cancelar, simplemente escribe *3* o *0*.\n📌 Si necesitas regresar al menú principal, escribe *Menu* o *99*.')
-  })
-  .addAction(async (_, ctx, { gotoFlow, flowDynamic }) => {
+  .addAction(async (ctx, { gotoFlow, flowDynamic }) => {
 
     const numero = ctx.from;
     console.log(numero);
@@ -394,10 +436,10 @@ const flowConsultaCliente = addKeyword(EVENTS.ACTION)
 
       if (existeNumeroCelular) {
         console.log('El número de celular ya existe en la tabla de personas.');
-        return gotoFlow(flowAgenda);
+        return gotoFlow(confirmacionReserva);
       } else {
         console.log('El número de celular no existe en la tabla de personas.');
-        return gotoFlow(confirmacionReserva);
+        return gotoFlow(flowFormulario);
       }
     } catch (error) {
       console.error(error);
@@ -410,8 +452,46 @@ const flowConsultaCliente = addKeyword(EVENTS.ACTION)
   })
 
 const confirmacionReserva = addKeyword(EVENTS.ACTION)
-  .addAnswer('👀 Antes de cualquier cosa, confirmemos los datos para reservar')
+  .addAnswer('Muy bien, ahora confirmaremos unos datos ☝️🤓')
+  .addAnswer('Te dejo el resumen de tu formulario de reserva', null, async (_, { flowDynamic, state }) => {
+    const datosUsuario = state.getMyState()
+    await flowDynamic(`*Datos personales* \n- Nombre y apellidos: *${datosUsuario.nombre} ${datosUsuario.apellidos}*\n- Correo: *${datosUsuario.correo}*\n- Teléfono: *${datosUsuario.telefono}*\n- Tipo de persona: *${datosUsuario.tipo}*\n\n *Datos de la reserva:* \n\n- Fecha: *${datosUsuario.fechaObj.fecha}*\n- Servicio: *${datosUsuario.servicioObj.servicio.nombre}*\n- Duración: *${datosUsuario.servicioObj.servicio.realizacion}*\n- Hora: *${datosUsuario.bloqueObj.bloque}*`)
+  })
 
+  .addAction(async (ctx, { gotoFlow, flowDynamic }) => {
+    return gotoFlow(flowConsultaConfirmacion);
+
+  })
+
+const flowConsultaConfirmacion = addKeyword(EVENTS.ACTION)
+  .addAnswer('Digita \n 1. Sí estás de acuerdo \n 2. Sí no estás de acuerdo', { capture: true, delay: 3000 }, async (ctx, { gotoFlow, flowDynamic }) => {
+    // Agrega un retraso de 7 segundos antes de enviar la siguiente respuesta
+    console.log(ctx.body)
+
+    if (ctx.body === '1') {
+      return gotoFlow(FlowReservaFinal);
+    } else if (ctx.body === '2') {
+      return gotoFlow(flowFormulario);
+    } else {
+      return await flowDynamic('Lo siento, no entendí esa opción. Por favor, envia menu para ver todas nuestra opciones');
+    }
+  })
+
+
+const FlowReservaFinal = addKeyword(EVENTS.ACTION)
+  .addAction(async (ctx, { gotoFlow, flowDynamic, endFlow, state }) => {
+    const numero = ctx.from;
+    const datosUsuario = state.getMyState()
+    const codigo_cliente = await insertarCliente(datosUsuario.nombre, datosUsuario.apellidos, datosUsuario.correo, datosUsuario.telefono, datosUsuario.tipo)
+    console.log(codigo_cliente)
+
+    return await flowDynamic(`Tú reserva ha sido registrada! \n Tu código de cliente es: *${codigo_cliente}*`)
+
+  })
+
+  .addAnswer('', null, async (ctx, { flowDynamic, endFlow }) => {
+    return endFlow('Adios!')
+  })
 
 const flowHorariosYubicaciones = addKeyword('3', {
   sensitive: true
@@ -502,6 +582,13 @@ const flowFormularioServiciosYProductos = addKeyword('4', {
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
 const flowPrincipal = addKeyword(['hola', 'ole', 'alo', '99', 'Menu'])
   .addAnswer('🚗 ¡Hola! Bienvenido al Autolavado Express. 🌟 ¿Cómo puedo ayudarte hoy?')
   .addAnswer(
@@ -515,7 +602,7 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo', '99', 'Menu'])
     ],
     {
 
-    }, null, [flowBienvenida, flowHorariosYubicaciones, flowFormularioServiciosYProductos]
+    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion]
   );
 
 
@@ -524,7 +611,7 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo', '99', 'Menu'])
 
 const main = async () => {
   const adapterDB = new MockAdapter()
-  const adapterFlow = createFlow([flowPrincipal, flowReserva, flowFormulario])
+  const adapterFlow = createFlow([flowPrincipal, flowConsultaCliente, flowFormulario, confirmacionReserva, FlowReservaFinal])
   const adapterProvider = createProvider(BaileysProvider)
 
   createBot({
