@@ -9,6 +9,25 @@ const axios = require('axios');
 const { Events } = require('pg')
 const { delay } = require('@whiskeysockets/baileys')
 
+const consultaDatosCliente = async (numero) => {
+  try {
+    let res = await axios.post('https://27hqppfl-5000.use.devtunnels.ms/api_consultaDatosCliente', { celular: numero })
+
+    console.log(`Estado: ${res.status}`);
+    console.log('Cuerpo: ', res.data);
+
+    // Aquí están los servicios
+    let datosCliente = res.data;
+
+    return datosCliente;
+
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
+
 const obtenerServicios = async () => {
   try {
 
@@ -55,19 +74,31 @@ const generarCodigoCliente = (nombre, idPersona, telefono) => {
 };
 
 
-const insertarCliente = async (nombre, apellidos, correo, telefono, tipo) => {
-  try {
+const insertarReserva = async (id_cliente, codigo_cliente, id_Persona, nombre, apellidos, correo, telefono, tipo, fecha, nombre_servicio, servicio_realizacion, bloque_horario) => {
+  try { 
     let data = {
-      nombre: nombre,
-      apellidos: apellidos,
-      correo: correo,
-      celular: telefono,
-      tipo: tipo
+      datos_personales: {
+        id_cliente: id_cliente !== undefined ? codigo_cliente : null,
+        codigo_cliente: codigo_cliente !== undefined ? codigo_cliente : null,
+        id_persona: id_Persona !== undefined ? id_Persona : null,
+        nombre: nombre,
+        apellidos: apellidos,
+        correo: correo,
+        celular: telefono,
+        tipo: tipo
+      },
+      datos_reserva: {
+        fecha: fecha,
+        nombre_servicio: nombre_servicio,
+        servicio_realizacion: servicio_realizacion,
+        bloque_horario: bloque_horario
+      }
     };
+    console.log(nombre_servicio)
     console.log('Pruebita')
     console.log(data)
 
-    let res = await axios.post('https://27hqppfl-5000.use.devtunnels.ms/api_InsertarCliente', data);
+    let res = await axios.post('https://27hqppfl-5000.use.devtunnels.ms/api_agregar_reserva', data);
 
     console.log(`Estado: ${res.status}`);
     console.log('Cuerpo: ', res.data);
@@ -427,7 +458,7 @@ const obtenerHorariosSucursalesUbicaciones = async () => {
 };
 
 const flowConsultaCliente = addKeyword(EVENTS.ACTION)
-  .addAction(async (ctx, { gotoFlow, flowDynamic }) => {
+  .addAction(async (ctx, { gotoFlow, flowDynamic, state }) => {
 
     const numero = ctx.from;
     console.log(numero);
@@ -436,6 +467,19 @@ const flowConsultaCliente = addKeyword(EVENTS.ACTION)
 
       if (existeNumeroCelular) {
         console.log('El número de celular ya existe en la tabla de personas.');
+
+        const datosCliente = await consultaDatosCliente(numero);
+        console.log(datosCliente); 
+
+        await state.update({ nombre: datosCliente.nombre })
+        await state.update({ apellidos: datosCliente.apellido })
+        await state.update({ correo: datosCliente.correo })
+        await state.update({ telefono: numero })
+        await state.update({ tipo: datosCliente.tipo_persona })
+        await state.update({ id_cliente: datosCliente.id_cliente })
+        await state.update({ codigo_cliente: datosCliente.codigo_cliente })
+        await state.update({ id_persona: datosCliente.id_persona })
+
         return gotoFlow(confirmacionReserva);
       } else {
         console.log('El número de celular no existe en la tabla de personas.');
@@ -443,9 +487,7 @@ const flowConsultaCliente = addKeyword(EVENTS.ACTION)
       }
     } catch (error) {
       console.error(error);
-    } finally {
-      pool.end(); // Cierra la conexión de la piscina después de que todo esté completo
-    }
+    } 
 
     return await flowDynamic('Un último paso, para reservar!')
 
@@ -471,7 +513,7 @@ const flowConsultaConfirmacion = addKeyword(EVENTS.ACTION)
     if (ctx.body === '1') {
       return gotoFlow(FlowReservaFinal);
     } else if (ctx.body === '2') {
-      return gotoFlow(flowFormulario);
+      return gotoFlow(flowReserva);
     } else {
       return await flowDynamic('Lo siento, no entendí esa opción. Por favor, envia menu para ver todas nuestra opciones');
     }
@@ -482,10 +524,22 @@ const FlowReservaFinal = addKeyword(EVENTS.ACTION)
   .addAction(async (ctx, { gotoFlow, flowDynamic, endFlow, state }) => {
     const numero = ctx.from;
     const datosUsuario = state.getMyState()
-    const codigo_cliente = await insertarCliente(datosUsuario.nombre, datosUsuario.apellidos, datosUsuario.correo, datosUsuario.telefono, datosUsuario.tipo)
+    const codigo_cliente = await insertarReserva(
+      datosUsuario.id_cliente,
+      datosUsuario.codigo_cliente,
+      datosUsuario.id_persona,
+      datosUsuario.nombre,
+      datosUsuario.apellidos,
+      datosUsuario.correo,
+      datosUsuario.telefono,
+      datosUsuario.tipo,
+      datosUsuario.fechaObj.fecha,
+      datosUsuario.servicioObj.servicio.nombre,
+      datosUsuario.servicioObj.servicio.realizacion,
+      datosUsuario.bloqueObj.bloque)
     console.log(codigo_cliente)
 
-    return await flowDynamic(`Tú reserva ha sido registrada! \n Tu código de cliente es: *${codigo_cliente}*`)
+    return await flowDynamic(`Tú reserva ha sido registrada! \n El código de reserva es el siguiente: *${codigo_cliente}*`)
 
   })
 
