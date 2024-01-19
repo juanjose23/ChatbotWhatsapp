@@ -11,7 +11,7 @@ const { delay } = require('@whiskeysockets/baileys')
 
 const consultaDatosCliente = async (numero) => {
   try {
-    let res = await axios.post('https://27hqppfl-5000.use.devtunnels.ms/api_consultaDatosCliente', { celular: numero })
+    let res = await axios.post('http://127.0.0.1:5000/api_consultaDatosCliente', { celular: numero })
 
     console.log(`Estado: ${res.status}`);
     console.log('Cuerpo: ', res.data);
@@ -98,7 +98,7 @@ const insertarReserva = async (id_cliente, codigo_cliente, id_Persona, nombre, a
     console.log('Pruebita')
     console.log(data)
 
-    let res = await axios.post('https://27hqppfl-5000.use.devtunnels.ms/api_agregar_reserva', data);
+    let res = await axios.post('http://127.0.0.1:5000/api_agregar_reserva', data);
 
     console.log(`Estado: ${res.status}`);
     console.log('Cuerpo: ', res.data);
