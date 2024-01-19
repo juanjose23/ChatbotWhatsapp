@@ -547,7 +547,7 @@ const FlowReservaFinal = addKeyword(EVENTS.ACTION)
     return endFlow('Adios!')
   })
 
-const flowHorariosYubicaciones = addKeyword('3', {
+const flowHorariosYubicaciones = addKeyword('2', {
   sensitive: true
 })
   .addAnswer('📅⏱️ El horario de nuestras sucursales son los siguientes:', null, async (ctx, { flowDynamic }) => {
@@ -618,7 +618,7 @@ const flowServicios = addKeyword('2', {
   })
   .addAnswer('Para volver al inicio 🏠 envia 99')
 
-const flowFormularioServiciosYProductos = addKeyword('4', {
+const flowFormularioServiciosYProductos = addKeyword('3', {
   sensitive: true
 })
   .addAction(async (_, { flowDynamic }) => {
@@ -644,14 +644,13 @@ const flowFormularioServiciosYProductos = addKeyword('4', {
 //////////////////////////////////////////////////////////////////////////////////////
 
 const flowPrincipal = addKeyword(['hola', 'ole', 'alo', '99', 'Menu'])
-  .addAnswer('🚗 ¡Hola! Bienvenido al Autolavado Express. 🌟 ¿Cómo puedo ayudarte hoy?')
+  .addAnswer('🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?')
   .addAnswer(
     [
       'Te ofrecemos nuestros servicios de autolavado 🚗:',
       '👉 *1. Agendar cita*',
-      '👉 *2. Cancelar cita*',
-      '👉 *3. Horarios y ubicaciones*',
-      '👉 *4. Servicios y productos*',
+      '👉 *2. Horarios y ubicaciones*',
+      '👉 *3. Servicios y productos*',
       '*Ingresa un numero para continuar*'
     ],
     {
