@@ -1,12 +1,12 @@
 [handleMsg]:  {
   key: {
-    remoteJid: '50558091435@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: 'FD9A0773FB0DD4A28DB2424D39FAA1C5',
+    id: 'F76CB0E2354E3CC3EAAEC97FF535CBE8',
     participant: undefined
   },
-  messageTimestamp: 1705321206,
-  pushName: 'Juan Huete',
+  messageTimestamp: 1705694443,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
     conversation: 'Hola',
@@ -16,12 +16,12 @@
     }
   },
   body: 'Hola',
-  from: '50558091435'
+  from: '50582477697'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_ce25f244-b151-4f51-bc63-d10d4ce22414',
-  keyword: 'key_e8e3e152-c237-439b-bfcb-6108e7c0bbd4',
-  answer: '🚗 ¡Hola! Bienvenido al Autolavado Express. 🌟 ¿Cómo puedo ayudarte hoy?',
+  ref: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  keyword: 'key_42862ffc-c52e-47a7-a412-47c1650b3a20',
+  answer: '🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?',
   options: {
     media: null,
     buttons: [],
@@ -34,16 +34,15 @@
     keyword: {},
     callback: false
   },
-  refSerialize: 'f977018a1f0eeefe890a309e086ef94d'
+  refSerialize: 'abe1a741a833ba605aacdea306883eff'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_37b3b18e-6b45-4ad6-8fda-be929401a57d',
-  keyword: 'ans_ce25f244-b151-4f51-bc63-d10d4ce22414',
+  ref: 'ans_d8b9f4a8-0694-468f-92dc-de45453e9828',
+  keyword: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
   answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
     '👉 *1. Agendar cita*\n' +
-    '👉 *2. Cancelar cita*\n' +
-    '👉 *3. Horarios y ubicaciones*\n' +
-    '👉 *4. Servicios y productos*\n' +
+    '👉 *2. Horarios y ubicaciones*\n' +
+    '👉 *3. Servicios y productos*\n' +
     '*Ingresa un numero para continuar*',
   options: {
     media: null,
@@ -66,17 +65,17 @@
     keyword: {},
     callback: false
   },
-  refSerialize: '59416d33f159f406d84800106ac76b28'
+  refSerialize: '3c0d1f445a9c85d7adbe32c4b3165e44'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '50558091435@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: '2113A9B3484D363222D72948830ECA47',
+    id: '95EC1A7EBEB8C4B95F892F5CF37A2D3F',
     participant: undefined
   },
-  messageTimestamp: 1705321208,
-  pushName: 'Juan Huete',
+  messageTimestamp: 1705694446,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
     conversation: '1',
@@ -86,11 +85,11 @@
     }
   },
   body: '1',
-  from: '50558091435'
+  from: '50582477697'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_8c08c722-231c-4303-a45b-424e47a15e51',
-  keyword: 'key_bba7bfad-2d3d-4005-9a47-c30eb8139552',
+  ref: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  keyword: 'key_e1f867d5-067d-4751-a622-bcbe3f6315e8',
   answer: '👀 Primero, lo primero',
   options: {
     media: null,
@@ -104,11 +103,11 @@
     keyword: {},
     callback: false
   },
-  refSerialize: '18f42b43dd642f782fa545fe88a9e4bc'
+  refSerialize: '8c6696dd54b37588268b25b9fddc8126'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_fd7e73e1-c285-4821-be8d-b118137666ae',
-  keyword: 'ans_8c08c722-231c-4303-a45b-424e47a15e51',
+  ref: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  keyword: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
   answer: '📅 Estos son nuestros horarios disponibles:',
   options: {
     media: null,
@@ -122,11 +121,11 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'ee554f492ac1918cb75b6a36b441f752'
+  refSerialize: '3e605e4f93d4cbb11f5315e8bab1b60e'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_5c4e5ba5-11b8-46d2-a266-d02c85d6784c',
-  keyword: 'ans_fd7e73e1-c285-4821-be8d-b118137666ae',
+  ref: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  keyword: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
   answer: '👀 *Escribe el número del día que deseas*',
   options: {
     media: null,
@@ -140,31 +139,31 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'dc649899810f9f423ff5fcfcb9c47a2a'
+  refSerialize: 'e932c4e05637af977e331767b020ba97'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '50558091435@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: '7494721DA1830F47689209607F0BAC28',
+    id: 'C97EC65F1E9D985C8571CEB641BFE69E',
     participant: undefined
   },
-  messageTimestamp: 1705321212,
-  pushName: 'Juan Huete',
+  messageTimestamp: 1705694448,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
-    conversation: '1',
+    conversation: '5',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  body: '1',
-  from: '50558091435'
+  body: '5',
+  from: '50582477697'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_11086097-fc45-44e5-8399-8b0dc98fa7e4',
-  keyword: 'ans_5c4e5ba5-11b8-46d2-a266-d02c85d6784c',
+  ref: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  keyword: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
   answer: 'Estos son nuestros servicios de lavados: ',
   options: {
     media: null,
@@ -178,11 +177,11 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '856e4746a562e4fcfc3879a23ddede24'
+  refSerialize: '6dbaaf9a0f22f820ab18f0c9034aac4a'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_56d57192-dca2-4792-8047-472b9163197c',
-  keyword: 'ans_11086097-fc45-44e5-8399-8b0dc98fa7e4',
+  ref: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  keyword: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
   answer: '👀 *Escribe el número del servicio que deseas*',
   options: {
     media: null,
@@ -196,31 +195,31 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '603f8cfc7afb5adab7568ba5c4a2b18b'
+  refSerialize: '29f891c439a42478182d08c34eabf814'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '50558091435@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: '5E2D97634A6DA55B658923218E0B2EA2',
+    id: '9622390D144644DF7E18B67811A67DF0',
     participant: undefined
   },
-  messageTimestamp: 1705321220,
-  pushName: 'Juan Huete',
+  messageTimestamp: 1705694450,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
-    conversation: '3',
+    conversation: '2',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  body: '3',
-  from: '50558091435'
+  body: '2',
+  from: '50582477697'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_b84f462e-0cfb-4364-82a3-c4db11072776',
-  keyword: 'ans_56d57192-dca2-4792-8047-472b9163197c',
+  ref: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  keyword: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
   answer: 'Estos son los horarios disponibles: ',
   options: {
     media: null,
@@ -234,11 +233,11 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '98bc43982f57599db0b15081ff85d9df'
+  refSerialize: '81d1622773a76e72b873e9211b5c1f80'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_2936eabd-f6ef-4ed8-a88f-3bf1f6b3c156',
-  keyword: 'ans_b84f462e-0cfb-4364-82a3-c4db11072776',
+  ref: 'ans_6b16c572-e644-40f5-9005-2c09df5060fc',
+  keyword: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
   answer: '👀 *Escribe el número del servicio que deseas*',
   options: {
     media: null,
@@ -252,217 +251,37 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '5c6c112bee51e48b797e0adbbe0e1ef1'
+  refSerialize: 'bce59481805a9a957548666947629410'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '50558091435@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: '022ED2BA84BEEE0393B84F895A236992',
+    id: '76B3F137CF02450F9337C7EF645F41F2',
     participant: undefined
   },
-  messageTimestamp: 1705321238,
-  pushName: 'Juan Huete',
+  messageTimestamp: 1705694453,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
-    conversation: '3',
+    conversation: 'Q',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  body: '3',
-  from: '50558091435'
+  body: 'Q',
+  from: '50582477697'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '50558091435@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: 'F27FB3873AB4712FEE3C3EE467E224C7',
+    id: '51330C11F2292E441DFB579AC9E19A25',
     participant: undefined
   },
-  messageTimestamp: 1705321242,
-  pushName: 'Juan Huete',
-  broadcast: false,
-  message: Message {
-    conversation: '0',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: '0',
-  from: '50558091435'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50558091435@s.whatsapp.net',
-    fromMe: false,
-    id: 'F9E727DC0E665AECD7BB042A5BFFF83A',
-    participant: undefined
-  },
-  messageTimestamp: 1705321247,
-  pushName: 'Juan Huete',
-  broadcast: false,
-  message: Message {
-    conversation: 'Hola',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: 'Hola',
-  from: '50558091435'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_ce25f244-b151-4f51-bc63-d10d4ce22414',
-  keyword: 'key_e8e3e152-c237-439b-bfcb-6108e7c0bbd4',
-  answer: '🚗 ¡Hola! Bienvenido al Autolavado Express. 🌟 ¿Cómo puedo ayudarte hoy?',
-  options: {
-    media: null,
-    buttons: [],
-    capture: false,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: false
-  },
-  refSerialize: 'f977018a1f0eeefe890a309e086ef94d'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_37b3b18e-6b45-4ad6-8fda-be929401a57d',
-  keyword: 'ans_ce25f244-b151-4f51-bc63-d10d4ce22414',
-  answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
-    '👉 *1. Agendar cita*\n' +
-    '👉 *2. Cancelar cita*\n' +
-    '👉 *3. Horarios y ubicaciones*\n' +
-    '👉 *4. Servicios y productos*\n' +
-    '*Ingresa un numero para continuar*',
-  options: {
-    media: null,
-    buttons: [],
-    capture: false,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
-      [Object]
-    ],
-    keyword: {},
-    callback: false
-  },
-  refSerialize: '59416d33f159f406d84800106ac76b28'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50558091435@s.whatsapp.net',
-    fromMe: false,
-    id: '4F45807A89DF32A49EB89B635999C492',
-    participant: undefined
-  },
-  messageTimestamp: 1705321253,
-  pushName: 'Juan Huete',
-  broadcast: false,
-  message: Message {
-    conversation: '99',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: '99',
-  from: '50558091435'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50558091435@s.whatsapp.net',
-    fromMe: false,
-    id: '35D6D9D07AF5CED65AA81021A269C9AD',
-    participant: undefined
-  },
-  messageTimestamp: 1705321257,
-  pushName: 'Juan Huete',
-  broadcast: false,
-  message: Message {
-    conversation: 'Hola',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: 'Hola',
-  from: '50558091435'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_ce25f244-b151-4f51-bc63-d10d4ce22414',
-  keyword: 'key_e8e3e152-c237-439b-bfcb-6108e7c0bbd4',
-  answer: '🚗 ¡Hola! Bienvenido al Autolavado Express. 🌟 ¿Cómo puedo ayudarte hoy?',
-  options: {
-    media: null,
-    buttons: [],
-    capture: false,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: false
-  },
-  refSerialize: 'f977018a1f0eeefe890a309e086ef94d'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_37b3b18e-6b45-4ad6-8fda-be929401a57d',
-  keyword: 'ans_ce25f244-b151-4f51-bc63-d10d4ce22414',
-  answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
-    '👉 *1. Agendar cita*\n' +
-    '👉 *2. Cancelar cita*\n' +
-    '👉 *3. Horarios y ubicaciones*\n' +
-    '👉 *4. Servicios y productos*\n' +
-    '*Ingresa un numero para continuar*',
-  options: {
-    media: null,
-    buttons: [],
-    capture: false,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
-      [Object]
-    ],
-    keyword: {},
-    callback: false
-  },
-  refSerialize: '59416d33f159f406d84800106ac76b28'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50558091435@s.whatsapp.net',
-    fromMe: false,
-    id: 'E995DFD69230C36F7AB2E74D39E5EA50',
-    participant: undefined
-  },
-  messageTimestamp: 1705321261,
-  pushName: 'Juan Huete',
+  messageTimestamp: 1705694456,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
     conversation: '1',
@@ -472,11 +291,120 @@
     }
   },
   body: '1',
-  from: '50558091435'
+  from: '50582477697'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '2F7421A53B145BB10B9533342055F1C0',
+    participant: undefined
+  },
+  messageTimestamp: 1705694462,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'DA4DC66C659F350CABA4098AE048ACA4',
+    participant: undefined
+  },
+  messageTimestamp: 1705694489,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Hola',
+  from: '50582477697'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_8c08c722-231c-4303-a45b-424e47a15e51',
-  keyword: 'key_bba7bfad-2d3d-4005-9a47-c30eb8139552',
+  ref: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  keyword: 'key_42862ffc-c52e-47a7-a412-47c1650b3a20',
+  answer: '🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'abe1a741a833ba605aacdea306883eff'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_d8b9f4a8-0694-468f-92dc-de45453e9828',
+  keyword: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
+    '👉 *1. Agendar cita*\n' +
+    '👉 *2. Horarios y ubicaciones*\n' +
+    '👉 *3. Servicios y productos*\n' +
+    '*Ingresa un numero para continuar*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '3c0d1f445a9c85d7adbe32c4b3165e44'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'A292B82DF8BB5AE6A875DA611DF6ED5D',
+    participant: undefined
+  },
+  messageTimestamp: 1705694490,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  keyword: 'key_e1f867d5-067d-4751-a622-bcbe3f6315e8',
   answer: '👀 Primero, lo primero',
   options: {
     media: null,
@@ -490,11 +418,11 @@
     keyword: {},
     callback: false
   },
-  refSerialize: '18f42b43dd642f782fa545fe88a9e4bc'
+  refSerialize: '8c6696dd54b37588268b25b9fddc8126'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_fd7e73e1-c285-4821-be8d-b118137666ae',
-  keyword: 'ans_8c08c722-231c-4303-a45b-424e47a15e51',
+  ref: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  keyword: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
   answer: '📅 Estos son nuestros horarios disponibles:',
   options: {
     media: null,
@@ -508,11 +436,11 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'ee554f492ac1918cb75b6a36b441f752'
+  refSerialize: '3e605e4f93d4cbb11f5315e8bab1b60e'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_5c4e5ba5-11b8-46d2-a266-d02c85d6784c',
-  keyword: 'ans_fd7e73e1-c285-4821-be8d-b118137666ae',
+  ref: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  keyword: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
   answer: '👀 *Escribe el número del día que deseas*',
   options: {
     media: null,
@@ -526,31 +454,31 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'dc649899810f9f423ff5fcfcb9c47a2a'
+  refSerialize: 'e932c4e05637af977e331767b020ba97'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '50558091435@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: '65DA1D0AC4DD8FD333628A71859F2373',
+    id: 'EDB85752DA84114B29BE4AA064509691',
     participant: undefined
   },
-  messageTimestamp: 1705321268,
-  pushName: 'Juan Huete',
+  messageTimestamp: 1705694492,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
-    conversation: '7',
+    conversation: '1',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  body: '7',
-  from: '50558091435'
+  body: '1',
+  from: '50582477697'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_11086097-fc45-44e5-8399-8b0dc98fa7e4',
-  keyword: 'ans_5c4e5ba5-11b8-46d2-a266-d02c85d6784c',
+  ref: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  keyword: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
   answer: 'Estos son nuestros servicios de lavados: ',
   options: {
     media: null,
@@ -564,11 +492,11 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '856e4746a562e4fcfc3879a23ddede24'
+  refSerialize: '6dbaaf9a0f22f820ab18f0c9034aac4a'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_56d57192-dca2-4792-8047-472b9163197c',
-  keyword: 'ans_11086097-fc45-44e5-8399-8b0dc98fa7e4',
+  ref: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  keyword: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
   answer: '👀 *Escribe el número del servicio que deseas*',
   options: {
     media: null,
@@ -582,31 +510,31 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '603f8cfc7afb5adab7568ba5c4a2b18b'
+  refSerialize: '29f891c439a42478182d08c34eabf814'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '50558091435@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: '98178335C36C978D3983598917B6C261',
+    id: '150AD486704B6FAD5273ADD88E35984F',
     participant: undefined
   },
-  messageTimestamp: 1705321273,
-  pushName: 'Juan Huete',
+  messageTimestamp: 1705694497,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
-    conversation: '3',
+    conversation: '1hola',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  body: '3',
-  from: '50558091435'
+  body: '1hola',
+  from: '50582477697'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_b84f462e-0cfb-4364-82a3-c4db11072776',
-  keyword: 'ans_56d57192-dca2-4792-8047-472b9163197c',
+  ref: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  keyword: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
   answer: 'Estos son los horarios disponibles: ',
   options: {
     media: null,
@@ -620,11 +548,11 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '98bc43982f57599db0b15081ff85d9df'
+  refSerialize: '81d1622773a76e72b873e9211b5c1f80'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_2936eabd-f6ef-4ed8-a88f-3bf1f6b3c156',
-  keyword: 'ans_b84f462e-0cfb-4364-82a3-c4db11072776',
+  ref: 'ans_6b16c572-e644-40f5-9005-2c09df5060fc',
+  keyword: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
   answer: '👀 *Escribe el número del servicio que deseas*',
   options: {
     media: null,
@@ -638,209 +566,17 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '5c6c112bee51e48b797e0adbbe0e1ef1'
+  refSerialize: 'bce59481805a9a957548666947629410'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '50558091435@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: '318BFBB7B76021377D20AE8E058C1D6D',
+    id: '418E30B1182AF75B0D108EE686FBEB83',
     participant: undefined
   },
-  messageTimestamp: 1705321281,
-  pushName: 'Juan Huete',
-  broadcast: false,
-  message: Message {
-    conversation: '3',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: '3',
-  from: '50558091435'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50558091435@s.whatsapp.net',
-    fromMe: false,
-    id: '4A0DB0EFE6A89A8496A82AB5929F9D76',
-    participant: undefined
-  },
-  messageTimestamp: 1705321285,
-  pushName: 'Juan Huete',
-  broadcast: false,
-  message: Message {
-    conversation: 'Juan José',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: 'Juan José',
-  from: '50558091435'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_a26c04c8-ee99-487b-955c-35a9e04522ec',
-  keyword: 'ans_8110bcec-c7b0-42a6-ab32-32313a43fca5',
-  answer: 'También necesito tus dos apellidos',
-  options: {
-    media: null,
-    buttons: [],
-    capture: true,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: 'b5009bf855e5cf2cfa58c31f8cca80d7'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50558091435@s.whatsapp.net',
-    fromMe: false,
-    id: 'FD77D8E6E75CAC553EE5A5D019C27EAF',
-    participant: undefined
-  },
-  messageTimestamp: 1705321290,
-  pushName: 'Juan Huete',
-  broadcast: false,
-  message: Message {
-    conversation: 'Rios',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: 'Rios',
-  from: '50558091435'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_38dabc4e-92de-49e4-9e23-2fa4db9406c6',
-  keyword: 'ans_a26c04c8-ee99-487b-955c-35a9e04522ec',
-  answer: 'Ingresa tu correo electronico',
-  options: {
-    media: null,
-    buttons: [],
-    capture: true,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: 'db4961f210016375aeb7a4fbaf8bcc89'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50558091435@s.whatsapp.net',
-    fromMe: false,
-    id: '77B539264A773E758ADED57483F16641',
-    participant: undefined
-  },
-  messageTimestamp: 1705321295,
-  pushName: 'Juan Huete',
-  broadcast: false,
-  message: Message {
-    conversation: 'jrios9836@gmail.com',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: 'jrios9836@gmail.com',
-  from: '50558091435'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_372d2e14-ee3d-4a68-8f5b-4603a82ed9b3',
-  keyword: 'ans_38dabc4e-92de-49e4-9e23-2fa4db9406c6',
-  answer: 'Si ere persona juridica envia J en caso contrario N',
-  options: {
-    media: null,
-    buttons: [],
-    capture: true,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: '00556a470fe614327200e79e6de4d0be'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50558091435@s.whatsapp.net',
-    fromMe: false,
-    id: '58AC75B91B0D4EE0773EA94569B8D2E8',
-    participant: undefined
-  },
-  messageTimestamp: 1705321301,
-  pushName: 'Juan Huete',
-  broadcast: false,
-  message: Message {
-    conversation: 'J',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: 'J',
-  from: '50558091435'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_c0f2da68-81b8-4ec2-b32c-37f848c32182',
-  keyword: 'ans_372d2e14-ee3d-4a68-8f5b-4603a82ed9b3',
-  answer: '__call_action__',
-  options: {
-    media: null,
-    buttons: [],
-    capture: false,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: '7fba1e215bacbcaf08cf44d23df86794'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50558091435@s.whatsapp.net',
-    fromMe: false,
-    id: '27C7E05672E6AC45D7B904C131521305',
-    participant: undefined
-  },
-  messageTimestamp: 1705321314,
-  pushName: 'Juan Huete',
-  broadcast: false,
-  message: Message {
-    conversation: '1',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: '1',
-  from: '50558091435'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50558091435@s.whatsapp.net',
-    fromMe: false,
-    id: '1842D172A38A95F79404D1A81CD86C9B',
-    participant: undefined
-  },
-  messageTimestamp: 1705321366,
-  pushName: 'Juan Huete',
+  messageTimestamp: 1705694499,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
     conversation: 'Hola',
@@ -850,12 +586,12 @@
     }
   },
   body: 'Hola',
-  from: '50558091435'
+  from: '50582477697'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_ce25f244-b151-4f51-bc63-d10d4ce22414',
-  keyword: 'key_e8e3e152-c237-439b-bfcb-6108e7c0bbd4',
-  answer: '🚗 ¡Hola! Bienvenido al Autolavado Express. 🌟 ¿Cómo puedo ayudarte hoy?',
+  ref: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  keyword: 'key_42862ffc-c52e-47a7-a412-47c1650b3a20',
+  answer: '🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?',
   options: {
     media: null,
     buttons: [],
@@ -868,16 +604,15 @@
     keyword: {},
     callback: false
   },
-  refSerialize: 'f977018a1f0eeefe890a309e086ef94d'
+  refSerialize: 'abe1a741a833ba605aacdea306883eff'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_37b3b18e-6b45-4ad6-8fda-be929401a57d',
-  keyword: 'ans_ce25f244-b151-4f51-bc63-d10d4ce22414',
+  ref: 'ans_d8b9f4a8-0694-468f-92dc-de45453e9828',
+  keyword: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
   answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
     '👉 *1. Agendar cita*\n' +
-    '👉 *2. Cancelar cita*\n' +
-    '👉 *3. Horarios y ubicaciones*\n' +
-    '👉 *4. Servicios y productos*\n' +
+    '👉 *2. Horarios y ubicaciones*\n' +
+    '👉 *3. Servicios y productos*\n' +
     '*Ingresa un numero para continuar*',
   options: {
     media: null,
@@ -900,5 +635,1460 @@
     keyword: {},
     callback: false
   },
-  refSerialize: '59416d33f159f406d84800106ac76b28'
+  refSerialize: '3c0d1f445a9c85d7adbe32c4b3165e44'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  keyword: 'key_42862ffc-c52e-47a7-a412-47c1650b3a20',
+  answer: '🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'abe1a741a833ba605aacdea306883eff'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_d8b9f4a8-0694-468f-92dc-de45453e9828',
+  keyword: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
+    '👉 *1. Agendar cita*\n' +
+    '👉 *2. Horarios y ubicaciones*\n' +
+    '👉 *3. Servicios y productos*\n' +
+    '*Ingresa un numero para continuar*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '3c0d1f445a9c85d7adbe32c4b3165e44'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '9702ACB025717102BF10C6EBF170400D',
+    participant: undefined
+  },
+  messageTimestamp: 1705694503,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  keyword: 'key_e1f867d5-067d-4751-a622-bcbe3f6315e8',
+  answer: '👀 Primero, lo primero',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '8c6696dd54b37588268b25b9fddc8126'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  keyword: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  answer: '📅 Estos son nuestros horarios disponibles:',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '3e605e4f93d4cbb11f5315e8bab1b60e'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  keyword: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  answer: '👀 *Escribe el número del día que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'e932c4e05637af977e331767b020ba97'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '47FD9339BD1380F5C47D54043D5760F5',
+    participant: undefined
+  },
+  messageTimestamp: 1705694506,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '5',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '5',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  keyword: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  answer: 'Estos son nuestros servicios de lavados: ',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '6dbaaf9a0f22f820ab18f0c9034aac4a'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  keyword: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  answer: '👀 *Escribe el número del servicio que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '29f891c439a42478182d08c34eabf814'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '70EE84D0780DC35C00800D7AD074B80A',
+    participant: undefined
+  },
+  messageTimestamp: 1705694513,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '2',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '2',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  keyword: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  answer: 'Estos son los horarios disponibles: ',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '81d1622773a76e72b873e9211b5c1f80'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_6b16c572-e644-40f5-9005-2c09df5060fc',
+  keyword: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  answer: '👀 *Escribe el número del servicio que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'bce59481805a9a957548666947629410'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '09DD86B0CC8400014C3F6D293AA4CB27',
+    participant: undefined
+  },
+  messageTimestamp: 1705694515,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '3',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '3',
+  from: '50582477697'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'D872F68465A076C9FD080B7894237BDC',
+    participant: undefined
+  },
+  messageTimestamp: 1705694521,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'A0153005066010B5921213AA8C81E45C',
+    participant: undefined
+  },
+  messageTimestamp: 1705694658,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Hola',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  keyword: 'key_42862ffc-c52e-47a7-a412-47c1650b3a20',
+  answer: '🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'abe1a741a833ba605aacdea306883eff'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_d8b9f4a8-0694-468f-92dc-de45453e9828',
+  keyword: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
+    '👉 *1. Agendar cita*\n' +
+    '👉 *2. Horarios y ubicaciones*\n' +
+    '👉 *3. Servicios y productos*\n' +
+    '*Ingresa un numero para continuar*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '3c0d1f445a9c85d7adbe32c4b3165e44'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'B98C4B400B56C361C1CC8D5503C7D0DB',
+    participant: undefined
+  },
+  messageTimestamp: 1705694661,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  keyword: 'key_e1f867d5-067d-4751-a622-bcbe3f6315e8',
+  answer: '👀 Primero, lo primero',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '8c6696dd54b37588268b25b9fddc8126'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  keyword: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  answer: '📅 Estos son nuestros horarios disponibles:',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '3e605e4f93d4cbb11f5315e8bab1b60e'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  keyword: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  answer: '👀 *Escribe el número del día que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'e932c4e05637af977e331767b020ba97'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '9608F8CED625958CACD169C7FBE409DC',
+    participant: undefined
+  },
+  messageTimestamp: 1705694664,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '5',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '5',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  keyword: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  answer: 'Estos son nuestros servicios de lavados: ',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '6dbaaf9a0f22f820ab18f0c9034aac4a'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  keyword: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  answer: '👀 *Escribe el número del servicio que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '29f891c439a42478182d08c34eabf814'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'CA9E8D5E23FC84E7E6B071C2607FEB10',
+    participant: undefined
+  },
+  messageTimestamp: 1705694667,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '2',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '2',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  keyword: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  answer: 'Estos son los horarios disponibles: ',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '81d1622773a76e72b873e9211b5c1f80'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_6b16c572-e644-40f5-9005-2c09df5060fc',
+  keyword: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  answer: '👀 *Escribe el número del servicio que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'bce59481805a9a957548666947629410'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '1D5D2F2F296CF7F612C91E6088A13198',
+    participant: undefined
+  },
+  messageTimestamp: 1705694669,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'AB6FDC81B782C47C9367EA4B3F82CFA5',
+    participant: undefined
+  },
+  messageTimestamp: 1705694674,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '9BBFEA3D242E446397F54F113B3BED31',
+    participant: undefined
+  },
+  messageTimestamp: 1705694779,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Hola',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  keyword: 'key_42862ffc-c52e-47a7-a412-47c1650b3a20',
+  answer: '🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'abe1a741a833ba605aacdea306883eff'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_d8b9f4a8-0694-468f-92dc-de45453e9828',
+  keyword: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
+    '👉 *1. Agendar cita*\n' +
+    '👉 *2. Horarios y ubicaciones*\n' +
+    '👉 *3. Servicios y productos*\n' +
+    '*Ingresa un numero para continuar*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '3c0d1f445a9c85d7adbe32c4b3165e44'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'E32E052ED6EE638A4B89E4DF498F2445',
+    participant: undefined
+  },
+  messageTimestamp: 1705694780,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  keyword: 'key_e1f867d5-067d-4751-a622-bcbe3f6315e8',
+  answer: '👀 Primero, lo primero',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '8c6696dd54b37588268b25b9fddc8126'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  keyword: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  answer: '📅 Estos son nuestros horarios disponibles:',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '3e605e4f93d4cbb11f5315e8bab1b60e'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  keyword: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  answer: '👀 *Escribe el número del día que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'e932c4e05637af977e331767b020ba97'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '66DE7A5ECB602690A4B9CA367F1648CE',
+    participant: undefined
+  },
+  messageTimestamp: 1705694783,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '5',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '5',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  keyword: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  answer: 'Estos son nuestros servicios de lavados: ',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '6dbaaf9a0f22f820ab18f0c9034aac4a'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  keyword: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  answer: '👀 *Escribe el número del servicio que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '29f891c439a42478182d08c34eabf814'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '2DAF52CDC91880DE5AC42199F0910D34',
+    participant: undefined
+  },
+  messageTimestamp: 1705694787,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '3',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '3',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  keyword: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  answer: 'Estos son los horarios disponibles: ',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '81d1622773a76e72b873e9211b5c1f80'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_6b16c572-e644-40f5-9005-2c09df5060fc',
+  keyword: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  answer: '👀 *Escribe el número del servicio que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'bce59481805a9a957548666947629410'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '493DC435566D3D44C84E0D6051756275',
+    participant: undefined
+  },
+  messageTimestamp: 1705694790,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '19AD65A221BF84A5D1BF7F30D7638E73',
+    participant: undefined
+  },
+  messageTimestamp: 1705694795,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'AD15A2364BDE0AF7560B7F4FBC380E49',
+    participant: undefined
+  },
+  messageTimestamp: 1705694865,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Hola',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  keyword: 'key_42862ffc-c52e-47a7-a412-47c1650b3a20',
+  answer: '🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'abe1a741a833ba605aacdea306883eff'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_d8b9f4a8-0694-468f-92dc-de45453e9828',
+  keyword: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
+    '👉 *1. Agendar cita*\n' +
+    '👉 *2. Horarios y ubicaciones*\n' +
+    '👉 *3. Servicios y productos*\n' +
+    '*Ingresa un numero para continuar*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '3c0d1f445a9c85d7adbe32c4b3165e44'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'C723AAB165BE609BC1F78B96A13E5C2A',
+    participant: undefined
+  },
+  messageTimestamp: 1705694869,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  keyword: 'key_e1f867d5-067d-4751-a622-bcbe3f6315e8',
+  answer: '👀 Primero, lo primero',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '8c6696dd54b37588268b25b9fddc8126'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  keyword: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  answer: '📅 Estos son nuestros horarios disponibles:',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '3e605e4f93d4cbb11f5315e8bab1b60e'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  keyword: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  answer: '👀 *Escribe el número del día que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'e932c4e05637af977e331767b020ba97'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'BFDF9A795D005A16044C1A1E63333B26',
+    participant: undefined
+  },
+  messageTimestamp: 1705694870,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '5',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '5',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  keyword: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  answer: 'Estos son nuestros servicios de lavados: ',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '6dbaaf9a0f22f820ab18f0c9034aac4a'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  keyword: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  answer: '👀 *Escribe el número del servicio que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '29f891c439a42478182d08c34eabf814'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'FE432E9BC068653C8371252ECAF0BC74',
+    participant: undefined
+  },
+  messageTimestamp: 1705694872,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  keyword: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  answer: 'Estos son los horarios disponibles: ',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '81d1622773a76e72b873e9211b5c1f80'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_6b16c572-e644-40f5-9005-2c09df5060fc',
+  keyword: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  answer: '👀 *Escribe el número del servicio que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'bce59481805a9a957548666947629410'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'FE3AACA6BD922D73F05AC9E390FA9D54',
+    participant: undefined
+  },
+  messageTimestamp: 1705694878,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '2',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '2',
+  from: '50582477697'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'EE00B5F315EC26A01006E18144CBD80D',
+    participant: undefined
+  },
+  messageTimestamp: 1705694882,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'E313C9CD7976233303E3115B67CD2D7F',
+    participant: undefined
+  },
+  messageTimestamp: 1705694909,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Hola',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  keyword: 'key_42862ffc-c52e-47a7-a412-47c1650b3a20',
+  answer: '🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'abe1a741a833ba605aacdea306883eff'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_d8b9f4a8-0694-468f-92dc-de45453e9828',
+  keyword: 'ans_372f0100-c4d5-4a0c-9ff1-94008066b2ca',
+  answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
+    '👉 *1. Agendar cita*\n' +
+    '👉 *2. Horarios y ubicaciones*\n' +
+    '👉 *3. Servicios y productos*\n' +
+    '*Ingresa un numero para continuar*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '3c0d1f445a9c85d7adbe32c4b3165e44'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '0F6610E779CBD92C5A5A26C50E9FDB68',
+    participant: undefined
+  },
+  messageTimestamp: 1705694910,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  keyword: 'key_e1f867d5-067d-4751-a622-bcbe3f6315e8',
+  answer: '👀 Primero, lo primero',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '8c6696dd54b37588268b25b9fddc8126'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  keyword: 'ans_1f47fc7f-e7c8-41ce-a7ff-fd5a24c99180',
+  answer: '📅 Estos son nuestros horarios disponibles:',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '3e605e4f93d4cbb11f5315e8bab1b60e'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  keyword: 'ans_65c06f43-8b6e-4123-b037-fc33c5a907ad',
+  answer: '👀 *Escribe el número del día que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'e932c4e05637af977e331767b020ba97'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '7F70E59271D39A97913547C2231F6F7E',
+    participant: undefined
+  },
+  messageTimestamp: 1705694915,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '5',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '5',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  keyword: 'ans_344589fe-0b49-40e3-abdb-5cd35a67d886',
+  answer: 'Estos son nuestros servicios de lavados: ',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '6dbaaf9a0f22f820ab18f0c9034aac4a'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  keyword: 'ans_c5b0478c-c4e6-4360-bd75-ae38c151ec95',
+  answer: '👀 *Escribe el número del servicio que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '29f891c439a42478182d08c34eabf814'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: 'E18236697B8A741ABC1F9B68775CFD02',
+    participant: undefined
+  },
+  messageTimestamp: 1705694918,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '3',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '3',
+  from: '50582477697'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  keyword: 'ans_54f382c9-d0e9-4509-8dad-0c693f8da7c8',
+  answer: 'Estos son los horarios disponibles: ',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '81d1622773a76e72b873e9211b5c1f80'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_6b16c572-e644-40f5-9005-2c09df5060fc',
+  keyword: 'ans_f142d116-74a3-44a1-b170-a9fa6f749187',
+  answer: '👀 *Escribe el número del servicio que deseas*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'bce59481805a9a957548666947629410'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '51F405C06793AEFFC468C079E813A931',
+    participant: undefined
+  },
+  messageTimestamp: 1705694923,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50582477697@s.whatsapp.net',
+    fromMe: false,
+    id: '406110312BCBDB28D9BDC512CC7411F2',
+    participant: undefined
+  },
+  messageTimestamp: 1705694931,
+  pushName: '🙄',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '50582477697'
 }

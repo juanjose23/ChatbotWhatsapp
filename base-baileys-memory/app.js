@@ -76,6 +76,7 @@ const generarCodigoCliente = (nombre, idPersona, telefono) => {
 
 const insertarReserva = async (id_cliente, codigo_cliente, id_Persona, nombre, apellidos, correo, telefono, tipo, fecha, nombre_servicio, servicio_realizacion, bloque_horario) => {
   try { 
+    let bloque_horario_sin_am_pm = bloque_horario.replace(/\b(?:AM|PM)\b/g, '');
     let data = {
       datos_personales: {
         id_cliente: id_cliente !== undefined ? codigo_cliente : null,
