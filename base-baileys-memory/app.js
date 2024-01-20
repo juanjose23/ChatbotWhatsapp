@@ -105,11 +105,11 @@ const insertarReserva = async (id_cliente, codigo_cliente, id_Persona, nombre, a
     console.log('Cuerpo: ', res.data);
 
     // Aquí está tu código de cliente
-    let codigoCliente = res.data.codigo_cliente;
+    let codigo_reservacion = res.data.codigo_reservacion;
 
-    console.log(codigoCliente)
+    console.log(codigo_reservacion)
 
-    return codigoCliente;
+    return codigo_reservacion;
 
   } catch (err) {
     console.error(err);
@@ -470,6 +470,7 @@ const flowConsultaCliente = addKeyword(EVENTS.ACTION)
         console.log('El número de celular ya existe en la tabla de personas.');
 
         const datosCliente = await consultaDatosCliente(numero);
+        console.log('Datos del cliente: ');
         console.log(datosCliente); 
 
         await state.update({ nombre: datosCliente.nombre })
@@ -478,7 +479,7 @@ const flowConsultaCliente = addKeyword(EVENTS.ACTION)
         await state.update({ telefono: numero })
         await state.update({ tipo: datosCliente.tipo_persona })
         await state.update({ id_cliente: datosCliente.id_cliente })
-        await state.update({ codigo_cliente: datosCliente.codigo_cliente })
+        await state.update({ codigo_cliente: datosCliente.codigo })
         await state.update({ id_persona: datosCliente.id_persona })
 
         return gotoFlow(confirmacionReserva);
@@ -525,7 +526,7 @@ const FlowReservaFinal = addKeyword(EVENTS.ACTION)
   .addAction(async (ctx, { gotoFlow, flowDynamic, endFlow, state }) => {
     const numero = ctx.from;
     const datosUsuario = state.getMyState()
-    const codigo_cliente = await insertarReserva(
+    const codigo_reservacion = await insertarReserva(
       datosUsuario.id_cliente,
       datosUsuario.codigo_cliente,
       datosUsuario.id_persona,
@@ -538,9 +539,9 @@ const FlowReservaFinal = addKeyword(EVENTS.ACTION)
       datosUsuario.servicioObj.servicio.nombre,
       datosUsuario.servicioObj.servicio.realizacion,
       datosUsuario.bloqueObj.bloque)
-    console.log(codigo_cliente)
+    console.log(codigo_reservacion)
 
-    return await flowDynamic(`Tú reserva ha sido registrada! \n El código de reserva es el siguiente: *${codigo_cliente}*`)
+    return await flowDynamic(`Tú reserva ha sido registrada! \n El código de reserva es el siguiente: *${codigo_reservacion}*`)
 
   })
 
