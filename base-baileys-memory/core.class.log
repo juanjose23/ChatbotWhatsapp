@@ -1,27 +1,27 @@
 [handleMsg]:  {
   key: {
-    remoteJid: '50581719517@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: '09B8574D9B8D32C583',
+    id: '78B0319FE3155B9E22AAA67467D733F7',
     participant: undefined
   },
-  messageTimestamp: 1705728559,
-  pushName: 'Medina Jhonatan',
+  messageTimestamp: 1706342847,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
-    extendedTextMessage: ExtendedTextMessage { text: 'Hola', contextInfo: [ContextInfo] },
+    conversation: '11',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  body: 'Hola',
-  from: '50581719517'
+  body: '11',
+  from: '50582477697'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_1a5fca8e-972d-4371-90af-62f76a2ed7de',
-  keyword: 'key_f60a2a38-73d4-4aee-b78f-4817d038aee5',
-  answer: '🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?',
+  ref: 'ans_6ab2ccbc-04b5-48a9-957a-3cd97b4a9e7f',
+  keyword: 'key_2221d814-5165-456e-b65c-d8976914417f',
+  answer: '🚗 ¡Hola!. 🌟 ¿Cómo puedo ayudarte hoy?',
   options: {
     media: null,
     buttons: [],
@@ -34,15 +34,16 @@
     keyword: {},
     callback: false
   },
-  refSerialize: '559b0eb1826ba60bb17b33853bbc1601'
+  refSerialize: '51664e1b728a3eef2cd7cebf098e416a'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_0caccbee-adf4-44ab-b40d-6e56ee46525b',
-  keyword: 'ans_1a5fca8e-972d-4371-90af-62f76a2ed7de',
-  answer: 'Te ofrecemos nuestros servicios de autolavado 🚗:\n' +
-    '👉 *1. Agendar cita*\n' +
-    '👉 *2. Horarios y ubicaciones*\n' +
-    '👉 *3. Servicios y productos*\n' +
+  ref: 'ans_c6a7aeee-b0b3-4138-8fd9-f79e5c92cd1a',
+  keyword: 'ans_6ab2ccbc-04b5-48a9-957a-3cd97b4a9e7f',
+  answer: 'Nuestras opciones 🚗:\n' +
+    '👉 *1. Ver citas hoy*\n' +
+    '👉 *2. Empezar lavado*\n' +
+    '👉 *3. Finalizar lavado*\n' +
+    '👉 *4. Agregar vehículo lavado*\n' +
     '*Ingresa un numero para continuar*',
   options: {
     media: null,
@@ -58,39 +59,37 @@
       [Object], [Object],
       [Object], [Object],
       [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
       [Object]
     ],
     keyword: {},
     callback: false
   },
-  refSerialize: '41b53cf321dd43de7fafcd44382299ae'
+  refSerialize: '09746bd9edab42d9e1a1d8f1b8f73dc7'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '50581719517@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: '7A87BEB2B11C792BE8',
+    id: '5BBE3884BCFF10F225A6652B64161D18',
     participant: undefined
   },
-  messageTimestamp: 1705728561,
-  pushName: 'Medina Jhonatan',
+  messageTimestamp: 1706342849,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
-    extendedTextMessage: ExtendedTextMessage { text: '1', contextInfo: [ContextInfo] },
+    conversation: '3',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  body: '1',
-  from: '50581719517'
+  body: '3',
+  from: '50582477697'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_4073f9c8-f5cd-49ff-8ad6-d1a129d13ba9',
-  keyword: 'key_8246b8e5-a428-492b-92de-2497c0c930cf',
-  answer: '👀 Primero, lo primero',
+  ref: 'ans_291240ef-8a7f-4848-a5ca-42e47fa867cc',
+  keyword: 'key_a8b76e59-f738-49e7-8626-f6db364f4b39',
+  answer: '👀 Es hora de terminar el lavado',
   options: {
     media: null,
     buttons: [],
@@ -103,12 +102,12 @@
     keyword: {},
     callback: false
   },
-  refSerialize: '265a371732d71962431c393938151adf'
+  refSerialize: '3aa9cfc5bed9d9d85f5b7b6664c23086'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_efc6cd49-372b-4046-b64e-8eebe74ee05c',
-  keyword: 'ans_4073f9c8-f5cd-49ff-8ad6-d1a129d13ba9',
-  answer: '📅 Estos son nuestros horarios disponibles:',
+  ref: 'ans_1e49e4ac-f41b-4c5b-b643-cc50f916a0bc',
+  keyword: 'ans_291240ef-8a7f-4848-a5ca-42e47fa867cc',
+  answer: '📅 Estos son los lavados en proceso:',
   options: {
     media: null,
     buttons: [],
@@ -121,12 +120,12 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'feb8553e882b8192ff2a79094bc138fe'
+  refSerialize: 'd5cec95a3cb40cbcb576a49ec2409d41'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_8f68a36a-1da4-4e41-9da5-ed7fdeab168f',
-  keyword: 'ans_efc6cd49-372b-4046-b64e-8eebe74ee05c',
-  answer: '👀 *Escribe el número del día que deseas*',
+  ref: 'ans_d98c211f-3846-4e76-81b1-b9c11af36f1d',
+  keyword: 'ans_1e49e4ac-f41b-4c5b-b643-cc50f916a0bc',
+  answer: '👀 *Escribe el número de la cita*',
   options: {
     media: null,
     buttons: [],
@@ -139,31 +138,31 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'e48d3a12bd4a53e9ddf0aee7899e2ed7'
+  refSerialize: '9b588183e9878476b3596fdf32137c90'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '50581719517@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: 'F322563BF2510865CE',
+    id: 'DBA963A778113230E30B1156FD824B5D',
     participant: undefined
   },
-  messageTimestamp: 1705728564,
-  pushName: 'Medina Jhonatan',
+  messageTimestamp: 1706342855,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
-    extendedTextMessage: ExtendedTextMessage { text: '2', contextInfo: [ContextInfo] },
+    conversation: '1',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  body: '2',
-  from: '50581719517'
+  body: '1',
+  from: '50582477697'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_7f01651f-60de-411d-bbba-3fb254fa45a9',
-  keyword: 'ans_8f68a36a-1da4-4e41-9da5-ed7fdeab168f',
+  ref: 'ans_2d8caa4e-bed5-4b81-9feb-4c4507638a7c',
+  keyword: 'ans_d98c211f-3846-4e76-81b1-b9c11af36f1d',
   answer: 'Estos son nuestros servicios de lavados: ',
   options: {
     media: null,
@@ -177,12 +176,12 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '4100c1a2169486fb1a1b04de48f29eb3'
+  refSerialize: '1eebd402682b2b5fe4a147f5343f5130'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_9c03173c-226e-4f68-a611-3acead10c487',
-  keyword: 'ans_7f01651f-60de-411d-bbba-3fb254fa45a9',
-  answer: '👀 *Escribe el número del servicio que deseas*',
+  ref: 'ans_3ed126e1-b258-4d87-8d85-01db11e6df82',
+  keyword: 'ans_2d8caa4e-bed5-4b81-9feb-4c4507638a7c',
+  answer: '👀 *Escribe el número del método de pago que deseas*',
   options: {
     media: null,
     buttons: [],
@@ -195,101 +194,25 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'df9b92c4123a0964a9730d3092f52d8b'
+  refSerialize: '30686f9d5fc68d8b2d99f5cc6421f6f3'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '50581719517@s.whatsapp.net',
+    remoteJid: '50582477697@s.whatsapp.net',
     fromMe: false,
-    id: 'B1C3F4EB7EFCEA7637',
+    id: '91B32CB206AE9DA75B370356CC88A02C',
     participant: undefined
   },
-  messageTimestamp: 1705728566,
-  pushName: 'Medina Jhonatan',
+  messageTimestamp: 1706342858,
+  pushName: '🙄',
   broadcast: false,
   message: Message {
-    extendedTextMessage: ExtendedTextMessage { text: '1', contextInfo: [ContextInfo] },
+    conversation: '3',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  body: '1',
-  from: '50581719517'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_123507e0-888c-47e2-9a27-d295eca01a41',
-  keyword: 'ans_9c03173c-226e-4f68-a611-3acead10c487',
-  answer: 'Estos son los horarios disponibles: ',
-  options: {
-    media: null,
-    buttons: [],
-    capture: false,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: '0630fe49c2d50a867753245560f221a6'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_f4f4533f-cc3f-4a17-9731-d4a0501be80d',
-  keyword: 'ans_123507e0-888c-47e2-9a27-d295eca01a41',
-  answer: '👀 *Escribe el número del servicio que deseas*',
-  options: {
-    media: null,
-    buttons: [],
-    capture: true,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: 'b581a4c76ede3abee32858c5a3c084a1'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50581719517@s.whatsapp.net',
-    fromMe: false,
-    id: '442BABC10D2A8F5F02',
-    participant: undefined
-  },
-  messageTimestamp: 1705728569,
-  pushName: 'Medina Jhonatan',
-  broadcast: false,
-  message: Message {
-    extendedTextMessage: ExtendedTextMessage { text: '1', contextInfo: [ContextInfo] },
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: '1',
-  from: '50581719517'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '50581719517@s.whatsapp.net',
-    fromMe: false,
-    id: 'A3ADF022A153CD88F4',
-    participant: undefined
-  },
-  messageTimestamp: 1705728575,
-  pushName: 'Medina Jhonatan',
-  broadcast: false,
-  message: Message {
-    extendedTextMessage: ExtendedTextMessage { text: '1', contextInfo: [ContextInfo] },
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  body: '1',
-  from: '50581719517'
+  body: '3',
+  from: '50582477697'
 }
