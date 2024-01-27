@@ -213,12 +213,11 @@ let tipo;
 let telefono;
 const flowFormulario = addKeyword(EVENTS.ACTION)
   .addAnswer(
-    ['Hola!', 'Para enviar el formulario necesito unos datos...', 'Escriba su *Nombre*\n', ' envia *0* para Cancelar solicitud'],
+    ['¡Hola! Para enviar el formulario, necesito algunos datos...', 'Escriba su *Nombre*.\n', 'Envía *0* para cancelar la solicitud.'],
     { capture: true },
-
     async (ctx, { flowDynamic, endFlow, fallBack, state }) => {
       if (ctx.body.toLowerCase() === '0') {
-        return endFlow('❌Se ha cancelando su proceso❌');
+        return endFlow('❌ Se ha cancelado el proceso ❌');
       }
 
       if (ctx.body.length < 3 || ctx.body.length > 50) {
@@ -226,71 +225,59 @@ const flowFormulario = addKeyword(EVENTS.ACTION)
       }
 
       nombre = ctx.body;
-      await state.update({ nombre: nombre })
-      return await flowDynamic(`Encantado *${nombre}*, continuamos...`); // Add 'await' here
+      await state.update({ nombre });
+      return await flowDynamic(`Encantado, *${nombre}*, continuamos...`);
     }
   )
   .addAnswer(
-    ['También necesito tus dos apellidos'],
+    ['También necesito tus dos apellidos. Envía *0* para cancelar la solicitud, escribe *omitir* para no ingresarlos.. '],
     { capture: true },
-
     async (ctx, { flowDynamic, endFlow, fallBack, state }) => {
-      if (ctx.body.toLowerCase() === 'x') {
-        return endFlow('❌Se ha cancelando su proceso❌');
+      if (ctx.body.toLowerCase() === '0') {
+        return endFlow('❌ Se ha cancelado el proceso ❌');
       }
-
-      if (ctx.body.length < 3 || ctx.body.length > 50) {
-        return fallBack();
-      }
-
-      apellidos = ctx.body;
-      await state.update({ apellidos: apellidos })
-      return await flowDynamic(`Perfecto *${nombre} ${apellidos}*, por último...`); // Add 'await' here
+  
+     apellidos = ctx.body.toLowerCase() === 'omitir' ? '' : ctx.body;
+      await state.update({ apellidos });
+      
+      return await flowDynamic(apellidos ? `Perfecto, *${nombre} ${apellidos}*, por último...` : 'Has omitido los apellidos.');
     }
   )
   .addAnswer(
-    'Ingresa tu correo electronico',
+    'Ingresa tu correo electrónico. Envía *0* para cancelar la solicitud, escribe *omitir* para no ingresarlos.',
     { capture: true },
-
     async (ctx, { endFlow, fallBack, state }) => {
-      if (ctx.body.toLowerCase() === 'x') {
-        return endFlow('❌Se ha cancelando su proceso❌');
-
+      if (ctx.body.toLowerCase() === '0') {
+        return endFlow('❌ Se ha cancelado el proceso ❌');
       }
-      if (!ctx.body.includes('@') || !ctx.body.includes('.') || ctx.body.length < 5 || ctx.body.length > 50) {
-        return fallBack();
-      }
-
-      correo = ctx.body;
-      await state.update({ correo: correo })
-
+  
+     correo = ctx.body.toLowerCase() === 'omitir' ? '' : ctx.body;
+      await state.update({ correo });
+  
+    
     }
-
   )
   .addAnswer(
-    ['Si ere persona juridica envia J en caso contrario N'],
+    ['Si eres persona jurídica, envía J; en caso contrario, N. Envía *0* para cancelar la solicitud.'],
     { capture: true },
-
     async (ctx, { flowDynamic, gotoFlow, state }) => {
-      if (ctx.body.toLowerCase() === 'x') {
-        await flowDynamic('❌Se ha cancelando su proceso❌');
+      if (ctx.body.toLowerCase() === '0') {
+        await flowDynamic('❌ Se ha cancelado el proceso ❌');
         return gotoFlow(FlowAdios);
       }
-      tipos = ctx.body
-      if (tipos.toLowerCase() === "j") {
-        tipo = "Persona Jurídica";
-      } else if (tipos.toLowerCase() === "n") {
-        tipo = "Persona Natural";
+  
+      tipo = ctx.body.toLowerCase() === 'j' ? 'Persona Jurídica' : 'Persona Natural';
+      await state.update({ tipo });
+  
+      if (tipo === 'Persona Natural') {
         telefono = ctx.from;
-        await state.update({ telefono: telefono })
+        await state.update({ telefono });
       }
-      await state.update({ tipo: tipo })
     }
   )
   .addAction(async (ctx, { gotoFlow, flowDynamic }) => {
-    return gotoFlow(confirmacionReserva)
-  })
-
+    return gotoFlow(confirmacionReserva);
+  });
 
 
 /** Flow de gestion */
@@ -635,9 +622,66 @@ const flowFormularioServiciosYProductos = addKeyword('3', {
       default: return await flowDynamic('Lo siento, no entendí esa opción. Por favor, envia menu para ver todas nuestra opciones');
     }
   });
+  const obtenerReservaciones = async (telefono) => {
+    try {
+      const apiUrl = 'http://127.0.0.1:5000/obtener_reservaciones_estado_1'; // Reemplaza con la URL real de tu API
+      const response = await axios.get(`${apiUrl}/${telefono}`);
+  
+      return response.data;
+    } catch (error) {
+      console.error('Error al llamar a la API:', error.response ? error.response.data : error.message);
+      throw error;
+    }
+  };
+  const cancelarReserva = async (codigoReserva) => {
+    try {
+      const apiUrl = `http://127.0.0.1:5000/cancelar_reserva/${codigoReserva}`;
+      const response = await axios.post(apiUrl);
+  
+      return response.data;
+    } catch (error) {
+      console.error('Error al llamar a la API:', error.response ? error.response.data : error.message);
+      throw error;
+    }
+};
 
-
-
+  const cancelarReservaFlow = addKeyword('4', {
+    sensitive: true
+  })
+    .addAnswer('¡Entendido! Aquí están tus reservas pendientes:\n', null, async (ctx, { flowDynamic }) => {
+      const reservaciones = await obtenerReservaciones(ctx.from);
+  
+      if (reservaciones.length === 0) {
+        // No hay reservas pendientes
+        return await flowDynamic('No tienes reservas pendientes en este momento.');
+      }
+  
+      let formattedResponse = 'Estas son tus reservas pendientes:\n\n';
+      reservaciones.forEach((reserva, index) => {
+        formattedResponse += `${index + 1}. Código: ${reserva.codigo}, Fecha: ${reserva.fecha}\n`;
+      });
+  
+      formattedResponse += '\nPor favor, responde con el número de la reserva que deseas cancelar.';
+      await flowDynamic(formattedResponse);
+    })
+    .addAction({ capture: true }, async (ctx, { flowDynamic, gotoFlow, endFlow }) => {
+      const opcion = parseInt(ctx.body);
+      const reservaciones = await obtenerReservaciones(ctx.from);
+  
+      if (isNaN(opcion) || opcion < 1 || opcion > reservaciones.length) {
+        return await flowDynamic('Por favor, responde con un número válido de reserva o envía *Cancelar* para cancelar la operación.');
+      }
+  
+      const reservaSeleccionada = reservaciones[opcion - 1];
+  
+      try {
+        await cancelarReserva(reservaSeleccionada.codigo);
+        await flowDynamic(`La reserva con código ${reservaSeleccionada.codigo} ha sido cancelada. ¡Gracias!`);
+      } catch (error) {
+        await flowDynamic('Error al cancelar la reserva. Por favor, inténtalo de nuevo.');
+      }
+    });
+  
 ///////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -653,11 +697,12 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo', '99', 'Menu'])
       '👉 *1. Agendar cita*',
       '👉 *2. Horarios y ubicaciones*',
       '👉 *3. Servicios y productos*',
+      '👉 *4. Cancelar reserva*',
       '*Ingresa un numero para continuar*'
     ],
     {
 
-    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion]
+    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion,cancelarReservaFlow]
   );
 
 
