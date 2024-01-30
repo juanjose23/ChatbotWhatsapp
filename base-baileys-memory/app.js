@@ -230,7 +230,7 @@ const flowFormulario = addKeyword(EVENTS.ACTION)
     }
   )
   .addAnswer(
-    ['Necesito tus dos apellidos. Envía *0* para cancelar la solicitud o escribe *omitir* para no ingresarlos.'],
+    ['Si gustas, puedes escribir tus apellidos. Si no deseas compartirlo, escribe *omitir*. O escribe *0* para cancelar.'],
     { capture: true },
     async (ctx, { flowDynamic, endFlow, state }) => {
       if (ctx.body.toLowerCase() === '0') {
@@ -501,7 +501,7 @@ const flowConsultaConfirmacion = addKeyword(EVENTS.ACTION)
     } else if (ctx.body === '2') {
       return endFlow("Se ha cancelado el proceso");
     } else {
-      return await flowDynamic('Lo siento, no entendí esa opción. Por favor, envia menu para ver todas nuestra opciones');
+      return await flowDynamic('Lo siento, no entendí esa opción. Por favor, envia 99 para ver todas nuestra opciones');
     }
   })
 
@@ -557,7 +557,7 @@ const flowHorariosYubicaciones = addKeyword('2', {
       });
 
       formattedResponse += '\n';
-      formattedResponse += '\n📌 Si necesitas regresar al menú principal, escribe *Menu* o *99*.';
+      formattedResponse += '\n📌 Si necesitas regresar al menú principal, envia *99*.';
     });
 
     await flowDynamic(formattedResponse);
@@ -607,7 +607,7 @@ const flowFormularioServiciosYProductos = addKeyword('3', {
   sensitive: true
 })
   .addAction(async (_, { flowDynamic }) => {
-    return await flowDynamic('🫡 ¿Qué información necesitas sobre nuestros servicios de autolavado?\n1. 🛒 Consultar Productos \n2. 🚗 Solicitar Servicios\n✍️ Ingresa el número correspondiente a la acción que deseas realizar.\n❌ Para cancelar, simplemente escribe *3* o *0*.\n📌 Si necesitas regresar al menú principal, escribe *Menu* o *99*.')
+    return await flowDynamic('🫡 ¿Qué información necesitas sobre nuestros servicios de autolavado?\n1. 🛒 Consultar Productos \n2. 🚗 Solicitar Servicios\n✍️ Ingresa el número correspondiente a la acción que deseas realizar.\n❌ Para cancelar, simplemente escribe *3* o *0*.\n📌 Si necesitas regresar al menú principal, envia  *99*.')
   })
   .addAction({ capture: true }, async (ctx, { flowDynamic, endFlow, gotoFlow }) => {
     const opcion = parseInt(ctx.body);
@@ -615,7 +615,7 @@ const flowFormularioServiciosYProductos = addKeyword('3', {
       case 1: return gotoFlow(flowProductos);
       case 2: return gotoFlow(flowServicios);
       case 0: case 3: return endFlow('Has cancelado la operación, Hasta luego !')
-      default: return await flowDynamic('Lo siento, no entendí esa opción. Por favor, envia menu para ver todas nuestra opciones');
+      default: return await flowDynamic('Lo siento, no entendí esa opción. Por favor, envia 99 para ver todas nuestra opciones');
     }
   });
 const obtenerReservaciones = async (telefono) => {
@@ -910,7 +910,7 @@ const flowPrincipaladmin = addKeyword('11', {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-const flowPrincipal = addKeyword(['hola', 'ole', 'alo', '99', 'Menu', 'menú', 'Menú', 'menú.', 'Menú'])
+const flowPrincipal = addKeyword(['hola', 'ole', 'alo', '99',])
   .addAnswer('🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?')
   .addAnswer(
     [
