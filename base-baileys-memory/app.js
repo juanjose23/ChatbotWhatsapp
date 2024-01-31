@@ -1,4 +1,4 @@
-const { createBot, createProvider, createFlow, addKeyword, EVENTS } = require('@bot-whatsapp/bot')
+const { createBot, createProvider, createFlow, addKeyword, EVENTS, addAnswer } = require('@bot-whatsapp/bot')
 const pool = require('./db')
 const QRPortalWeb = require('@bot-whatsapp/portal')
 const BaileysProvider = require('@bot-whatsapp/provider/baileys')
@@ -46,37 +46,8 @@ const obtenerServicios = async () => {
   }
 };
 
-async function insertarClienteObligatorio(nombre, celular) {
-  try {
-    const apiUrl = 'http://127.0.0.1:5000'; // Reemplaza con la URL real de tu API
-
-    const response = await axios.post(apiUrl + '/api/InsertarClienteObligatorio', {
-      nombre: nombre,
-      celular: celular,
-    });
-
-    // Puedes acceder a los datos de la respuesta
-    console.log('Código del cliente:', response.data.codigo_cliente);
-
-    return response.data;
-  } catch (error) {
-    console.error('Error al llamar a la API:', error.response ? error.response.data : error.message);
-    throw error;
-  }
-}
-
-/***Metodo de registro */
-const generarCodigoCliente = (nombre, idPersona, telefono) => {
-  const nombreNormalizado = nombre.toLowerCase();
-  const nombreSinEspacios = nombreNormalizado.replace(/\s/g, '_'); // o '-' si prefieres guiones
-  const codigo = `CL_${nombreSinEspacios}_${idPersona}_${telefono}`;
-  return codigo;
-};
-
-
 const insertarReserva = async (id_cliente, codigo_cliente, id_Persona, nombre, apellidos, correo, telefono, fecha, nombre_servicio, servicio_realizacion, bloque_horario, metodo) => {
   try {
-    let bloque_horario_sin_am_pm = bloque_horario.replace(/\b(?:AM|PM)\b/g, '');
     let data = {
       datos_personales: {
         id_cliente: id_cliente !== undefined ? codigo_cliente : null,
@@ -134,77 +105,6 @@ const validarNumeroCelularExistente = async (numeroCelular) => {
   }
 };
 
-/***Metodos de horarios disponibles para el dia de hoy*/
-const obtenerHorasDisponiblesHoy = async () => {
-  try {
-    const client = await pool.connect();
-
-    // Obtén las horas de apertura y cierre para el día de hoy
-    const horariosHoy = await client.query(`
-      SELECT hora_apertura, hora_cierre
-      FROM horarios
-      WHERE dia = $1 AND estado = 1
-    `, [getNombreDia(new Date())]); // Utiliza una función para obtener el nombre del día actual
-
-    if (horariosHoy.rows.length === 0) {
-      console.log('No hay horarios configurados para el día de hoy.');
-      return [];
-    }
-
-    const horaApertura = horariosHoy.rows[0].hora_apertura;
-    const horaCierre = horariosHoy.rows[0].hora_cierre;
-
-    // Obtén las reservaciones para el día de hoy
-    const reservacionesHoy = await client.query(`
-      SELECT hora
-      FROM reservacion
-      WHERE fecha = CURRENT_DATE
-    `);
-
-    // Filtra las horas disponibles
-    const horasReservadas = reservacionesHoy.rows.map(row => row.hora);
-    const horasDisponibles = obtenerHorasDisponibles(horaApertura, horaCierre, horasReservadas);
-
-    client.release();
-    return horasDisponibles;
-  } catch (error) {
-    console.error('Error al obtener horas disponibles del día:', error.message);
-    throw error;
-  }
-};
-
-const obtenerHorasDisponibles = (horaApertura, horaCierre, horasReservadas) => {
-  // Genera un rango de horas entre la apertura y el cierre
-  const horasEnRango = generarHorasEnRango(horaApertura, horaCierre);
-
-  // Filtra las horas que no están reservadas
-  const horasDisponibles = horasEnRango.filter(hora => !horasReservadas.includes(hora));
-
-  return horasDisponibles;
-};
-
-const generarHorasEnRango = (horaInicio, horaFin) => {
-  const horasEnRango = [];
-  let horaActual = new Date(`2000-01-01T${horaInicio}:00Z`);
-
-  while (horaActual <= new Date(`2000-01-01T${horaFin}:00Z`)) {
-    const horaFormateada = horaActual.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-    horasEnRango.push(horaFormateada);
-    horaActual.setMinutes(horaActual.getMinutes() + 30); // Incrementa 30 minutos
-  }
-
-  return horasEnRango;
-};
-
-// Función para obtener el nombre del día actual
-const getNombreDia = (fecha) => {
-  const opciones = { weekday: 'long' };
-  return new Intl.DateTimeFormat('es-ES', opciones).format(fecha);
-};
-
-
-
-
 /**Flow de registro de usuario */
 let nombre;
 let apellidos;
@@ -213,7 +113,7 @@ let telefono;
 const flowFormulario = addKeyword(EVENTS.ACTION)
   .addAnswer(
     ['¡Hola! Para enviar el formulario, necesito algunos datos...',
-     'Escribe tu *Nombre*. Envía *0* para cancelar la solicitud.'],
+      'Escribe tu *Nombre*. Envía *0* para cancelar la solicitud.'],
     { capture: true },
     async (ctx, { flowDynamic, endFlow, fallBack, state }) => {
       if (ctx.body.toLowerCase() === '0') {
@@ -299,15 +199,6 @@ const obtenerHorariosDisponiblesSemanal = async () => {
     console.error(err);
   }
 };
-
-
-
-
-
-
-
-
-
 let fechas; // Definir 'fechas' aquí
 let servicios; // Definir 'servicios' aquí
 let bloques; // Definir 'bloques' aquí
@@ -537,11 +428,6 @@ const flowHorariosYubicaciones = addKeyword('2', {
 })
   .addAnswer('📅⏱️ El horario de nuestras sucursales son los siguientes:', null, async (ctx, { flowDynamic }) => {
     const data = await obtenerHorariosSucursalesUbicaciones();
-    console.log('LA PRUEBA EMPIEZA AQUI PARA VARIABLES GLOABLES');
-    console.log(fechaObj);
-    console.log(servicioObj);
-    console.log(bloqueObj);
-
     // Formatear la respuesta
     let formattedResponse = '';
 
@@ -568,6 +454,63 @@ const flowHorariosYubicaciones = addKeyword('2', {
 
 
 //////////////////////////////////////////////////////////////////////////////////////
+
+// Función para consumir la ruta /cotizacionproducto en el servidor Flask
+async function getCotizacionProducto() {
+  try {
+    // Reemplaza la URL con la dirección de tu servidor Flask
+    const apiUrl = 'http://127.0.0.1:5000/cotizacionproducto';
+
+    // Realiza la solicitud GET a la API de Flask
+    const response = await axios.get(apiUrl);
+
+    // Retorna los datos obtenidos
+    console.log(response.data);
+    return response.data;
+
+  } catch (error) {
+    // Maneja errores
+    console.error('Error al llamar a la API:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+}
+async function enviarCodigoProducto(codigoProducto,numero) {
+  try {
+    console.log(numero)
+    const apiUrl = 'http://127.0.0.1:5000/cotizacionproducto'; // Reemplaza con tu dirección y puerto reales
+    const response = await axios.post(apiUrl, { codigoProducto,numero });
+    console.log('Respuesta del servidor:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error al enviar el código del producto:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+}
+const flowhumano=addKeyword('97',{sensitive:true})
+.addAnswer('Para optimizar nuestra comunicación y proporcionarte una atención personalizada, por favor, comparte el código del producto que encuentras en el PDF. Estamos aquí para brindarte el mejor servicio posible.\n Si en algún momento deseas cancelar el proceso, simplemente envía *0*. Estamos aquí para adaptarnos a tus necesidades y brindarte la mejor experiencia posible.', { capture: true },
+async (ctx, { flowDynamic, endFlow, fallBack, state }) => {
+  if (ctx.body.toLowerCase() === '0') {
+    return endFlow('❌ Se ha cancelado el proceso ❌');
+  }
+  const opcion = parseInt(ctx.body);
+  let numero=ctx.from;
+  const cotizaciones = await getCotizacionProducto();
+  console.log(cotizaciones);
+  if (isNaN(opcion) || opcion < 1 || opcion > cotizaciones.length) {
+    return  fallBack();
+  }
+
+
+  try {
+    const cotizacionSeleccionada = cotizaciones[opcion - 1];
+    console.log(numero);
+    await enviarCodigoProducto(cotizacionSeleccionada.id,numero);
+    await flowDynamic(`Detalles del producto para asesoramiento:\nNombre del Producto: ${cotizacionSeleccionada.nombre}\nCódigo del Producto: ${cotizacionSeleccionada.index}`);
+  } catch (error) {
+    // Manejar el error utilizando flowDynamic
+    await flowDynamic('Ocurrió un error al procesar la solicitud. Por favor, inténtalo de nuevo.');
+  }
+});
 /** Flow 4. Servicios y productos  */
 const flowProductos = addKeyword('1', {
   sensitive: true
@@ -577,15 +520,14 @@ const flowProductos = addKeyword('1', {
     // URL para descargar el PDF de SERVICIOS
     media: 'http://127.0.0.1:5000/static/pdf/productos/Productos.pdf'
   })
-  
-  .addAnswer('Para volver al inicio 🏠 envia 99')
+  .addAnswer('Si deseas recibir asesoramiento personalizado, por favor, selecciona la opción *97* para comunicarte con nuestro experimentado equipo.\n Si deseas regresar al menú principal en cualquier momento, simplemente envía *99*.\n Estamos aquí para asistirte en lo que necesites.');
 
 const flowServicios = addKeyword('2', {
   sensitive: true
 })
   .addAnswer('🧽🚿Nuestros servicios son:', null, async (ctx, { flowDynamic }) => {
     const data = await obtenerServicios();
-    console.log(data); 
+    console.log(data);
     // Formatear la respuesta
     let formattedResponse = '';
     data.forEach(servicio => {
@@ -711,32 +653,17 @@ async function obtenerReservacionesHoyAdminestado() {
     throw error;
   }
 }
-async function metododepago() {
-  try {
-    // Reemplaza la URL con la dirección de tu servidor Flask
-    const apiUrl = 'http://127.0.0.1:5000/metododepago';
 
-    // Realiza la solicitud GET a la API de Flask
-    const response = await axios.get(apiUrl);
-
-    // Retorna los datos obtenidos
-    return response.data;
-  } catch (error) {
-    // Maneja errores
-    console.error('Error al llamar a la API:', error.response ? error.response.data : error.message);
-    throw error;
-  }
-}
 const flowVerCitas = addKeyword('1', {
   sensitive: true
 })
-  .addAnswer('Nuestra agenda de hoy:', null, async (ctx, { flowDynamic,endFlow }) => {
+  .addAnswer('Nuestra agenda de hoy:', null, async (ctx, { flowDynamic, endFlow }) => {
     try {
       // Llama a la función que obtiene las reservaciones de hoy para el administrador
       const reservaciones = await obtenerReservacionesHoyAdmin();
       if (reservaciones.length === 0) {
         // No hay reservas pendientes
-        return  endFlow('No tienes reservas  en este momento.');
+        return endFlow('No tienes reservas  en este momento.');
       }
 
       // Formatear la respuesta
@@ -823,8 +750,6 @@ const realizarVenta = async (codigo) => {
 let FechaJ;
 let dateobj;
 let codigo;
-
-
 const flowterminarlavado = addKeyword('3', {
   sensitive: true
 })
@@ -855,7 +780,7 @@ const flowterminarlavado = addKeyword('3', {
       // Manejar el error según tus necesidades
     }
   })
-  .addAnswer(['👀 *Escribe el número de la cita*'], { capture: true }, async (ctx, { fallBack, flowDynamic,state }) => {
+  .addAnswer(['👀 *Escribe el número de la cita*'], { capture: true }, async (ctx, { fallBack, flowDynamic, state }) => {
     try {
       // Buscar la fecha seleccionada por el usuario
       dateobj = FechaJ.find(reserva => reserva.index === parseInt(ctx.body));
@@ -932,7 +857,7 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo', '99',])
 
 const main = async () => {
   const adapterDB = new MockAdapter()
-  const adapterFlow = createFlow([flowPrincipaladmin, flowPrincipal, flowConsultaCliente, flowFormulario, confirmacionReserva, FlowReservaFinal])
+  const adapterFlow = createFlow([flowPrincipaladmin, flowPrincipal, flowConsultaCliente, flowFormulario, confirmacionReserva, FlowReservaFinal,flowhumano])
   const adapterProvider = createProvider(BaileysProvider)
 
   createBot({
