@@ -296,7 +296,7 @@ const flowReserva = addKeyword('1')
 
 
   })
-  .addAnswer(['👀 *Escribe el número del horario que deseas*\n 1. Sinpe \n2. Planilla  \n3. Efectivo \n4. Tarjeta'], { capture: true }, async (ctx, { fallBack, gotoFlow, state }) => {
+  .addAnswer(['👀 *¿Como desea pagar?*\n 1.Sinpe \n2. Planilla  \n3. Efectivo \n4. Tarjeta'], { capture: true }, async (ctx, { fallBack, gotoFlow, state }) => {
     // Encuentra el servicio correspondiente
     metodo = parseInt(ctx.body);
 
@@ -390,7 +390,8 @@ const flowConsultaConfirmacion = addKeyword(EVENTS.ACTION)
     if (ctx.body === '1') {
       return gotoFlow(FlowReservaFinal);
     } else if (ctx.body === '2') {
-      return endFlow("Se ha cancelado el proceso");
+
+      return endFlow("Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.");
     } else {
       return await flowDynamic('Lo siento, no entendí esa opción. Por favor, envia 99 para ver todas nuestra opciones');
     }
@@ -474,11 +475,11 @@ async function getCotizacionProducto() {
     throw error;
   }
 }
-async function enviarCodigoProducto(codigoProducto,numero) {
+async function enviarCodigoProducto(codigoProducto, numero) {
   try {
     console.log(numero)
     const apiUrl = 'http://127.0.0.1:5000/cotizacionproducto'; // Reemplaza con tu dirección y puerto reales
-    const response = await axios.post(apiUrl, { codigoProducto,numero });
+    const response = await axios.post(apiUrl, { codigoProducto, numero });
     console.log('Respuesta del servidor:', response.data);
     return response.data;
   } catch (error) {
@@ -486,31 +487,31 @@ async function enviarCodigoProducto(codigoProducto,numero) {
     throw error;
   }
 }
-const flowhumano=addKeyword('97',{sensitive:true})
-.addAnswer('Para optimizar nuestra comunicación y proporcionarte una atención personalizada, por favor, comparte el código del producto que encuentras en el PDF. Estamos aquí para brindarte el mejor servicio posible.\n Si en algún momento deseas cancelar el proceso, simplemente envía *0*. Estamos aquí para adaptarnos a tus necesidades y brindarte la mejor experiencia posible.', { capture: true },
-async (ctx, { flowDynamic, endFlow, fallBack, state }) => {
-  if (ctx.body.toLowerCase() === '0') {
-    return endFlow('❌ Se ha cancelado el proceso ❌');
-  }
-  const opcion = parseInt(ctx.body);
-  let numero=ctx.from;
-  const cotizaciones = await getCotizacionProducto();
-  console.log(cotizaciones);
-  if (isNaN(opcion) || opcion < 1 || opcion > cotizaciones.length) {
-    return  fallBack();
-  }
+const flowhumano = addKeyword('97', { sensitive: true })
+  .addAnswer('Para optimizar nuestra comunicación y proporcionarte una atención personalizada, por favor, comparte el código del producto que encuentras en el PDF. Estamos aquí para brindarte el mejor servicio posible.\n Si en algún momento deseas cancelar el proceso, simplemente envía *0*. Estamos aquí para adaptarnos a tus necesidades y brindarte la mejor experiencia posible.', { capture: true },
+    async (ctx, { flowDynamic, endFlow, fallBack, state }) => {
+      if (ctx.body.toLowerCase() === '0') {
+        return endFlow('❌ Se ha cancelado el proceso ❌');
+      }
+      const opcion = parseInt(ctx.body);
+      let numero = ctx.from;
+      const cotizaciones = await getCotizacionProducto();
+      console.log(cotizaciones);
+      if (isNaN(opcion) || opcion < 1 || opcion > cotizaciones.length) {
+        return fallBack();
+      }
 
 
-  try {
-    const cotizacionSeleccionada = cotizaciones[opcion - 1];
-    console.log(numero);
-    await enviarCodigoProducto(cotizacionSeleccionada.id,numero);
-    await flowDynamic(`Detalles del producto para asesoramiento:\nNombre del Producto: ${cotizacionSeleccionada.nombre}\nCódigo del Producto: ${cotizacionSeleccionada.index}`);
-  } catch (error) {
-    // Manejar el error utilizando flowDynamic
-    await flowDynamic('Ocurrió un error al procesar la solicitud. Por favor, inténtalo de nuevo.');
-  }
-});
+      try {
+        const cotizacionSeleccionada = cotizaciones[opcion - 1];
+        console.log(numero);
+        await enviarCodigoProducto(cotizacionSeleccionada.id, numero);
+        await flowDynamic(`Detalles del producto para asesoramiento:\nNombre del Producto: ${cotizacionSeleccionada.nombre}\nCódigo del Producto: ${cotizacionSeleccionada.index}`);
+      } catch (error) {
+        // Manejar el error utilizando flowDynamic
+        await flowDynamic('Ocurrió un error al procesar la solicitud. Por favor, inténtalo de nuevo.');
+      }
+    });
 /** Flow 4. Servicios y productos  */
 const flowProductos = addKeyword('1', {
   sensitive: true
@@ -812,12 +813,51 @@ const flowterminarlavado = addKeyword('3', {
       // Manejar el error según tus necesidades
     }
   });
+const validaradmin = async (numeroCelular) => {
+  try {
+    const apiUrl = 'http://127.0.0.1:5000'; // Reemplaza con la URL real de tu API
 
+    const response = await axios.post(apiUrl + '/validar_usuario_por_telefono', {
+      telefono: numeroCelular
+    });
+
+    // Manejar la respuesta del servidor
+    if (response.status === 200) {
+      const data = response.data;
+      console.log('Respuesta del servidor:', data);
+      return data.nombre;
+    } else {
+      console.error('Error al validar el número de celular:', response.data);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error al llamar a la API:', error.message);
+    throw error;
+  }
+};
 
 const flowPrincipaladmin = addKeyword('11', {
   sensitive: true
 })
-  .addAnswer('🚗 ¡Hola!. 🌟 ¿Cómo puedo ayudarte hoy?')
+  .addAction(async (ctx, { gotoFlow, flowDynamic, state }) => {
+
+    const numero = ctx.from;
+    console.log(numero);
+    try {
+      const nombreUsuario = await validaradmin(numero);
+
+      if (nombreUsuario) {
+        await flowDynamic("Un gusto verte por aquí de nuevo, " + nombreUsuario);
+        return gotoFlow(flowPrincipaladmins);
+      } else {
+        console.log('El número de celular no existe en la tabla de personas.');
+        return gotoFlow(flowPrincipal);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  });
+const flowPrincipaladmins = addKeyword(EVENTS.ACTION)
   .addAnswer(
     [
       'Nuestras opciones 🚗:',
@@ -832,10 +872,40 @@ const flowPrincipaladmin = addKeyword('11', {
   );
 
 
-
 //////////////////////////////////////////////////////////////////////////////////////
+const flowNotaDeVoz = addKeyword(EVENTS.VOICE_NOTE)
+  .addAnswer('🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?')
+  .addAnswer(
+    [
+      'Te ofrecemos nuestros servicios de autolavado 🚗:',
+      '👉 *1. Agendar cita*',
+      '👉 *2. Horarios y ubicaciones*',
+      '👉 *3. Servicios y productos*',
+      '👉 *4. Cancelar reserva*',
+      '*Ingresa un numero para continuar*'
+    ],
+    {
 
-const flowPrincipal = addKeyword(['hola', 'ole', 'alo', '99',])
+    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion, cancelarReservaFlow]
+  );
+
+const flowVideos = addKeyword(EVENTS.MEDIA)
+  .addAnswer('🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?')
+  .addAnswer(
+    [
+      'Te ofrecemos nuestros servicios de autolavado 🚗:',
+      '👉 *1. Agendar cita*',
+      '👉 *2. Horarios y ubicaciones*',
+      '👉 *3. Servicios y productos*',
+      '👉 *4. Cancelar reserva*',
+      '*Ingresa un numero para continuar*'
+    ],
+    {
+
+    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion, cancelarReservaFlow]
+  );
+
+const flowPDF = addKeyword(EVENTS.DOCUMENT)
   .addAnswer('🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?')
   .addAnswer(
     [
@@ -852,21 +922,78 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo', '99',])
   );
 
 
+const flowPrincipal = addKeyword(EVENTS.WELCOME)
+  .addAnswer('🚗 ¡Hola! Bienvenido LAVACAR ASOCATIE. 🌟 ¿Cómo puedo ayudarte hoy?')
+  .addAnswer(
+    [
+      'Te ofrecemos nuestros servicios de autolavado 🚗:',
+      '👉 *1. Agendar cita*',
+      '👉 *2. Horarios y ubicaciones*',
+      '👉 *3. Servicios y productos*',
+      '👉 *4. Cancelar reserva*',
+      '*Ingresa un numero para continuar*'
+    ],
+    {
 
+    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion, cancelarReservaFlow]
+  );
+const obtenerListaNegra = async () => {
+  try {
+    const apiUrl = 'http://127.0.0.1:5000'; // Reemplaza con la URL real de tu API
 
+    const response = await axios.get(apiUrl + '/lista_negra');
+
+    // Manejar la respuesta del servidor
+    if (response.status === 200) {
+      const data = response.data;
+      console.log('Respuesta del servidor:', data);
+      return data.lista_negra;
+    } else {
+      console.error('Error al obtener la lista negra:', response.data);
+      return [];
+    }
+  } catch (error) {
+    console.error('Error al llamar a la API:', error.message);
+    throw error;
+  }
+};
 
 const main = async () => {
-  const adapterDB = new MockAdapter()
-  const adapterFlow = createFlow([flowPrincipaladmin, flowPrincipal, flowConsultaCliente, flowFormulario, confirmacionReserva, FlowReservaFinal,flowhumano])
-  const adapterProvider = createProvider(BaileysProvider)
+  const adapterDB = new MockAdapter();
+  const adapterFlow = createFlow([flowVideos, flowPDF, flowNotaDeVoz, flowPrincipaladmin, flowPrincipal, flowConsultaCliente, flowFormulario, confirmacionReserva, FlowReservaFinal, flowhumano]);
+  const adapterProvider = createProvider(BaileysProvider);
+  let blackLists = []; // Inicializar blackLists
 
-  createBot({
-    flow: adapterFlow,
-    provider: adapterProvider,
-    database: adapterDB,
-  })
+  try {
+    // Función para obtener y actualizar la lista negra
+    async function actualizarBlackLists() {
+      try {
+        const listaNegra = await obtenerListaNegra();
+        console.log(listaNegra);
+        blackLists = listaNegra.map(registro => registro.telefono);
+        console.log(`Teléfonos en la lista negra: ${blackLists}`);
+        // Crear el bot con la lista negra actualizada
+        await createBot({
+          flow: adapterFlow,
+          provider: adapterProvider,
+          database: adapterDB,
+        }, {
+          blackList: blackLists
+        });
+      } catch (error) {
+        console.error('Error al obtener y actualizar la lista negra:', error);
+      }
+    }
 
-  QRPortalWeb()
+    // Llamar a la función para obtener y actualizar la lista negra inicialmente
+    await actualizarBlackLists();
+
+    // Configurar un intervalo para obtener y actualizar la lista negra periódicamente
+    setInterval(actualizarBlackLists, 60000); // 60000 milisegundos = 1 minuto
+    QRPortalWeb()
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
-main()
+main();
