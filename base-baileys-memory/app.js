@@ -946,7 +946,6 @@ const obtenerListaNegra = async () => {
     // Manejar la respuesta del servidor
     if (response.status === 200) {
       const data = response.data;
-      console.log('Respuesta del servidor:', data);
       return data.lista_negra;
     } else {
       console.error('Error al obtener la lista negra:', response.data);
@@ -965,35 +964,27 @@ const main = async () => {
   let blackLists = []; // Inicializar blackLists
 
   try {
-    // Función para obtener y actualizar la lista negra
-    async function actualizarBlackLists() {
-      try {
-        const listaNegra = await obtenerListaNegra();
-        console.log(listaNegra);
-        blackLists = listaNegra.map(registro => registro.telefono);
-        console.log(`Teléfonos en la lista negra: ${blackLists}`);
-        // Crear el bot con la lista negra actualizada
-        await createBot({
-          flow: adapterFlow,
-          provider: adapterProvider,
-          database: adapterDB,
-        }, {
-          blackList: blackLists
-        });
-      } catch (error) {
-        console.error('Error al obtener y actualizar la lista negra:', error);
-      }
-    }
 
-    // Llamar a la función para obtener y actualizar la lista negra inicialmente
-    await actualizarBlackLists();
 
-    // Configurar un intervalo para obtener y actualizar la lista negra periódicamente
-    setInterval(actualizarBlackLists, 60000); // 60000 milisegundos = 1 minuto
-    QRPortalWeb()
-  } catch (error) {
+    const listaNegra = await obtenerListaNegra();
+    console.log(listaNegra);
+    blackLists = listaNegra.map(registro => registro.telefono);
+    console.log(`Teléfonos en la lista negra: ${blackLists}`);
+    // Crear el bot con la lista negra actualizada
+    await createBot({
+      flow: adapterFlow,
+      provider: adapterProvider,
+      database: adapterDB,
+    }, {
+      blackList: blackLists
+    });
+
+  }
+  catch (error) {
     console.error('Error:', error);
   }
+  QRPortalWeb();
+
 }
 
 main();
