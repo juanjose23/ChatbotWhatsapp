@@ -225,17 +225,21 @@ const flowReserva = addKeyword('1')
 
 
   })
-  .addAnswer(['👀 *Escribe el número del día que deseas*'], { capture: true }, async (ctx, { fallBack, state }) => {
+  .addAnswer(['👀 *Escribe el número del día que deseas.*\n *Si deseas terminar la solicitud envía 0*'], { capture: true }, async (ctx, { fallBack, state,endFlow }) => {
     fechaObj = fechas.find(fechaObj => fechaObj.index === parseInt(ctx.body));
 
     console.log(fechaObj)
-    if (!fechaObj) {
+    if(fechaObj < 1)
+    {
+      return endFlow("Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.")
+    }
+    if (!fechaObj)
+    {
       return fallBack()
     }
     await state.update({ fechaObj: fechaObj })
     console.log('mensaje entrante: ', ctx.body)
   })
-
   .addAnswer(['Estos son nuestros servicios de lavados: '], null, async (ctx, { flowDynamic }) => {
 
     const serviciosOriginales = await obtenerServicios();
@@ -256,17 +260,20 @@ const flowReserva = addKeyword('1')
 
 
   })
-  .addAnswer(['👀 *Escribe el número del servicio que deseas*'], { capture: true }, async (ctx, { fallBack, state }) => {
+  .addAnswer(['👀 *Escribe el número del servicio que deseas:*\n Si deseas terminar la solicitud envía 0*'], { capture: true }, async (ctx, { fallBack, state,endFlow }) => {
     // Encuentra el servicio correspondiente
     servicioObj = servicios.find(servicioObj => servicioObj.index === parseInt(ctx.body));
     console.log(servicioObj);
+    if(servicioObj < 1){
+      return endFlow('Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.')  
+    }
     if (!servicioObj) {
       return fallBack();
     }
     console.log('mensaje entrante: ', ctx.body);
     await state.update({ servicioObj: servicioObj })
   })
-  .addAnswer(['Estos son los horarios disponibles: '], null, async (ctx, { flowDynamic }) => {
+  .addAnswer(['*Estos son los horarios disponibles:* '], null, async (ctx, { flowDynamic }) => {
 
     const bloquesOriginales = await enviar_duracion_dia(servicioObj, fechaObj);
     console.log(bloquesOriginales)
@@ -284,10 +291,14 @@ const flowReserva = addKeyword('1')
     return await flowDynamic(formattedResponse);
   })
 
-  .addAnswer(['👀 *Escribe el número del horario que deseas*'], { capture: true }, async (ctx, { fallBack, gotoFlow, state }) => {
+  .addAnswer(['👀 *Escribe el número del horario que deseas:*\n*Si deseas terminar la solicitud envía 0*'], { capture: true }, async (ctx, { fallBack, gotoFlow,endFlow, state }) => {
     // Encuentra el servicio correspondiente
     bloqueObj = bloques.find(bloqueObj => bloqueObj.index === parseInt(ctx.body));
     console.log(bloqueObj);
+    if(bloqueObj < 1)
+    {
+      return endFlow('Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.');
+    }
     if (!bloqueObj) {
       return fallBack();
     }
@@ -296,10 +307,13 @@ const flowReserva = addKeyword('1')
 
 
   })
-  .addAnswer(['👀 *¿Como desea pagar?*\n 1.Sinpe \n2. Planilla  \n3. Efectivo \n4. Tarjeta'], { capture: true }, async (ctx, { fallBack, gotoFlow, state }) => {
+  .addAnswer(['👀 *¿Como desea pagar?*\n*1. Sinpe* \n*2. Planilla*  \n*3. Efectivo* \n*4. Tarjeta*\n*Si deseas terminar la solicitud envía 0*'], { capture: true }, async (ctx, { fallBack, gotoFlow, state }) => {
     // Encuentra el servicio correspondiente
     metodo = parseInt(ctx.body);
-
+    if(metodo<1)
+    {
+      return endFlow('Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.');
+    }
     // Validar que el número esté entre 1 y 4
     if (metodo < 1 || metodo > 4 || isNaN(metodo)) {
       // Si no es válido, regresar un mensaje de error y volver al flujo anterior
