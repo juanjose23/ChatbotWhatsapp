@@ -392,9 +392,7 @@ const flowConsultaConfirmacion = addKeyword(EVENTS.ACTION)
     } else if (ctx.body === '2') {
 
       return endFlow("Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.");
-    } else {
-      return await flowDynamic('Lo siento, no entendí esa opción. Por favor, envia 99 para ver todas nuestra opciones');
-    }
+    } 
   })
 
 
