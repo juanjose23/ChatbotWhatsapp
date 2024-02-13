@@ -229,7 +229,7 @@ const flowReserva = addKeyword('1')
     fechaObj = fechas.find(fechaObj => fechaObj.index === parseInt(ctx.body));
 
     console.log(fechaObj)
-    if(fechaObj < 1)
+    if(parseInt(ctx.body)  < 1)
     {
       return endFlow("Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.")
     }
@@ -264,7 +264,7 @@ const flowReserva = addKeyword('1')
     // Encuentra el servicio correspondiente
     servicioObj = servicios.find(servicioObj => servicioObj.index === parseInt(ctx.body));
     console.log(servicioObj);
-    if(servicioObj < 1){
+    if(parseInt(ctx.body)  < 1){
       return endFlow('Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.')  
     }
     if (!servicioObj) {
@@ -295,7 +295,7 @@ const flowReserva = addKeyword('1')
     // Encuentra el servicio correspondiente
     bloqueObj = bloques.find(bloqueObj => bloqueObj.index === parseInt(ctx.body));
     console.log(bloqueObj);
-    if(bloqueObj < 1)
+    if(parseInt(ctx.body) < 1)
     {
       return endFlow('Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.');
     }
