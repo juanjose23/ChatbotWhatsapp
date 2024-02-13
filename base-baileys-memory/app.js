@@ -260,7 +260,7 @@ const flowReserva = addKeyword('1')
 
 
   })
-  .addAnswer(['👀 *Escribe el número del servicio que deseas:*\n Si deseas terminar la solicitud envía 0*'], { capture: true }, async (ctx, { fallBack, state,endFlow }) => {
+  .addAnswer(['👀 *Escribe el número del servicio que deseas:*\n*Si deseas terminar la solicitud envía 0*'], { capture: true }, async (ctx, { fallBack, state,endFlow }) => {
     // Encuentra el servicio correspondiente
     servicioObj = servicios.find(servicioObj => servicioObj.index === parseInt(ctx.body));
     console.log(servicioObj);
@@ -876,7 +876,7 @@ const flowPrincipaladmins = addKeyword(EVENTS.ACTION)
       '👉 *1. Ver citas hoy*',
       '👉 *2. Empezar lavado*',
       '👉 *3. Finalizar lavado*',
-      '*Ingresa un numero para continuar*'
+      '*Ingresa un número para continuar*'
     ],
     {
 
@@ -894,7 +894,7 @@ const flowNotaDeVoz = addKeyword(EVENTS.VOICE_NOTE)
       '👉 *2. Horarios y ubicaciones*',
       '👉 *3. Servicios y productos*',
       '👉 *4. Cancelar reserva*',
-      '*Ingresa un numero para continuar*'
+      '*Ingresa un número para continuar*'
     ],
     {
 
@@ -910,7 +910,7 @@ const flowVideos = addKeyword(EVENTS.MEDIA)
       '👉 *2. Horarios y ubicaciones*',
       '👉 *3. Servicios y productos*',
       '👉 *4. Cancelar reserva*',
-      '*Ingresa un numero para continuar*'
+      '*Ingresa un número para continuar*'
     ],
     {
 
@@ -926,7 +926,7 @@ const flowPDF = addKeyword(EVENTS.DOCUMENT)
       '👉 *2. Horarios y ubicaciones*',
       '👉 *3. Servicios y productos*',
       '👉 *4. Cancelar reserva*',
-      '*Ingresa un numero para continuar*'
+      '*Ingresa un número para continuar*'
     ],
     {
 
@@ -943,7 +943,7 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
       '👉 *2. Horarios y ubicaciones*',
       '👉 *3. Servicios y productos*',
       '👉 *4. Cancelar reserva*',
-      '*Ingresa un numero para continuar*'
+      '*Ingresa un número para continuar*'
     ],
     {
 
