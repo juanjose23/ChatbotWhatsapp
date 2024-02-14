@@ -611,12 +611,13 @@ const cancelarReserva = async (codigoReserva) => {
 const cancelarReservaFlow = addKeyword('4', {
   sensitive: true
 })
-  .addAnswer('¡Entendido! Aquí están tus reservas pendientes:\n', null, async (ctx, { flowDynamic,fallBack }) => {
+  .addAnswer('¡Entendido! Aquí están tus reservas pendientes:\n', null, async (ctx, { flowDynamic,fallBack ,endFlow}) => {
     const reservaciones = await obtenerReservaciones(ctx.from);
 
     if (reservaciones.length === 0) {
       // No hay reservas pendientes
-      return await flowDynamic('No tienes reservas pendientes en este momento.');
+       await flowDynamic('No tienes reservas pendientes en este momento.');
+       return endFlow('Gracias por utilizar nuestro servicios los esperamos pronto')
     }
 
     let formattedResponse = 'Estas son tus reservas pendientes:\n\n';
@@ -635,7 +636,7 @@ const cancelarReservaFlow = addKeyword('4', {
       return endFlow('Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.')
     }
     if (isNaN(opcion) || opcion < 1 || opcion > reservaciones.length) {
-      return fallBack('Por favor, responde con un número válido de reserva o envía *Cancelar* para cancelar la operación.');
+      return fallBack('Por favor, responde con un número válido de reserva o envía *0* para cancelar la operación.');
     }
 
     const reservaSeleccionada = reservaciones[opcion - 1];
