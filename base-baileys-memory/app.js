@@ -627,10 +627,13 @@ const cancelarReservaFlow = addKeyword('4', {
     formattedResponse += '\nPor favor, responde con el número de la reserva que deseas cancelar.';
     await flowDynamic(formattedResponse);
   })
-  .addAction({ capture: true }, async (ctx, { flowDynamic, gotoFlow, fallBack }) => {
+  .addAction({ capture: true }, async (ctx, { flowDynamic, gotoFlow, fallBack,endFlow }) => {
     const opcion = parseInt(ctx.body);
     const reservaciones = await obtenerReservaciones(ctx.from);
-
+    if(opcion < 1)
+    {
+      return endFlow('Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.')
+    }
     if (isNaN(opcion) || opcion < 1 || opcion > reservaciones.length) {
       return fallBack('Por favor, responde con un número válido de reserva o envía *Cancelar* para cancelar la operación.');
     }
