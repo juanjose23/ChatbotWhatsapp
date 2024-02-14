@@ -6,41 +6,37 @@ const MockAdapter = require('@bot-whatsapp/database/mock')
 /////////////////////////////////////////////////////////
 
 const axios = require('axios');
-const { Events } = require('pg')
-const { delay } = require('@whiskeysockets/baileys')
-
 const consultaDatosCliente = async (numero) => {
   try {
     let res = await axios.post('http://127.0.0.1:5000/api_consultaDatosCliente', { celular: numero })
-
-    console.log(`Estado: ${res.status}`);
-    console.log('Cuerpo: ', res.data);
-
     // Aquí están los servicios
     let datosCliente = res.data;
-
     return datosCliente;
-
   }
   catch (error) {
     console.log(error);
   }
 }
 
-
-const obtenerServicios = async () => {
+const obtenerCategorias = async () => {
   try {
 
-    let res = await axios.get('http://127.0.0.1:5000/api/getservicios');
-
-    console.log(`Estado: ${res.status}`);
-    console.log('Cuerpo: ', res.data);
-
+    let res = await axios.get('http://127.0.0.1:5000/api/getcategorias');
     // Aquí están los servicios
     let servicios = res.data;
 
     return servicios;
 
+  } catch (err) {
+    console.error(err);
+  }
+};
+const obtenerServicios = async (id) => {
+  try {
+    let res = await axios.get(`http://127.0.0.1:5000/api/getservicios/${id}`);
+    // Aquí están los servicios
+    let servicios = res.data;
+    return servicios;
   } catch (err) {
     console.error(err);
   }
@@ -67,21 +63,14 @@ const insertarReserva = async (id_cliente, codigo_cliente, id_Persona, nombre, a
       }
     };
     console.log(nombre_servicio)
-    console.log('Pruebita')
     console.log(data)
-
     let res = await axios.post('http://127.0.0.1:5000/api_agregar_reserva', data);
-
     console.log(`Estado: ${res.status}`);
     console.log('Cuerpo: ', res.data);
-
     // Aquí está tu código de cliente
     let codigo_reservacion = res.data.codigo_reservacion;
-
     console.log(codigo_reservacion)
-
     return codigo_reservacion;
-
   } catch (err) {
     console.error(err);
   }
@@ -206,7 +195,7 @@ let servicioObj; // Definir 'servicioObj' aquí
 let fechaObj; // Definir 'fechaObj' aquí
 let bloqueObj; // Definir 'bloqueObj' aquí
 let metodo;
-
+let idcategoria;
 const flowReserva = addKeyword('1')
   .addAnswer(['👀 Planfica tu agenda con nostros'])
   .addAnswer(['📅 Estos son nuestros horarios disponibles:'], null, async (ctx, { flowDynamic }) => {
@@ -240,9 +229,47 @@ const flowReserva = addKeyword('1')
     await state.update({ fechaObj: fechaObj })
     console.log('mensaje entrante: ', ctx.body)
   })
-  .addAnswer(['Estos son nuestros servicios de lavados: '], null, async (ctx, { flowDynamic }) => {
+  .addAnswer(['Estos son nuestras categorias de nuestros servicios de lavados : '], null, async (ctx, { flowDynamic }) => {
 
-    const serviciosOriginales = await obtenerServicios();
+    const CategoriaOriginales = await obtenerCategorias();
+
+    // Formatear la respuesta
+    let formattedResponse = '';
+    let index = 1;
+
+    categorias = CategoriaOriginales.map(categoria => {
+      formattedResponse += `*${index}. ${categoria.nombre}*\n`;
+      formattedResponse += `😶‍🌫️ Descripción: *${categoria.descripcion}*\n`;
+      return { index: index++, categoria };
+    });
+
+    return await flowDynamic(formattedResponse);
+
+
+  })
+  .addAnswer(['👀 *Escribe el número de la categoría que deseas:*\n*Si deseas terminar la solicitud envía 0*'], { capture: true }, async (ctx, { fallBack, state,endFlow }) => {
+    // Encuentra la categoria correspondiente
+    const categoriasObj = categorias.find(categoriaObj => categoriaObj.index === parseInt(ctx.body));
+    console.log(categoriasObj);
+    
+    if (parseInt(ctx.body) < 1) {
+      return endFlow('Se ha cancelado tu proceso, esperamos poder contar con su presencia en futuras citas.');
+    }
+    
+    if (!categoriasObj) {
+      return fallBack();
+    }
+    
+    console.log('categoria entrante: ', categoriasObj.categoria.id);
+    idcategoria=categoriasObj.categoria.id;
+    await state.update({ idcategoria: idcategoria })
+    console.log('categorias')
+    
+  })
+  .addAnswer(['Estos son nuestros servicios de lavados de la categoría seleccionada: '], null, async (ctx, { flowDynamic }) => {
+    console.log('categoria seleccionada: ', idcategoria);
+    console.log('este se presenta antes de la categoria y hace peticiones')
+    const serviciosOriginales = await obtenerServicios(idcategoria);
 
     // Formatear la respuesta
     let formattedResponse = '';
@@ -398,9 +425,6 @@ const confirmacionReserva = addKeyword(EVENTS.ACTION)
 
 const flowConsultaConfirmacion = addKeyword(EVENTS.ACTION)
   .addAnswer('Digita \n 1. Sí estás de acuerdo \n 2. Sí no estás de acuerdo', { capture: true, delay: 3000 }, async (ctx, { gotoFlow, flowDynamic, endFlow }) => {
-    // Agrega un retraso de 7 segundos antes de enviar la siguiente respuesta
-    console.log(ctx.body)
-
     if (ctx.body === '1') {
       return gotoFlow(FlowReservaFinal);
     } else if (ctx.body === '2') {
@@ -538,19 +562,7 @@ const flowProductos = addKeyword('1', {
 const flowServicios = addKeyword('2', {
   sensitive: true
 })
-  .addAnswer('🧽🚿Nuestros servicios son:', null, async (ctx, { flowDynamic }) => {
-    const data = await obtenerServicios();
-    console.log(data);
-    // Formatear la respuesta
-    let formattedResponse = '';
-    data.forEach(servicio => {
-      formattedResponse += `*${servicio.nombre}*\n`;
-      formattedResponse += `😶‍🌫️ Descripción: *${servicio.descripcion}*\n`;
-      formattedResponse += `💵 Precio: *${servicio.precio}*\n\n`;
-      formattedResponse += `⏱️ Tiempo de realización: *${servicio.realizacion}*\n\n`;
-    });
-    await flowDynamic(formattedResponse);
-  })
+  .addAnswer('🧽🚿Nuestros servicios:')
   .addAnswer('Te dejó un PDF con más información de los servicios 👀📄:')
   .addAnswer('📄', {
     // URL para descargar el PDF de SERVICIOS
@@ -599,7 +611,7 @@ const cancelarReserva = async (codigoReserva) => {
 const cancelarReservaFlow = addKeyword('4', {
   sensitive: true
 })
-  .addAnswer('¡Entendido! Aquí están tus reservas pendientes:\n', null, async (ctx, { flowDynamic }) => {
+  .addAnswer('¡Entendido! Aquí están tus reservas pendientes:\n', null, async (ctx, { flowDynamic,fallBack }) => {
     const reservaciones = await obtenerReservaciones(ctx.from);
 
     if (reservaciones.length === 0) {
@@ -609,18 +621,18 @@ const cancelarReservaFlow = addKeyword('4', {
 
     let formattedResponse = 'Estas son tus reservas pendientes:\n\n';
     reservaciones.forEach((reserva, index) => {
-      formattedResponse += `${index + 1}. Código: ${reserva.codigo}, Fecha: ${reserva.fecha}\n`;
+      formattedResponse += `${index + 1}. Código: ${reserva.codigo}\n Fecha: ${reserva.fecha}\n Hora de inicio ${reserva.hora_inicio}\n Hora de finalización ${reserva.hora_inicio}`;
     });
 
     formattedResponse += '\nPor favor, responde con el número de la reserva que deseas cancelar.';
     await flowDynamic(formattedResponse);
   })
-  .addAction({ capture: true }, async (ctx, { flowDynamic, gotoFlow, endFlow }) => {
+  .addAction({ capture: true }, async (ctx, { flowDynamic, gotoFlow, fallBack }) => {
     const opcion = parseInt(ctx.body);
     const reservaciones = await obtenerReservaciones(ctx.from);
 
     if (isNaN(opcion) || opcion < 1 || opcion > reservaciones.length) {
-      return await flowDynamic('Por favor, responde con un número válido de reserva o envía *Cancelar* para cancelar la operación.');
+      return fallBack('Por favor, responde con un número válido de reserva o envía *Cancelar* para cancelar la operación.');
     }
 
     const reservaSeleccionada = reservaciones[opcion - 1];
@@ -634,6 +646,207 @@ const cancelarReservaFlow = addKeyword('4', {
   });
 
 ///////////////////////////////////////////////////////////////////////////////////////
+// Función para realizar solicitudes GET a la API de reservaciones de hoy para administradores
+/*const obtenerReservacionesHoyAdmin = async () => {
+  try {
+    const apiUrl = 'http://127.0.0.1:5000/reservaciones_hoy_admin';
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error('Error al obtener las reservaciones');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al llamar a la API:', error.message);
+    throw error;
+  }
+};
+
+
+// Función para realizar solicitudes POST a la API para cambiar el estado de una reserva
+const cambiarEstadoReserva = async (codigoReserva) => {
+  try {
+    const apiUrl = 'http://127.0.0.1:5000/cambiar_estado_reserva';
+    let response = await axios.post(apiUrl, { codigo_reserva: codigoReserva });
+    return response.data;
+  } catch (error) {
+    console.error('Error al llamar a la API:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+};
+
+// Función para realizar ventas mediante una solicitud POST a la API
+const realizarVenta = async (codigo) => {
+  try {
+    const apiUrl = 'http://127.0.0.1:5000/realizar_venta';
+    let response = await axios.post(apiUrl, { codigo: codigo });
+    return response.data;
+  } catch (error) {
+    console.error('Error al llamar a la API:', error.response ? error.response.data : error.message);
+    throw error.response.data;
+  }
+};
+
+// Función para validar un número de teléfono de administrador mediante una solicitud POST a la API
+const validarAdmin = async (numeroCelular) => {
+  try {
+    const apiUrl = 'http://127.0.0.1:5000/validar_usuario_por_telefono';
+    const response = await axios.post(apiUrl, { telefono: numeroCelular });
+    if (response.status === 200) {
+      const data = response.data;
+      console.log('Respuesta del servidor:', data);
+      return data.nombre;
+    } else {
+      console.error('Error al validar el número de celular:', response.data);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error al llamar a la API:', error.message);
+    throw error;
+  }
+};
+
+
+
+// Acción para ver las citas de hoy
+const flowVerCitas = addKeyword('1', { sensitive: true })
+  .addAnswer('Nuestra agenda de hoy:', null, async ({ flowDynamic, endFlow }) => {
+    try {
+      const reservaciones = await obtenerReservacionesHoyAdmin();
+      console.log(reservaciones);
+      if (reservaciones.length === 0) {
+        return await flowDynamic('No tienes reservas en este momento.');
+      }
+
+      let formattedResponse = '';
+      reservaciones.forEach(reserva => {
+        formattedResponse += `*Código:* ${reserva.codigo}\n`;
+        formattedResponse += `*Fecha:* ${reserva.fecha}\n`;
+        formattedResponse += `*Hora de inicio:* ${reserva.hora_inicio}\n\n`;
+        formattedResponse += `*Hora de finalización:* ${reserva.hora_fin}\n\n`;
+      });
+
+      return await flowDynamic(formattedResponse);
+    } catch (error) {
+      console.error('Error al obtener reservaciones:', error.message);
+      await flowDynamic('Hubo un error al obtener las reservaciones. Por favor, inténtalo de nuevo.');
+    }
+  });
+
+// Acción para empezar el lavado de una reserva seleccionada
+const flowEmpezarLavado = addKeyword('2', { sensitive: true })
+  .addAnswer('¡Entendido! Aquí están tus reservas para comenzar:', null, async (ctx, { flowDynamic }) => {
+    try {
+      const reservaciones = await obtenerReservacionesHoyAdmin();
+
+      if (reservaciones.length === 0) {
+        return await flowDynamic('No tienes reservas en este momento.');
+      }
+
+      let formattedResponse = 'Estas son tus reservas para lavar:\n\n';
+      reservaciones.forEach((reserva, index) => {
+        formattedResponse += `${index + 1}. Código: ${reserva.codigo}, Fecha: ${reserva.fecha}\n , Hora de inicio: ${reserva.hora_inicio}\n , Hora finalizacion: ${reserva.hora_fin}\n`;
+      });
+
+      formattedResponse += '\nPor favor, responde con el número de la reserva que deseas empezar.';
+      await flowDynamic(formattedResponse);
+    } catch (error) {
+      console.error('Error al obtener las reservaciones:', error);
+    }
+  })
+  .addAction({ capture: true }, async (ctx, { flowDynamic }) => {
+    const opcion = parseInt(ctx.body);
+    const reservaciones = await obtenerReservacionesHoyAdmin();
+
+    if (isNaN(opcion) || opcion < 1 || opcion > reservaciones.length) {
+      return await flowDynamic('Por favor, responde con un número válido de reserva o envía *Cancelar* para cancelar la operación.');
+    }
+
+    const reservaSeleccionada = reservaciones[opcion - 1];
+
+    try {
+      await cambiarEstadoReserva(reservaSeleccionada.codigo);
+      await flowDynamic(`La reserva con código ${reservaSeleccionada.codigo} ha sido empezada. ¡Gracias!`);
+    } catch (error) {
+      await flowDynamic('Error al empezar la reserva. Por favor, inténtalo de nuevo.');
+    }
+  });
+
+// Acción para finalizar el lavado de una reserva seleccionada
+const flowTerminarLavado = addKeyword('3', { sensitive: true })
+  .addAnswer('👀 Es hora de terminar el lavado')
+  .addAnswer('📅 Estos son los lavados en proceso:', null, async (ctx, { flowDynamic }) => {
+    try {
+      const reservas = await obtenerReservacionesHoyAdminEstado();
+      let formattedResponse = '';
+      let indice = 1;
+
+      reservas.forEach((reserva, index) => {
+        formattedResponse += `*${index + 1}. Código:* ${reserva.codigo}\n` +
+          `*Fecha:* ${reserva.fecha}\n` +
+          `*Hora de inicio:* ${reserva.hora_inicio}\n\n` +
+          `*Hora de finalización:* ${reserva.hora_fin}\n\n` +
+          `*Total:* ${reserva.subtotal}\n\n`;
+      });
+
+      await flowDynamic(formattedResponse);
+    } catch (error) {
+      console.error('Error al obtener las reservaciones:', error);
+    }
+  })
+  .addAnswer('👀 *Escribe el número de la cita*', { capture: true }, async (ctx, { fallBack, flowDynamic, state }) => {
+    try {
+      const dateobj = state.dateobj.find(reserva => reserva.index === parseInt(ctx.body));
+
+      if (!dateobj) {
+        return fallBack();
+      }
+
+      const codigo = dateobj.codigo;
+
+      try {
+        const response = await realizarVenta(codigo);
+        const idventa = response.id_venta;
+        await flowDynamic(`Se ha generado la venta con éxito con el código de venta es: V-${idventa}`);
+      } catch (error) {
+        await flowDynamic('Error al generar la venta. Por favor, inténtalo de nuevo.');
+      }
+    } catch (error) {
+      console.error('Error al procesar la respuesta:', error);
+    }
+  });
+
+// Acción principal para validar el número de teléfono del administrador
+const flowPrincipalAdmins = addKeyword('admin')
+  .addAnswer(
+    [
+      'Nuestras opciones 🚗:',
+      '👉 *1. Ver citas hoy*',
+      '👉 *2. Empezar lavado*',
+      '👉 *3. Finalizar lavado*',
+      '*Ingresa un número para continuar*'
+    ],
+    {
+
+    }, null, [flowVerCitas,flowEmpezarLavado,flowTerminarLavado]
+  );
+
+const flowPrincipalAdmin = addKeyword('11', { sensitive: true })
+  .addAction(async (ctx, { gotoFlow, flowDynamic, state }) => {
+    const numero = ctx.from;
+    try {
+      const nombreUsuario = await validarAdmin(numero);
+      if (nombreUsuario) {
+        await flowDynamic("Un gusto verte por aquí de nuevo, " + nombreUsuario);
+        return gotoFlow(flowPrincipalAdmins);
+      } else {
+        return gotoFlow(flowPrincipal);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  });
+*/
+////////////////Hace tres seamana estaba asi
 async function obtenerReservacionesHoyAdmin() {
   try {
     // Reemplaza la URL con la dirección de tu servidor Flask
@@ -666,18 +879,29 @@ async function obtenerReservacionesHoyAdminestado() {
     throw error;
   }
 }
+async function metododepago() {
+  try {
+    // Reemplaza la URL con la dirección de tu servidor Flask
+    const apiUrl = 'http://127.0.0.1:5000/metododepago';
 
+    // Realiza la solicitud GET a la API de Flask
+    const response = await axios.get(apiUrl);
+
+    // Retorna los datos obtenidos
+    return response.data;
+  } catch (error) {
+    // Maneja errores
+    console.error('Error al llamar a la API:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+}
 const flowVerCitas = addKeyword('1', {
   sensitive: true
 })
-  .addAnswer('Nuestra agenda de hoy:', null, async (ctx, { flowDynamic, endFlow }) => {
+  .addAnswer('¡Claro! Aquí están las reservaciones de hoy:', null, async (ctx, { flowDynamic }) => {
     try {
       // Llama a la función que obtiene las reservaciones de hoy para el administrador
       const reservaciones = await obtenerReservacionesHoyAdmin();
-      if (reservaciones.length === 0) {
-        // No hay reservas pendientes
-        return endFlow('No tienes reservas  en este momento.');
-      }
 
       // Formatear la respuesta
       let formattedResponse = '';
@@ -747,141 +971,144 @@ const flowempezarlavado = addKeyword('2', {
     }
   });
 
-const realizarVenta = async (codigo) => {
-  try {
-    const response = await axios.post('http://127.0.0.1:5000/realizar_venta', {
-      codigo: codigo
-    });
-
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    console.error(error.response.data);
-    throw error.response.data;
-  }
-};
-let FechaJ;
-let dateobj;
-let codigo;
-const flowterminarlavado = addKeyword('3', {
-  sensitive: true
-})
-  .addAnswer(['👀 Es hora de terminar el lavado'])
-  .addAnswer(['📅 Estos son los lavados en proceso:'], null, async (ctx, { flowDynamic }) => {
+  const realizarVenta = async (codigo) => {
     try {
-      // Obtener las reservaciones
-      const reservas = await obtenerReservacionesHoyAdminestado();
-
-      // Formatear la respuesta
-      let formattedResponse = '';
-      let indice = 1;
-
-      // Mapear las reservaciones y construir la respuesta formateada
-      FechaJ = reservas.map((reserva, index) => {
-        formattedResponse += `*${index + 1}. Código:* ${reserva.codigo}\n` +
-          `*Fecha:* ${reserva.fecha}\n` +
-          `*Hora de inicio:* ${reserva.hora_inicio}\n\n` +
-          `*Hora de finalización:* ${reserva.hora_fin}\n\n` +
-          `*Total:* ${reserva.subtotal}\n\n`;
-        return { index: indice++, formattedResponse, codigo: reserva.codigo, idcliente: reserva.idcliente, precios: reserva.subtotal };
+      const response = await axios.post('http://127.0.0.1:5000/realizar_venta', {
+        codigo: codigo,
       });
-
-      // Enviar la respuesta formateada
-      await flowDynamic(formattedResponse);
+  
+      console.log(response.data);
+      return response.data;
     } catch (error) {
-      console.error('Error al obtener las reservaciones:', error);
-      // Manejar el error según tus necesidades
+      console.error(error.response.data);
+      throw error.response.data;
     }
+  };
+  let FechaJ;
+  let dateobj;
+  let codigo;
+  let metodos;
+  let servicioObjes;
+
+  
+  const flowterminarlavado = addKeyword('3', {
+    sensitive: true
   })
-  .addAnswer(['👀 *Escribe el número de la cita*'], { capture: true }, async (ctx, { fallBack, flowDynamic, state }) => {
-    try {
-      // Buscar la fecha seleccionada por el usuario
-      dateobj = FechaJ.find(reserva => reserva.index === parseInt(ctx.body));
-
-      console.log(dateobj);
-
-      if (!dateobj) {
-        return fallBack();
-      }
-      codigo = dateobj.codigo;
-
-
-      // Actualizar el estado con la variable dateobj, codigo, idcliente y precios
-      await state.update({ dateobj: dateobj, codigo: codigo });
-      console.log('mensaje entrante: ', ctx.body);
+    .addAnswer(['👀 Es hora de terminar el lavado'])
+    .addAnswer(['📅 Estos son los lavados en proceso:'], null, async (ctx, { flowDynamic }) => {
       try {
-        const response = await realizarVenta(codigo);
-        const idventa = response.id_venta; // Obtén el ID de la venta desde la respuesta
-
-        // Ejecuta el flujo para éxito
-        await flowDynamic(`Se ha generado la venta con éxito con el  código de venta es: V-${idventa}`);
+        // Obtener las reservaciones
+        const reservas = await obtenerReservacionesHoyAdminestado();
+  
+        // Formatear la respuesta
+        let formattedResponse = '';
+        let indice = 1;
+  
+        // Mapear las reservaciones y construir la respuesta formateada
+        FechaJ = reservas.map((reserva, index) => {
+          formattedResponse += `*${index + 1}. Código:* ${reserva.codigo}\n` +
+            `*Fecha:* ${reserva.fecha}\n` +
+            `*Hora de inicio:* ${reserva.hora_inicio}\n\n` +
+            `*Hora de finalización:* ${reserva.hora_fin}\n\n` +
+            `*Total:* ${reserva.subtotal}\n\n`;
+          return { index: indice++, formattedResponse, codigo: reserva.codigo, idcliente: reserva.idcliente, precios: reserva.subtotal };
+        });
+  
+        // Enviar la respuesta formateada
+        await flowDynamic(formattedResponse);
       } catch (error) {
-        // Ejecuta el flujo para error
-        await flowDynamic('Error al generar la venta. Por favor, inténtalo de nuevo.');
+        console.error('Error al obtener las reservaciones:', error);
+        // Manejar el error según tus necesidades
       }
-
-    } catch (error) {
-      console.error('Error al procesar la respuesta:', error);
-      // Manejar el error según tus necesidades
-    }
-  });
-const validaradmin = async (numeroCelular) => {
-  try {
-    const apiUrl = 'http://127.0.0.1:5000'; // Reemplaza con la URL real de tu API
-
-    const response = await axios.post(apiUrl + '/validar_usuario_por_telefono', {
-      telefono: numeroCelular
+    })
+    .addAnswer(['👀 *Escribe el número de la cita*'], { capture: true }, async (ctx, { flowDynamic,fallBack, state }) => {
+      try {
+        // Buscar la fecha seleccionada por el usuario
+        dateobj = FechaJ.find(reserva => reserva.index === parseInt(ctx.body));
+        
+        console.log(dateobj);
+  
+        if (!dateobj) {
+          return fallBack();
+        }
+        codigo=dateobj.codigo;
+      
+  
+        // Actualizar el estado con la variable dateobj, codigo, idcliente y precios
+        await state.update({ dateobj: dateobj,codigo:codigo});
+        console.log('mensaje entrante: ', ctx.body);
+        try {
+          const response = await realizarVenta(codigo);
+          const idventa = response.id_venta; // Obtén el ID de la venta desde la respuesta
+        
+          // Ejecuta el flujo para éxito
+          await flowDynamic(`Se ha generado la venta con éxito con el  código de venta es: V-${idventa}`);
+        } catch (error) {
+          // Ejecuta el flujo para error
+          await flowDynamic('Error al generar la venta. Por favor, inténtalo de nuevo.');
+        }
+      } catch (error) {
+        console.error('Error al procesar la respuesta:', error);
+        // Manejar el error según tus necesidades
+      }
     });
-
-    // Manejar la respuesta del servidor
-    if (response.status === 200) {
-      const data = response.data;
-      console.log('Respuesta del servidor:', data);
-      return data.nombre;
-    } else {
-      console.error('Error al validar el número de celular:', response.data);
-      return null;
-    }
-  } catch (error) {
-    console.error('Error al llamar a la API:', error.message);
-    throw error;
-  }
-};
-
+    const validaradmin = async (numeroCelular) => {
+      try {
+        const apiUrl = 'http://127.0.0.1:5000'; // Reemplaza con la URL real de tu API
+    
+        const response = await axios.post(apiUrl + '/validar_usuario_por_telefono', {
+          telefono: numeroCelular
+        });
+    
+        // Manejar la respuesta del servidor
+        if (response.status === 200) {
+          const data = response.data;
+          console.log('Respuesta del servidor:', data);
+          return data.nombre;
+        } else {
+          console.error('Error al validar el número de celular:', response.data);
+          return null;
+        }
+      } catch (error) {
+        console.error('Error al llamar a la API:', error.message);
+        throw error;
+      }
+    };
 const flowPrincipaladmin = addKeyword('11', {
   sensitive: true
 })
-  .addAction(async (ctx, { gotoFlow, flowDynamic, state }) => {
+.addAction(async(ctx, {gotoFlow }) => {
+  const numero = ctx.from;
+  console.log(numero);
+  try {
+    const nombreUsuario = await validaradmin(numero);
 
-    const numero = ctx.from;
-    console.log(numero);
-    try {
-      const nombreUsuario = await validaradmin(numero);
-
-      if (nombreUsuario) {
-        await flowDynamic("Un gusto verte por aquí de nuevo, " + nombreUsuario);
-        return gotoFlow(flowPrincipaladmins);
-      } else {
-        console.log('El número de celular no existe en la tabla de personas.');
-        return gotoFlow(flowPrincipal);
-      }
-    } catch (error) {
-      console.error(error);
+    if (nombreUsuario) {
+    //  await flowDynamic("Un gusto verte por aquí de nuevo, " + nombreUsuario);
+      //return gotoFlow(flowPrincipaladmins);
+    } else {
+      console.log('El número de celular no existe en la tabla de personas.');
+      return gotoFlow(flowPrincipal);
     }
-  });
-const flowPrincipaladmins = addKeyword(EVENTS.ACTION)
+  } catch (error) {
+    console.error(error);
+  }
+  
+  
+})
   .addAnswer(
     [
       'Nuestras opciones 🚗:',
       '👉 *1. Ver citas hoy*',
       '👉 *2. Empezar lavado*',
       '👉 *3. Finalizar lavado*',
-      '*Ingresa un número para continuar*'
+      '*Ingresa un numero para continuar*'
     ],
     {
 
     }, null, [flowVerCitas, flowempezarlavado, flowterminarlavado]
   );
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -971,7 +1198,7 @@ const obtenerListaNegra = async () => {
 
 const main = async () => {
   const adapterDB = new MockAdapter();
-  const adapterFlow = createFlow([flowVideos, flowPDF, flowNotaDeVoz, flowPrincipaladmin, flowPrincipal, flowConsultaCliente, flowFormulario, confirmacionReserva, FlowReservaFinal, flowhumano]);
+  const adapterFlow = createFlow([flowVideos, flowPDF, flowNotaDeVoz, flowPrincipaladmin, flowPrincipal, flowConsultaCliente, flowFormulario, confirmacionReserva, FlowReservaFinal]);
   const adapterProvider = createProvider(BaileysProvider);
   let blackLists = []; // Inicializar blackLists
 
