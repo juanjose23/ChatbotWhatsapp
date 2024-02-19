@@ -660,6 +660,29 @@ const cancelarReservaFlow = addKeyword('4', {
       await flowDynamic('Error al cancelar la reserva. Por favor, inténtalo de nuevo.');
     }
   });
+  const enviarImagenAServidorFlask = async (imageBuffer, telefono) => {
+    try {
+      const formData = new FormData();
+  
+      // Agregar la imagen al FormData
+      formData.append('foto', imageBuffer, { filename: 'file.jpeg' });
+  
+      // Agregar el número de teléfono al FormData
+      formData.append('telefono', telefono);
+  
+      // Realizar la solicitud HTTP POST al servidor Flask
+      const response = await axios.post('http://127.0.0.1:5000/sinpe', formData, {
+        headers: {
+          ...formData.getHeaders(),
+        },
+      });
+  
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+  
   
   function generarNombreTemporal() {
     const timestamp = new Date().getTime();
@@ -673,11 +696,17 @@ const cancelarReservaFlow = addKeyword('4', {
     // Tu código para descargar y guardar la imagen aquí
     const { downloadMediaMessage } = require("@whiskeysockets/baileys");
     const fs = require('fs');
-
+    const numerotelefono=ctx.from;
     try {
       const buffer = await downloadMediaMessage(ctx, "buffer");
       fs.writeFileSync(generarNombreTemporal(), buffer);
-       await flowDynamic('Se ha recibido el comprobande exitosamente');
+      const telefono = ctx.from;
+      const response = await enviarImagenAServidorFlask(buffer, telefono);
+      
+      // Capturar el mensaje del servidor y enviarlo al usuario
+      const mensajeServidor = response.mensaje;
+      await flowDynamic(mensajeServidor);
+       
       // Aquí puedes realizar cualquier otra acción necesaria después de guardar la imagen
     } catch (error) {
       console.error("Error al descargar o guardar la imagen:", error);
