@@ -691,7 +691,7 @@ const cancelarReservaFlow = addKeyword('4', {
   }
    
   const flowSinpe = addKeyword('5', { sensitive: true })
-  .addAnswer("Hola, envía tu foto del pago hecho en Sinpe")
+  .addAnswer("Hola, envía tu comprobante de pago")
   .addAction({ capture: true }, async (ctx, { flowDynamic, gotoFlow, fallBack, endFlow }) => {
     // Tu código para descargar y guardar la imagen aquí
     const { downloadMediaMessage } = require("@whiskeysockets/baileys");
