@@ -1,8 +1,10 @@
 const { createBot, createProvider, createFlow, addKeyword, EVENTS, addAnswer } = require('@bot-whatsapp/bot')
-const pool = require('./db')
 const QRPortalWeb = require('@bot-whatsapp/portal')
 const BaileysProvider = require('@bot-whatsapp/provider/baileys')
 const MockAdapter = require('@bot-whatsapp/database/mock')
+const FormData = require('form-data');
+
+
 /////////////////////////////////////////////////////////
 
 const axios = require('axios');
@@ -308,12 +310,12 @@ const flowReserva = addKeyword('1')
     console.log('mensaje entrante: ', ctx.body);
     await state.update({ servicioObj: servicioObj })
   })
-  .addAnswer(['*Estos son los horarios disponibles:* '], null, async (ctx, { flowDynamic,gotoFlow }) => {
+  .addAnswer(['*Estos son los horarios disponibles:* '], null, async (ctx, { flowDynamic, gotoFlow }) => {
     const bloquesOriginales = await enviar_duracion_dia(servicioObj, fechaObj);
     if (bloquesOriginales.length === 0) {
       // Si no hay bloques disponibles, devuelve un mensaje de disculpa
-     await flowDynamic('Lo sentimos, 😔 no tenemos disponible ningún horario para el servicio que has seleccionado. 🕰️ Te invitamos a escoger otro día. 📅');
-     return gotoFlow(flowPrincipal)
+      await flowDynamic('Lo sentimos, 😔 no tenemos disponible ningún horario para el servicio que has seleccionado. 🕰️ Te invitamos a escoger otro día. 📅');
+      return gotoFlow(flowPrincipal)
     }
     // Formatear la respuesta
     let formattedResponse = '';
@@ -658,6 +660,32 @@ const cancelarReservaFlow = addKeyword('4', {
       await flowDynamic('Error al cancelar la reserva. Por favor, inténtalo de nuevo.');
     }
   });
+  
+  function generarNombreTemporal() {
+    const timestamp = new Date().getTime();
+    const randomString = Math.random().toString(36).substring(7);
+    return `imagen_${timestamp}_${randomString}.jpeg`;
+  }
+   
+  const flowSinpe = addKeyword('5', { sensitive: true })
+  .addAnswer("Hola, envía tu foto del pago hecho en Sinpe")
+  .addAction({ capture: true }, async (ctx, { flowDynamic, gotoFlow, fallBack, endFlow }) => {
+    // Tu código para descargar y guardar la imagen aquí
+    const { downloadMediaMessage } = require("@whiskeysockets/baileys");
+    const fs = require('fs');
+
+    try {
+      const buffer = await downloadMediaMessage(ctx, "buffer");
+      fs.writeFileSync(generarNombreTemporal(), buffer);
+       await flowDynamic('Se ha recibido el comprobande exitosamente');
+      // Aquí puedes realizar cualquier otra acción necesaria después de guardar la imagen
+    } catch (error) {
+      console.error("Error al descargar o guardar la imagen:", error);
+      // Puedes manejar el error de alguna manera apropiada, por ejemplo:
+      // return ctx.reply("Hubo un error al procesar tu imagen. Por favor, inténtalo de nuevo.");
+    }
+  });
+
 
 async function obtenerReservacionesHoyAdmin() {
   try {
@@ -914,11 +942,12 @@ const flowNotaDeVoz = addKeyword(EVENTS.VOICE_NOTE)
       '👉 *2. Horarios y ubicaciones*',
       '👉 *3. Servicios y productos*',
       '👉 *4. Cancelar reserva*',
+      '👉 *5. Enviar comprobante de pago sinpe*',
       '*Ingresa un número para continuar*'
     ],
     {
 
-    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion, cancelarReservaFlow]
+    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion, cancelarReservaFlow, flowSinpe]
   );
 
 const flowVideos = addKeyword(EVENTS.MEDIA)
@@ -930,11 +959,12 @@ const flowVideos = addKeyword(EVENTS.MEDIA)
       '👉 *2. Horarios y ubicaciones*',
       '👉 *3. Servicios y productos*',
       '👉 *4. Cancelar reserva*',
+      '👉 *5. Enviar comprobante de pago sinpe*',
       '*Ingresa un número para continuar*'
     ],
     {
 
-    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion, cancelarReservaFlow]
+    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion, cancelarReservaFlow, flowSinpe]
   );
 
 const flowPDF = addKeyword(EVENTS.DOCUMENT)
@@ -946,11 +976,12 @@ const flowPDF = addKeyword(EVENTS.DOCUMENT)
       '👉 *2. Horarios y ubicaciones*',
       '👉 *3. Servicios y productos*',
       '👉 *4. Cancelar reserva*',
+      '👉 *5. Enviar comprobante de pago sinpe*',
       '*Ingresa un número para continuar*'
     ],
     {
 
-    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion, cancelarReservaFlow]
+    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion, cancelarReservaFlow, flowSinpe]
   );
 
 
@@ -963,11 +994,12 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
       '👉 *2. Horarios y ubicaciones*',
       '👉 *3. Servicios y productos*',
       '👉 *4. Cancelar reserva*',
+      '👉 *5. Enviar comprobante de pago sinpe*',
       '*Ingresa un número para continuar*'
     ],
     {
 
-    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion, cancelarReservaFlow]
+    }, null, [flowReserva, flowHorariosYubicaciones, flowFormularioServiciosYProductos, flowConsultaConfirmacion, cancelarReservaFlow, flowSinpe]
   );
 const obtenerListaNegra = async () => {
   try {
