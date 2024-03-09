@@ -352,7 +352,7 @@ const flowReserva = addKeyword('1')
 
     return await flowDynamic(formattedResponse);
   })
-  .addAnswer(['👀 *Escribe el número del método que deseas:*\n*Si deseas terminar la solicitud envía 0*'], { capture: true }, async (ctx, { fallBack, gotoFlow, state }) => {
+  .addAnswer(['👀 *Escribe el número del método que deseas:*\n*Si deseas terminar la solicitud envía 0*'], { capture: true }, async (ctx, { fallBack, gotoFlow, state,endFlow }) => {
     metodoObj = metodos.find(metodo => metodo.index === parseInt(ctx.body));
     console.log(metodoObj);
     if (parseInt(ctx.body) < 1) {
